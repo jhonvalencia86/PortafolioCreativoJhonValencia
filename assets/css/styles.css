@@ -1093,3 +1093,7 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 }
 @media (prefers-reduced-motion: reduce) { .wheel__ring { animation: none; } }
 @media (max-width: 640px) { .deck__hint { visibility: hidden; } }
+
+/* vuelta 360: la cara sólida desaparece de espaldas y deja ver el contorno */
+.kinetic__layer--solid .wv { backface-visibility: hidden; -webkit-backface-visibility: hidden; transform-origin: 50% 50%; }
+.kinetic__layer--o1 .wv, .kinetic__layer--o2 .wv { transform-origin: 50% 50%; }

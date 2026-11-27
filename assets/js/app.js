@@ -83,36 +83,28 @@
   /* ================================================================
      ONDA TIPOGRÁFICA (título PORTFOLIO + nombre)
      ================================================================ */
-  $$(".hero__who .hw > span").forEach((w) => {
-    w.innerHTML = [...w.textContent].map((c) => `<span class="wv">${c}</span>`).join("");
-  });
   const waveLayers = {
     solid: $$(".kinetic__layer--solid .wv"),
     o1: $$(".kinetic__layer--o1 .wv"),
     o2: $$(".kinetic__layer--o2 .wv")
   };
-  const nameLetters = $$(".hero__who .wv");
   let waveOn = false, waveRaf = 0;
+  // Solo PORTFOLIO: cada letra da una vuelta completa (360°) sobre su eje, en cascada
+  const SPIN_PERIOD = 4.2, SPIN_DUR = 1.25, SPIN_STAGGER = 0.09;
+  const easeIO = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  function spinAngle(t, i, lag) {
+    const local = (t - i * SPIN_STAGGER - lag) % SPIN_PERIOD;
+    const p = Math.max(0, Math.min(1, (local < 0 ? local + SPIN_PERIOD : local) / SPIN_DUR));
+    return easeIO(p) * 360;
+  }
   function wave(now) {
     const t = now / 1000;
     const L = waveLayers.solid.length;
     for (let i = 0; i < L; i++) {
-      const ph = t * 2.1 - i * 0.62;
-      const y = Math.sin(ph) * 0.085, r = Math.cos(ph) * 5, sy = 1 + Math.sin(ph) * 0.07;
-      // la parte sólida viaja a lo largo de la palabra
-      const vis = Math.max(0, Math.min(1, 0.5 + 4 * Math.sin(t * 0.9 - i * 0.42)));
-      const so = waveLayers.solid[i];
-      so.style.transform = `translateY(${y.toFixed(3)}em) rotate(${r.toFixed(2)}deg) scaleY(${sy.toFixed(3)})`;
-      so.style.opacity = vis.toFixed(2);
-      const ph1 = ph + 1.1;
-      waveLayers.o1[i].style.transform = `translateY(${(Math.sin(ph1) * 0.1 + 0.11).toFixed(3)}em) rotate(${(Math.cos(ph1) * -6).toFixed(2)}deg) scaleY(${(1 + Math.cos(ph1) * 0.09).toFixed(3)})`;
-      const ph2 = ph + 2.2;
-      waveLayers.o2[i].style.transform = `translateY(${(Math.sin(ph2) * 0.07 - 0.04).toFixed(3)}em) rotate(${(Math.cos(ph2) * 4).toFixed(2)}deg)`;
+      waveLayers.solid[i].style.transform = `perspective(600px) rotateX(${spinAngle(t, i, 0).toFixed(1)}deg)`;
+      waveLayers.o1[i].style.transform = `perspective(600px) rotateX(${spinAngle(t, i, 0.12).toFixed(1)}deg)`;
+      waveLayers.o2[i].style.transform = `perspective(600px) rotateX(${spinAngle(t, i, 0.24).toFixed(1)}deg)`;
     }
-    nameLetters.forEach((el, i) => {
-      const ph = t * 2.1 - i * 0.38;
-      el.style.transform = `translateY(${(Math.sin(ph) * 0.06).toFixed(3)}em) rotate(${(Math.cos(ph) * 3).toFixed(2)}deg)`;
-    });
     waveRaf = waveOn ? requestAnimationFrame(wave) : 0;
   }
   function waveSync() {
