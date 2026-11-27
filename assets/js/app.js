@@ -64,16 +64,7 @@
   $$(".kinetic__layer").forEach((layer) => {
     const base = layer.classList.contains("kinetic__layer--solid") ? 0 : layer.classList.contains("kinetic__layer--o1") ? 110 : 200;
     layer.innerHTML = [...layer.dataset.word]
-      .map((ch, i) => `<span class="ch" style="transition-delay:${base + i * 45}ms">${ch}</span>`)
-      .join("");
-  });
-
-  // Nombre + PORTFOLIO: cada letra es una carta que gira (cara sólida / cara contorno)
-  $$(".flip-row").forEach((row, r) => {
-    row.innerHTML = [...row.dataset.w]
-      .map((ch, i) => ch === " "
-        ? `<span class="fl fl--sp"></span>`
-        : `<span class="fl" style="--i:${i};--r:${r}"><span class="fl__f">${ch}</span><span class="fl__b">${ch}</span></span>`)
+      .map((ch, i) => `<span class="ch" style="transition-delay:${base + i * 45}ms"><span class="wv">${ch}</span></span>`)
       .join("");
   });
 
@@ -88,6 +79,49 @@
       kinetic.style.setProperty("--py2", `calc(-0.07em + ${my * 20}px)`);
     }, { passive: true });
   }
+
+  /* ================================================================
+     ONDA TIPOGRÁFICA (título PORTFOLIO + nombre)
+     ================================================================ */
+  $$(".hero__who .hw > span").forEach((w) => {
+    w.innerHTML = [...w.textContent].map((c) => `<span class="wv">${c}</span>`).join("");
+  });
+  const waveLayers = {
+    solid: $$(".kinetic__layer--solid .wv"),
+    o1: $$(".kinetic__layer--o1 .wv"),
+    o2: $$(".kinetic__layer--o2 .wv")
+  };
+  const nameLetters = $$(".hero__who .wv");
+  let waveOn = false, waveRaf = 0;
+  function wave(now) {
+    const t = now / 1000;
+    const L = waveLayers.solid.length;
+    for (let i = 0; i < L; i++) {
+      const ph = t * 2.1 - i * 0.62;
+      const y = Math.sin(ph) * 0.085, r = Math.cos(ph) * 5, sy = 1 + Math.sin(ph) * 0.07;
+      // la parte sólida viaja a lo largo de la palabra
+      const vis = Math.max(0, Math.min(1, 0.5 + 4 * Math.sin(t * 0.9 - i * 0.42)));
+      const so = waveLayers.solid[i];
+      so.style.transform = `translateY(${y.toFixed(3)}em) rotate(${r.toFixed(2)}deg) scaleY(${sy.toFixed(3)})`;
+      so.style.opacity = vis.toFixed(2);
+      const ph1 = ph + 1.1;
+      waveLayers.o1[i].style.transform = `translateY(${(Math.sin(ph1) * 0.1 + 0.11).toFixed(3)}em) rotate(${(Math.cos(ph1) * -6).toFixed(2)}deg) scaleY(${(1 + Math.cos(ph1) * 0.09).toFixed(3)})`;
+      const ph2 = ph + 2.2;
+      waveLayers.o2[i].style.transform = `translateY(${(Math.sin(ph2) * 0.07 - 0.04).toFixed(3)}em) rotate(${(Math.cos(ph2) * 4).toFixed(2)}deg)`;
+    }
+    nameLetters.forEach((el, i) => {
+      const ph = t * 2.1 - i * 0.38;
+      el.style.transform = `translateY(${(Math.sin(ph) * 0.06).toFixed(3)}em) rotate(${(Math.cos(ph) * 3).toFixed(2)}deg)`;
+    });
+    waveRaf = waveOn ? requestAnimationFrame(wave) : 0;
+  }
+  function waveSync() {
+    const want = !reduced() && !document.hidden && S.open < 0 && indexEl.hidden && scrollY < innerHeight;
+    if (want && !waveOn) { waveOn = true; waveRaf = requestAnimationFrame(wave); }
+    else if (!want) waveOn = false;
+  }
+  setInterval(waveSync, 400);
+  addEventListener("scroll", waveSync, { passive: true });
 
   /* ================================================================
      CARTAS
@@ -247,6 +281,8 @@
     const dt = Math.min(0.05, (now - last) / 1000 || 0.016);
     last = now;
 
+    const auto = autoOn();
+    if (auto) S.target += dt * AUTO_SPEED;
     if (!S.dragging) {
       const k = reduced() ? 1 : 1 - Math.exp(-dt * 11);
       S.pos += (S.target - S.pos) * k;
@@ -264,9 +300,20 @@
       while (settleWaiters.length) settleWaiters.shift()();
     }
 
-    if (tweens.size || S.dragging || S.pos !== S.target) raf = requestAnimationFrame(tick);
+    if (tweens.size || S.dragging || S.pos !== S.target || auto) raf = requestAnimationFrame(tick);
     else raf = 0;
   }
+  /* giro automático de la rueda (se pausa al interactuar) */
+  const AUTO_SPEED = 0.16;           // cartas por segundo
+  let lastTouch = -1e9;
+  const touch = () => { lastTouch = performance.now(); if (Math.abs(S.target - Math.round(S.target)) > 0.001 && !S.dragging) S.target = Math.round(S.target); };
+  function autoOn() {
+    return S.ready && !reduced() && !S.dragging && !S.busy && S.open < 0 && S.hover < 0 &&
+      indexEl.hidden && !document.hidden && scrollY < innerHeight * 0.5 &&
+      performance.now() - lastTouch > 6000;
+  }
+  setInterval(() => { if (autoOn()) kick(); }, 1000);
+
   function kick() {
     if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
   }
@@ -278,10 +325,12 @@
     });
 
   function goTo(i) {
+    touch();
     S.target += wrapOffset(i, S.target);
     kick();
   }
   function step(d) {
+    touch();
     S.target = Math.round(S.target) + d;
     kick();
   }
@@ -291,7 +340,7 @@
     slots.forEach((slot, i) => {
       slot.addEventListener("pointerenter", () => {
         if (!S.ready || S.dragging || S.busy) return;
-        S.hover = i; slot.classList.add("is-hover"); layout();
+        S.hover = i; slot.classList.add("is-hover"); touch(); layout();
       });
       slot.addEventListener("pointermove", (e) => {
         if (S.hover !== i) return;
@@ -318,6 +367,7 @@
   let drag = null;
   stage.addEventListener("pointerdown", (e) => {
     if (!S.ready || S.busy || e.button > 0) return;
+    lastTouch = performance.now();
     const slot = e.target.closest(".slot");
     drag = {
       id: e.pointerId, x0: e.clientX, y0: e.clientY, pos0: S.pos,
@@ -912,7 +962,7 @@
 
   function renderDetail(i) {
     const c = DECK[i];
-    detail.style.setProperty("--acc", c.accent || "#6A3CF2");
+    detail.style.setProperty("--acc", c.accent || "#E44832");
     detail.classList.toggle("theme-dark", c.theme === "dark");
     if (c.paper) detail.style.setProperty("--dbg", c.paper); else detail.style.removeProperty("--dbg");
     const r = c.layout === "story" ? renderStory : { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
