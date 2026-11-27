@@ -1,0 +1,51 @@
+{
+  "note": "Información pendiente de confirmar. Oculta en el sitio público hasta verificarla.",
+  "projects": {
+    "a36cuotas": {
+      "instagram": null,
+      "tiktok": null,
+      "spotify": null,
+      "contacto": [
+        "hola@a36cuotas.co",
+        "contacto@treintaseiscuotas.com"
+      ],
+      "metricas": "Sin métricas verificadas",
+      "presentaciones_comerciales": "No publicadas (incluyen precios de patrocinio)"
+    },
+    "credito-inteligente": {
+      "instagram": null,
+      "manual_de_marca": "No incluido en los assets recibidos",
+      "interfaces": "Sin capturas de producto"
+    },
+    "chappetag": {
+      "interfaces_app": "Sin capturas de la app"
+    },
+    "chrome-lovers": {
+      "youtube": null,
+      "instagram": null,
+      "spotify": null,
+      "videoclips": "Sin archivos de video"
+    },
+    "profane-noise": {
+      "adaptaciones_digitales": "Sin material"
+    },
+    "tu-crm-seguro": {
+      "interfaces": "Sin capturas disponibles"
+    },
+    "agrogestor": {
+      "estado": "Oculto: sin material"
+    },
+    "colsubsidio": {
+      "estado": "Oculto: sin autorización"
+    },
+    "bolivar-contigo": {
+      "estado": "Oculto: sin autorización"
+    },
+    "imetec": {
+      "estado": "Oculto: sin autorización"
+    }
+  },
+  "about": {
+    "retrato": "Sin fotografía profesional"
+  }
+}

@@ -3,13 +3,22 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>JV — The Creative Deck · Jhon Valencia Santana</title>
-  <meta name="description" content="Portafolio de Jhon Valencia Santana — dirección creativa, estrategia digital e innovación. Explora la baraja: cada carta es un proyecto." />
-  <meta name="theme-color" content="#E8E8E4" />
-  <meta property="og:title" content="JV — The Creative Deck" />
-  <meta property="og:description" content="Creative direction. Digital strategy. Innovation. Bogotá, Colombia." />
+  <title>Jhon Valencia Santana — Creative Strategy &amp; Digital Innovation</title>
+  <meta name="description" content="Portafolio de dirección creativa, branding, marketing, innovación, productos digitales y producción audiovisual con inteligencia artificial." />
+  <meta name="keywords" content="Jhon Valencia Santana, Creative Direction Colombia, Creative Strategy, Digital Innovation, Branding, Product Design, AI Creative, Marketing Digital" />
+  <meta name="author" content="Jhon Valencia Santana" />
+  <meta name="theme-color" content="#F5F5F2" />
+  <link rel="canonical" href="https://jhonvalencia86.github.io/PortafolioCreativoJhonValencia/" />
+  <meta property="og:title" content="Jhon Valencia Santana — Creative Strategy & Digital Innovation" />
+  <meta property="og:description" content="Creatividad, estrategia y tecnología. Portafolio creativo desde Bogotá, Colombia." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/og.jpg" />
+  <meta property="og:locale" content="es_CO" />
+  <meta property="og:url" content="https://jhonvalencia86.github.io/PortafolioCreativoJhonValencia/" />
+  <meta property="og:image" content="https://jhonvalencia86.github.io/PortafolioCreativoJhonValencia/assets/img/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Jhon Valencia Santana","jobTitle":"Creative Strategy & Digital Innovation","address":{"@type":"PostalAddress","addressLocality":"Bogotá","addressCountry":"CO"},"url":"https://jhonvalencia86.github.io/PortafolioCreativoJhonValencia/","sameAs":["https://co.linkedin.com/in/jhonvalenciasantana","https://www.behance.net/jhxnvale","https://github.com/jhonvalencia86"],"knowsAbout":["Creative Direction","Brand Strategy","Digital Marketing","Product Design","Digital Innovation","Artificial Intelligence","Storytelling","Audiovisual Production"]}
+  </script>
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +26,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body class="is-intro">
-  <a class="skip" href="#deck">Saltar a la baraja</a>
+  <a class="skip" href="#work">Saltar a los proyectos</a>
 
   <!-- Intro: monograma -->
   <div class="intro" id="intro" aria-hidden="true">
@@ -25,18 +34,19 @@
   </div>
 
   <!-- ===================== HOME ===================== -->
+  <header class="topbar">
+    <a class="topbar__brand" href="#/" data-nav="work">JV® — CREATIVE STUDIO</a>
+    <nav class="topbar__nav" aria-label="Principal">
+      <a href="#/projects" data-nav="projects">WORK</a>
+      <a href="#/p/about" data-nav="about">ABOUT</a>
+      <a href="#/p/contact" data-nav="contact">CONTACT</a>
+    </nav>
+    <span class="topbar__place">BOGOTÁ, COLOMBIA / 2026</span>
+  </header>
   <main class="home" id="home">
+    <section class="screen" id="top" aria-label="Baraja de proyectos">
     <div class="paper" aria-hidden="true"></div>
 
-    <header class="topbar">
-      <a class="topbar__brand" href="#/" data-nav="work">JV® — CREATIVE STUDIO</a>
-      <nav class="topbar__nav" aria-label="Principal">
-        <a href="#/" data-nav="work">WORK</a>
-        <a href="#/p/about" data-nav="about">ABOUT</a>
-        <a href="#/p/contact" data-nav="contact">CONTACT</a>
-      </nav>
-      <span class="topbar__place">BOGOTÁ, COLOMBIA / 2026</span>
-    </header>
 
     <!-- marcas de registro -->
     <span class="reg reg--tl" aria-hidden="true"></span>
@@ -80,7 +90,58 @@
         </div>
       </div>
     </section>
+    </section>
+
+    <!-- Creative statement -->
+    <section class="statement" aria-labelledby="st-h">
+      <p class="eyebrow mono">(01) — CREATIVE STATEMENT</p>
+      <h2 class="statement__h" id="st-h"></h2>
+      <div class="statement__cols">
+        <p class="statement__role mono" id="st-role"></p>
+        <p class="statement__desc" id="st-desc"></p>
+      </div>
+    </section>
+
+    <!-- Selected projects -->
+    <section class="selected" id="work" aria-labelledby="sel-h">
+      <div class="sec-head">
+        <p class="eyebrow mono">(02) — SELECTED PROJECTS</p>
+        <h2 class="sec-head__h" id="sel-h">Proyectos seleccionados</h2>
+        <a class="sec-head__link" href="#/projects">Ver todos los proyectos <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="pgrid" id="pgrid"></div>
+    </section>
+
+    <!-- Expertise -->
+    <section class="expertise" aria-labelledby="ex-h">
+      <p class="eyebrow mono">(03) — PROFESSIONAL EXPERTISE</p>
+      <h2 class="sr-only" id="ex-h">Capacidades</h2>
+      <ol class="exlist" id="exlist"></ol>
+    </section>
+
+    <!-- Contact footer -->
+    <footer class="cfoot" aria-labelledby="cf-h">
+      <p class="eyebrow mono">(04) — CONTACT</p>
+      <a class="cfoot__big" id="cf-h" href="#/p/contact">LET'S <span class="o">CREATE</span> <span aria-hidden="true">↗</span></a>
+      <div class="cfoot__row" id="cfoot-row"></div>
+    </footer>
   </main>
+
+  <!-- ===================== ÍNDICE DE PROYECTOS ===================== -->
+  <div class="index" id="index" role="dialog" aria-modal="true" aria-labelledby="ix-h" hidden>
+    <div class="index__bar">
+      <a class="detail__back" href="#/"><span aria-hidden="true">←</span> BACK TO THE DECK</a>
+      <span class="mono" id="ix-count"></span>
+    </div>
+    <div class="index__scroll" id="index-scroll">
+      <header class="index__head">
+        <p class="eyebrow mono">PROJECT INDEX</p>
+        <h2 class="index__h" id="ix-h">Projects</h2>
+        <div class="filters" id="filters" role="toolbar" aria-label="Filtrar por categoría"></div>
+      </header>
+      <div class="pgrid pgrid--index" id="ixgrid"></div>
+    </div>
+  </div>
 
   <!-- ===================== DETALLE ===================== -->
   <div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden>

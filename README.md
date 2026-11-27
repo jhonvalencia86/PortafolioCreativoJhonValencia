@@ -53,9 +53,30 @@ Tamaños de galería (`span`): `full`, `wide`, `half`, `tall`.
 
 ### Proyectos pendientes
 
-- **AgroGestor (07)** aparece como placeholder “EN PREPARACIÓN”. Para ocultarlo: `published: false`.
+- **AgroGestor (07)** está oculto (`published: false`) hasta tener material.
 - **Human Experience (09), Bolívar Contigo Hogar (10) e IMETEC (11)** están en el catálogo con `published: false` hasta tener material autorizado. Para publicarlos, completa sus datos copiando la estructura de otro proyecto.
 - Las presentaciones comerciales (`.pptx`, `.pdf`) **no** se incluyeron en el sitio público.
+
+## Arquitectura del sitio
+
+| Vista | Ruta | Qué contiene |
+|---|---|---|
+| Home | `#/` | Baraja 3D, creative statement, proyectos seleccionados (grilla asimétrica), expertise y contacto |
+| Projects | `#/projects` | Índice de proyectos con filtros por categoría |
+| Caso | `#/p/<id>` | Caso de estudio: hero, overview y detalles, reto, estrategia, identidad, ejecución, galería, video, tecnología creativa, enlaces y siguiente proyecto |
+| About | `#/p/about` | Perfil, experiencia, educación, capacidades y filosofía creativa |
+| Contact | `#/p/contact` | Email, LinkedIn, Behance y GitHub |
+
+Las rutas usan `#` para funcionar en GitHub Pages sin configuración extra. Hay `404.html`, `sitemap.xml`, `robots.txt`, Open Graph y datos estructurados (JSON-LD).
+
+### Inventario y pendientes
+
+- `docs/assets-manifest.json`: inventario de todas las imágenes publicadas (proyecto, categoría, sección, medidas, texto alternativo).
+- `docs/pending-information.json`: enlaces y datos sin confirmar (Instagram, TikTok, Spotify, métricas, etc.). No se muestran en el sitio hasta verificarlos.
+
+### Agregar una sección a un caso
+
+Los casos usan `layout: "story"` y una lista `story` de bloques: `text`, `duo`, `identity`, `formats`, `figures`, `deck`, `steps`, `cards`, `youtube`, `web`. Copia un bloque de otro proyecto y cambia textos e imágenes.
 
 ## Interacción
 

@@ -11,12 +11,16 @@
 
 window.JV_SITE = {
   name: "Jhon Valencia Santana",
+  title: "Creative Strategy & Digital Innovation",
+  headline: "Creatividad, estrategia y tecnología.",
+  description: "Profesional especializado en marketing, innovación, desarrollo de productos digitales y dirección creativa. Transformo ideas en marcas, experiencias y soluciones digitales.",
+  expertise: ["Creative Direction", "Brand Strategy", "Digital Marketing", "Product Design", "Digital Innovation", "Artificial Intelligence", "Storytelling", "Audiovisual Production"],
   studio: "JV® — CREATIVE STUDIO",
   place: "BOGOTÁ, COLOMBIA / 2026",
   email: "jhxnvale86@gmail.com",
   links: {
     behance: "https://www.behance.net/jhxnvale",
-    linkedin: "https://www.linkedin.com/in/jhonvalenciasantana/",
+    linkedin: "https://co.linkedin.com/in/jhonvalenciasantana",
     github: "https://github.com/jhonvalencia86"
   }
 };
@@ -55,6 +59,8 @@ window.JV_DECK = [
     accent: "#D71920",
     paper: "#F4F0E9",
     theme: "light",
+    tags: ["Branding", "Educación financiera", "Contenido", "IA"],
+    short: "Podcast y plataforma de educación financiera con personajes, humor y producción asistida por IA.",
     card: { template: "frame", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/portadas/podcast-urbano.webp", fit: "contain", bg: "#151515", pos: "50% 50%", heroInk: "#F4F0E9" },
     lead: "Aprende de plata antes de ponerla a cuotas.",
     facts: [
@@ -223,27 +229,50 @@ window.JV_DECK = [
     number: "02",
     id: "chrome-lovers",
     kind: "project",
+    layout: "story",
     published: true,
     title: "CHROME LOVERS",
-    category: "ART / MOTION / AI",
+    category: "ART DIRECTION / MUSIC / AI",
     year: "2026",
     color: "#151515",
     ink: "#F4F1EA",
-    accent: "#D6337A",
+    accent: "#E0368A",
     theme: "dark",
-    card: { template: "full", src: IMG + "chrome-lovers/card.webp", hero: IMG + "chrome-lovers/cover.webp", fit: "cover", bg: "#1C151C", pos: "50% 30%" },
-    lead: "Bogotá en clave anime noventero.",
-    context:
-      "Proyecto personal de arte con IA: un universo urbano y skater ambientado en Bogotá, con estética anime de los 90 y una banda sonora entre rap, rock y electrónica.",
-    concept:
-      "Dos protagonistas, Su y J, construidos como si fueran personajes de una serie: actas visuales, hojas de expresiones, rotaciones, vestuario, objetos y paleta de color propia.",
-    role: ["Dirección de arte", "Diseño de personajes", "Worldbuilding", "Producción con IA generativa"],
-    deliverables: ["Acta visual de personajes", "Hojas de diseño", "Key visual Bogotá cyberpunk", "Portadas musicales"],
-    gallery: [
-      { src: IMG + "chrome-lovers/chrome-lovers-bogota-cyberpunk.webp", alt: "Chrome Lovers — key visual Bogotá cyberpunk", w: 1312, h: 1199, span: "wide" },
-      { src: IMG + "chrome-lovers/hoja-de-diseno-urbana-chrome-lovers.webp", alt: "Hoja de diseño urbana", w: 1024, h: 1536, span: "tall" },
-      { src: IMG + "chrome-lovers/hoja-de-personajes-chrome-lovers-retro-anime.webp", alt: "Hoja de personajes retro anime", w: 1199, h: 1312, span: "half" },
-      { src: IMG + "chrome-lovers/acta-visual-chrome-lovers-anime-skater.webp", alt: "Acta visual anime skater", w: 1199, h: 1312, span: "half" }
+    tags: ["Dirección de arte", "Música", "IA"],
+    short: "Universo musical y audiovisual que cruza rap, rock y electrónica con Bogotá en clave anime.",
+    card: { template: "full", src: IMG + "chrome-lovers/card.webp", hero: IMG + "chrome-lovers/chrome-lovers-bogota-cyberpunk.webp", fit: "cover", heroFit: "contain", bg: "#120E14", pos: "50% 30%", heroInk: "#F4F1EA" },
+    lead: "Bogotá en clave anime noventero, al ritmo de rap, rock y electrónica.",
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Proyecto artístico independiente"],
+      ["INDUSTRIA", "Música · Arte"],
+      ["MI ROL", "Dirección de arte · Creación"]
+    ],
+    story: [
+      { type: "text", label: "THE PROJECT", title: "Un universo, no solo una canción.",
+        body: "Chrome Lovers es un proyecto musical y audiovisual experimental que conecta rap, rock, electrónica, narrativa visual e inteligencia artificial. La música se acompaña de un mundo propio: personajes, ciudad, objetos y una estética coherente en cada pieza." },
+      { type: "figures", band: "black", label: "UNIVERSO CREATIVO",
+        title: "Bogotá cyberpunk.",
+        body: "La ciudad funciona como un personaje más: calles reconocibles leídas con la estética del anime de los 90, neón, grafiti y cultura skater.",
+        items: [
+          { src: IMG + "chrome-lovers/chrome-lovers-bogota-cyberpunk.webp", alt: "Key visual: Chrome Lovers en una Bogotá cyberpunk", w: 1312, h: 1199, span: "full" }
+        ] },
+      { type: "figures", label: "PERSONAJES",
+        title: "Su y J.",
+        body: "Los dos protagonistas se diseñaron como para una serie: acta visual, rotaciones, vestuario, expresiones, accesorios y paleta, para que se reconozcan en cualquier portada o escena.",
+        items: [
+          { src: IMG + "chrome-lovers/acta-visual-chrome-lovers-anime-skater.webp", alt: "Acta visual de personajes: Su y J", w: 1199, h: 1312, span: "half" },
+          { src: IMG + "chrome-lovers/hoja-de-personajes-chrome-lovers-retro-anime.webp", alt: "Hoja de personajes retro anime", w: 1199, h: 1312, span: "half" }
+        ] },
+      { type: "figures", label: "DIRECCIÓN DE ARTE",
+        title: "Vestuario, objetos y calle.",
+        body: "La hoja de diseño urbana fija el sistema: prendas, accesorios, tipografía de marca y referencias de color que luego se repiten en portadas y videoclips.",
+        items: [
+          { src: IMG + "chrome-lovers/hoja-de-diseno-urbana-chrome-lovers.webp", alt: "Hoja de diseño urbana de Chrome Lovers", w: 1024, h: 1536, span: "tall" }
+        ] },
+      { type: "text", label: "CREATIVE TECHNOLOGY", title: "IA como herramienta, criterio como dirección.",
+        body: "La inteligencia artificial generativa se usa para explorar personajes, escenarios y variaciones visuales. La dirección de arte define el universo, selecciona y corrige cada resultado para mantener la coherencia del proyecto.",
+        chips: ["Dirección de arte", "Diseño de personajes", "Worldbuilding", "IA generativa"] }
     ],
     links: []
   },
@@ -253,28 +282,50 @@ window.JV_DECK = [
     number: "03",
     id: "credito-inteligente",
     kind: "project",
+    layout: "story",
     published: true,
     title: "MI CRÉDITO INTELIGENTE",
     category: "FINTECH / DIGITAL PRODUCT",
     year: "2026",
-    color: "#1B2A7A",
+    color: "#08275B",
     ink: "#FFFFFF",
-    accent: "#3B6BFF",
+    accent: "#2563EB",
     theme: "light",
+    tags: ["FinTech", "Producto digital", "Branding", "Educación financiera"],
+    short: "Plataforma para comparar y simular créditos y seguros antes de decidir. No otorga préstamos.",
     card: { template: "frame", src: IMG + "credito-inteligente/card.webp", hero: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", fit: "contain", blend: true, bg: "#FBFAF8" },
-    lead: "¿En qué banco te prestan mejor?",
-    context:
-      "Producto digital para comparar, simular y entender opciones de crédito en un solo lugar, con información clara para decidir mejor.",
-    concept:
-      "Una marca fintech amable: monograma M, azul de confianza y Mici, una mascota-billete que acompaña al usuario en simuladores y comparadores.",
-    role: ["Estrategia de producto", "Identidad de marca", "Mascota y sistema visual", "Piezas de comunicación"],
-    deliverables: ["Logo y versiones", "Mascota", "Manual de marca", "Banners digitales"],
-    gallery: [
-      { src: IMG + "credito-inteligente/mi-credito-inteligente-finanzas-mas-faciles.webp", alt: "Banner Mi Crédito Inteligente", w: 1677, h: 938, span: "wide" },
-      { src: IMG + "credito-inteligente/identidad-fintech-de-mi-credito-inteligente.webp", alt: "Identidad fintech — versiones del logo", w: 1536, h: 1024, span: "half" },
-      { src: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", alt: "Logo y mascota Mici", w: 1536, h: 1024, span: "half" }
+    lead: "Compara, simula y decide.",
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Proyecto propio"],
+      ["INDUSTRIA", "FinTech · Educación financiera"],
+      ["MI ROL", "Creador · Estrategia de producto"]
     ],
-    links: [{ label: "creditointeligente.finance", url: "https://creditointeligente.finance" }]
+    story: [
+      { type: "text", label: "THE PROJECT", title: "¿En qué banco te prestan mejor?",
+        body: "Mi Crédito Inteligente es una plataforma de educación financiera, comparación y simulación de créditos y seguros que ayuda a las personas a tomar decisiones informadas. No otorga préstamos: su papel es explicar y comparar antes de que alguien firme." },
+      { type: "text", label: "PROPUESTA DE VALOR", title: "Entender primero, decidir después.",
+        body: "Comparar tasas, simular cuotas y entender condiciones en un solo lugar, con un lenguaje claro y acompañamiento visual." ,
+        chips: ["Comparar", "Simular", "Aprender", "Decidir"] },
+      { type: "identity", label: "IDENTIDAD VISUAL",
+        title: "Confianza sin frialdad bancaria.",
+        body: "Un monograma M, azules de confianza, un verde que habla de dinero sano y un morado que aporta cercanía. La marca se acompaña de MICI, una mascota-billete con capa que guía al usuario.",
+        image: { src: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", alt: "Logo Mi Crédito Inteligente con la mascota MICI", w: 1536, h: 1024, contain: true },
+        palette: [["Verde", "#31C48D"], ["Azul", "#2563EB"], ["Morado", "#7C4DDE"], ["Navy", "#08275B"]] },
+      { type: "figures", label: "VARIACIONES DE MARCA",
+        title: "Un sistema que escala.",
+        body: "Versiones del logo, monograma y aplicaciones para producto y comunicación.",
+        items: [
+          { src: IMG + "credito-inteligente/identidad-fintech-de-mi-credito-inteligente.webp", alt: "Identidad fintech: versiones del logo y monograma", w: 1536, h: 1024, span: "full" }
+        ] },
+      { type: "figures", label: "CAMPAÑAS",
+        title: "MICI al frente.",
+        body: "La mascota protagoniza la comunicación: preguntas directas, tasas a la vista y las cuatro acciones del producto.",
+        items: [
+          { src: IMG + "credito-inteligente/mi-credito-inteligente-finanzas-mas-faciles.webp", alt: "Banner: ¿En qué banco te prestan mejor?", w: 1677, h: 938, span: "full" }
+        ] }
+    ],
+    links: [{ label: "creditointeligente.finance", url: "https://creditointeligente.finance", sub: "Sitio web" }]
   },
 
   /* ---------------------------------------------------------------- 04 */
@@ -282,29 +333,45 @@ window.JV_DECK = [
     number: "04",
     id: "chappetag",
     kind: "project",
+    layout: "story",
     published: true,
     title: "CHAPPETAG",
-    category: "BRANDING / AGROTECH",
+    category: "AGROTECH / DIGITAL INNOVATION",
     year: "2026",
     color: "#14522F",
     ink: "#FFFFFF",
     accent: "#1E8449",
     theme: "light",
+    tags: ["AgroTech", "Innovación", "Producto digital", "Branding"],
+    short: "Identificación ganadera con NFC y QR para acceder a la información de cada animal desde el celular.",
     card: { template: "frame", src: IMG + "chappetag/card.webp", hero: IMG + "chappetag/cover.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
     lead: "Ganado conectado. Un campo más inteligente.",
-    context:
-      "Plataforma de identificación y gestión digital de ganado para Colombia: una chapeta NFC + QR que se lee con el celular y una app de campo que guarda la historia de cada animal.",
-    concept:
-      "El nombre revela el producto: ChAppeTag esconde “App” y “Tag” dentro de “chapeta”. Funciona sin internet y el ganadero decide qué información de cada lote es pública.",
-    role: ["Tesis de negocio", "Naming e identidad", "Modelo de monetización", "Definición de producto"],
-    deliverables: ["Naming", "Logo y variantes", "Modelo de negocio", "Pitch deck", "Piezas de campaña"],
-    gallery: [
-      { src: IMG + "chappetag/del-campo-conectado-al-futuro.webp", alt: "Del campo conectado al futuro — storyboard", w: 1536, h: 1024, span: "wide" },
-      { src: IMG + "chappetag/como-funciona-el-negocio-de-chappetag.webp", alt: "Cómo funciona el negocio de ChAppeTag", w: 1672, h: 941, span: "wide" },
-      { src: IMG + "chappetag/presentacion-de-logo-chappetagcuntegn.webp", alt: "Presentación de logo", w: 1536, h: 1024, span: "half" },
-      { src: IMG + "chappetag/chappetag-ganado-conectado.webp", alt: "Logo ChAppeTag ganado conectado", w: 1254, h: 1254, span: "half" }
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Proyecto propio"],
+      ["INDUSTRIA", "Agro · Ganadería"],
+      ["MI ROL", "Creador · Estrategia de producto"]
     ],
-    links: [{ label: "chappetag.com", url: "https://chappetag.com" }]
+    story: [
+      { type: "text", label: "THE CHALLENGE", title: "La historia de cada animal, en papel o en la memoria.",
+        body: "En muchas fincas la información del ganado (peso, sanidad, reproducción) está dispersa o no existe, y eso dificulta la trazabilidad y las decisiones." },
+      { type: "text", label: "STRATEGY & CONCEPT", title: "Una chapeta que se lee con el celular.",
+        body: "ChAppeTag integra NFC y QR en la identificación del animal para facilitar el acceso a su información y la trazabilidad. El nombre lo dice todo: dentro de “chapeta” aparecen “App” y “Tag”.",
+        chips: ["NFC", "QR", "Trazabilidad", "App de campo"] },
+      { type: "identity", label: "IDENTIDAD VISUAL",
+        title: "Campo y tecnología en un solo símbolo.",
+        body: "La vaca con chapeta NFC, la nube de datos y el arco verde resumen la propuesta. Las mayúsculas internas del nombre revelan el producto.",
+        image: { src: IMG + "chappetag/presentacion-de-logo-chappetagcuntegn.webp", alt: "Presentación del logo ChAppeTag", w: 1536, h: 1024 },
+        palette: [] },
+      { type: "figures", label: "SOLUCIÓN",
+        title: "Del campo conectado al negocio.",
+        body: "Storyboard del uso en finca y esquema del modelo de negocio.",
+        items: [
+          { src: IMG + "chappetag/del-campo-conectado-al-futuro.webp", alt: "Storyboard: del campo conectado al futuro", w: 1536, h: 1024, span: "full" },
+          { src: IMG + "chappetag/como-funciona-el-negocio-de-chappetag.webp", alt: "Cómo funciona el negocio de ChAppeTag", w: 1672, h: 941, span: "full" }
+        ] }
+    ],
+    links: [{ label: "chappetag.com", url: "https://chappetag.com", sub: "Sitio web" }]
   },
 
   /* ---------------------------------------------------------------- 05 */
@@ -312,26 +379,46 @@ window.JV_DECK = [
     number: "05",
     id: "profane-noise",
     kind: "project",
+    layout: "story",
     published: true,
     title: "PROFANE NOISE",
-    category: "GRAPHIC DESIGN",
+    category: "GRAPHIC DESIGN / ART DIRECTION",
     year: "2026",
     color: "#E44832",
     ink: "#FFFFFF",
     accent: "#3BEA1E",
     theme: "dark",
-    card: { template: "full", src: IMG + "profane-noise/card.webp", hero: IMG + "profane-noise/cover.webp", fit: "cover", bg: "#22E810", pos: "50% 20%" },
+    tags: ["Diseño gráfico", "Dirección de arte", "Música"],
+    short: "Concepto gráfico para un evento de música underground en Bogotá: punk, metal y serigrafía.",
+    card: { template: "full", src: IMG + "profane-noise/card.webp", hero: IMG + "profane-noise/cover.webp", fit: "cover", heroFit: "contain", bg: "#0E0E0E", pos: "50% 20%", heroInk: "#FFFFFF" },
     lead: "Ruido underground, impreso y pegado en la calle.",
-    context:
-      "Cartel para una noche de música pesada en Jack's Hideout, en el centro de Bogotá. La pieza tenía que funcionar en redes y, sobre todo, en muro.",
-    concept:
-      "Bestias ilustradas, tipografía metal ilegible a propósito y dos versiones de color: verde neón para destacar y monocromo para la pegada masiva.",
-    role: ["Diseño gráfico", "Ilustración", "Tipografía", "Adaptaciones para impresión"],
-    deliverables: ["Cartel versión neón", "Cartel versión monocromo", "Pegada urbana"],
-    gallery: [
-      { src: IMG + "profane-noise/mural-urbano-y-carteles-de-ruido.webp", alt: "Pegada de carteles en muro urbano", w: 1086, h: 1448, span: "tall" },
-      { src: IMG + "profane-noise/poster-monocromo-de-ruido-profano.webp", alt: "Cartel monocromo", w: 1088, h: 1446, span: "half" },
-      { src: IMG + "profane-noise/cartel-punk-neon-de-profane-noise.webp", alt: "Cartel neón", w: 1087, h: 1446, span: "half" }
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Proyecto creativo"],
+      ["INDUSTRIA", "Cultura musical"],
+      ["MI ROL", "Diseño gráfico · Dirección de arte"]
+    ],
+    story: [
+      { type: "text", label: "CONCEPTO", title: "Gráfica que suena.",
+        body: "Concepto gráfico y dirección de arte para un evento de música underground en Bogotá, inspirado en la cultura punk, el metal, la serigrafía y la gráfica urbana." },
+      { type: "formats", label: "AFICHES · EXPLORACIÓN CROMÁTICA",
+        title: "Neón para destacar, monocromo para pegar.",
+        body: "Bestias ilustradas, tipografía metal ilegible a propósito y dos versiones de color pensadas para usos distintos.",
+        groups: [
+          { name: "Afiches", spec: "3:4 · Verde neón y monocromo", cols: 3, items: [
+            { src: IMG + "profane-noise/cartel-punk-neon-de-profane-noise.webp", alt: "Afiche versión verde neón", w: 1087, h: 1446 },
+            { src: IMG + "profane-noise/poster-monocromo-de-ruido-profano.webp", alt: "Afiche versión monocromo", w: 1088, h: 1446 }
+          ] }
+        ] },
+      { type: "figures", band: "black", label: "APLICACIÓN IMPRESA",
+        title: "La pieza en su hábitat.",
+        body: "La pegada en muro es donde el afiche cobra sentido: repetición, textura y calle.",
+        items: [
+          { src: IMG + "profane-noise/mural-urbano-y-carteles-de-ruido.webp", alt: "Pegada de afiches en muro urbano", w: 1086, h: 1448, span: "tall" }
+        ] },
+      { type: "text", label: "MI APORTE", title: "De la idea al muro.",
+        body: "Concepto, ilustración, tipografía y adaptaciones para impresión y redes.",
+        chips: ["Concepto", "Dirección de arte", "Ilustración", "Tipografía", "Afiches"] }
     ],
     links: []
   },
@@ -341,26 +428,44 @@ window.JV_DECK = [
     number: "06",
     id: "tu-crm-seguro",
     kind: "project",
+    layout: "story",
     published: true,
     title: "TU CRM SEGURO",
-    category: "INSURTECH / BRANDING",
+    category: "INSURTECH / SAAS",
     year: "2026",
     color: "#0F7A3D",
     ink: "#FFFFFF",
     accent: "#0F7A3D",
     theme: "light",
+    tags: ["InsurTech", "Producto digital", "Branding"],
+    short: "Concepto de CRM para intermediarios y agencias de seguros: gestión comercial y relación con clientes.",
     card: { template: "frame", src: IMG + "tu-crm-seguro/card.webp", hero: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
     lead: "Relacionamiento de verdad con tu cliente, a un clic.",
-    context:
-      "CRM con marca propia para una intermediaria de seguros en Colombia: clientes, pólizas y seguimiento en una herramienta simple que funciona sin internet.",
-    concept:
-      "Una marca que habla de protección y conexión. Diez rutas de logo exploradas hasta llegar a un sistema verde, directo y con la promesa “a un clic”.",
-    role: ["Product Owner", "Identidad de marca", "Diseño de producto", "Desarrollo"],
-    deliverables: ["Exploración de 10 logos", "Logo final", "Banners", "Producto web"],
-    gallery: [
-      { src: IMG + "tu-crm-seguro/tucrm-seguro-relacionamiento-de-verdad.webp", alt: "TuCRM Seguro — relacionamiento de verdad", w: 1800, h: 600, span: "full" },
-      { src: IMG + "tu-crm-seguro/banner-de-tucrm-seguro-con-boton-a-un-click.webp", alt: "Banner con botón a un clic", w: 1800, h: 600, span: "full" },
-      { src: IMG + "tu-crm-seguro/logo-tucrm-seguro-proteccion-y-conexion.webp", alt: "Logo protección y conexión", w: 1800, h: 600, span: "full" }
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Proyecto conceptual"],
+      ["INDUSTRIA", "Seguros"],
+      ["MI ROL", "Producto · Identidad visual"]
+    ],
+    story: [
+      { type: "text", label: "THE CHALLENGE", title: "Vender seguros es cuidar relaciones.",
+        body: "Los intermediarios y agencias de seguros gestionan clientes, pólizas y seguimientos con herramientas dispersas. El concepto plantea un CRM especializado para su gestión comercial y su relación con los clientes." },
+      { type: "text", label: "PROPUESTA DE VALOR", title: "Un CRM hecho para el intermediario.",
+        body: "En lugar de adaptar un CRM genérico, la propuesta parte de cómo trabaja una agencia de seguros: clientes, pólizas, renovaciones y seguimiento en un mismo lugar.",
+        chips: ["Clientes", "Pólizas", "Seguimiento", "Gestión comercial"] },
+      { type: "figures", label: "IDENTIDAD VISUAL",
+        title: "Diez rutas para una marca.",
+        body: "Exploración de diez propuestas de logo alrededor de protección y conexión, hasta llegar a un sistema verde y directo con la promesa “a un clic”.",
+        items: [
+          { src: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", alt: "Exploración de 10 propuestas de logo", w: 1199, h: 1312, span: "tall" },
+          { src: IMG + "tu-crm-seguro/logo-tucrm-seguro-proteccion-y-conexion.webp", alt: "Logo final: protección y conexión", w: 1800, h: 600, span: "full" }
+        ] },
+      { type: "figures", label: "PIEZAS",
+        title: "La promesa en banners.",
+        items: [
+          { src: IMG + "tu-crm-seguro/tucrm-seguro-relacionamiento-de-verdad.webp", alt: "Banner: relacionamiento de verdad", w: 1800, h: 600, span: "full" },
+          { src: IMG + "tu-crm-seguro/banner-de-tucrm-seguro-con-boton-a-un-click.webp", alt: "Banner con botón a un clic", w: 1800, h: 600, span: "full" }
+        ] }
     ],
     links: []
   },
@@ -370,7 +475,7 @@ window.JV_DECK = [
     number: "07",
     id: "agrogestor",
     kind: "pending",
-    published: true, // cambia a false para ocultarla
+    published: false, // sin material verificado: oculto del sitio público
     title: "AGROGESTOR",
     category: "INNOVATION / UX",
     year: "2026",
@@ -391,6 +496,8 @@ window.JV_DECK = [
     id: "creative-archive",
     kind: "archive",
     published: true,
+    tags: ["Publicidad", "Diseño gráfico"],
+    short: "Más de quince años de piezas publicitarias, campañas y diseño gráfico en Behance.",
     title: "CREATIVE ARCHIVE",
     category: "ADVERTISING / DESIGN",
     year: "2009—2026",

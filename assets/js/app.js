@@ -38,6 +38,7 @@
   const dScroll = $("#detail-scroll");
   const dContent = $("#detail-content");
   const lb = $("#lightbox");
+  const indexEl = $("#index");
 
   /* ------------------------------------------------------------ estado */
   const S = {
@@ -348,7 +349,7 @@
 
   /* ------------------------------------------------------------ rueda */
   let wAcc = 0, wLast = 0;
-  addEventListener("wheel", (e) => {
+  stage.addEventListener("wheel", (e) => {
     if (S.open >= 0 || !S.ready || !lb.hidden) return;
     e.preventDefault();
     const d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
@@ -367,12 +368,12 @@
   /* ================================================================
      TRANSICIÓN CARTA ⇄ PROYECTO
      ================================================================ */
-  function makeFlyer(i, rect) {
+  function makeFlyer(i, rect, plain = false) {
     const c = DECK[i];
     const m = mediaAttrs(c, "hero");
-    m.src = c.card && c.card.src;
+    if (!plain) m.src = c.card && c.card.src;
     const f = document.createElement("div");
-    f.className = "flyer";
+    f.className = plain ? "flyer flyer--plain" : "flyer";
     f.style.cssText = `left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;border-radius:14px;--card-w:${rect.width}px`;
     const mediaInner = m.src ? `<img src="${esc(m.src)}" alt="">` : "";
     const mbg = m.src ? (c.card && c.card.bg) || c.color : c.color;
@@ -388,9 +389,12 @@
 
   const px = (r) => ({ left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px` });
 
-  async function openCard(i, { animate = true } = {}) {
+  async function openCard(i, { animate = true, from = null, origin = null } = {}) {
     if (S.busy || S.open >= 0) return;
     const c = DECK[i];
+    if (!origin) origin = from ? "grid" : (!indexEl.hidden ? "index" : (scrollY > innerHeight * 0.5 ? "grid" : "deck"));
+    S.origin = origin;
+    if (origin !== "deck") return openFromEl(i, from || findPc(c.id), animate);
     const doAnim = animate && !reduced() && S.ready;
 
     if (doAnim && (activeIndex() !== i || Math.abs(S.pos - S.target) > 0.02)) {
@@ -461,6 +465,7 @@
 
   async function closeDetail({ animate = true } = {}) {
     if (S.busy || S.open < 0) return;
+    if (S.origin && S.origin !== "deck") return closeToEl(animate);
     const i = S.open;
     S.busy = true;
     closeLightbox();
@@ -528,11 +533,83 @@
     syncRoute();
   }
 
+  /* ---- transición desde/hacia una tarjeta editorial (home o índice) */
+  function findPc(id) {
+    const root = !indexEl.hidden ? indexEl : home;
+    const el = root.querySelector(`.pc[data-open="${id}"]:not(.is-out) .pc__media`);
+    if (!el) return null;
+    const r = el.getBoundingClientRect();
+    return r.bottom > 0 && r.top < innerHeight && r.width > 0 ? el : null;
+  }
+
+  async function openFromEl(i, el, animate) {
+    const c = DECK[i];
+    S.busy = true;
+    setHash(c.id);
+    renderDetail(i);
+    if (!animate || reduced() || !el) {
+      showDetail(i);
+      S.busy = false;
+      return;
+    }
+    const r = el.getBoundingClientRect();
+    const flyer = makeFlyer(i, r, true);
+    flyer.style.borderRadius = "4px";
+    $(".flyer__media", flyer).style.opacity = 1;
+    const a = flyer.animate([
+      { ...px(r), borderRadius: "4px" },
+      { left: "0px", top: "0px", width: `${innerWidth}px`, height: `${innerHeight}px`, borderRadius: "0px" }
+    ], { duration: 850, easing: "cubic-bezier(.75,0,.2,1)", fill: "forwards" });
+    await a.finished.catch(() => {});
+    showDetail(i);
+    await nextFrame();
+    flyer.remove();
+    S.busy = false;
+    syncRoute();
+  }
+
+  async function closeToEl(animate) {
+    const i = S.open;
+    S.busy = true;
+    closeLightbox();
+    home.style.visibility = "";
+    home.removeAttribute("aria-hidden");
+    const back = !indexEl.hidden ? "#/projects" : "#/";
+    const el = findPc(DECK[i].id);
+    if (!animate || reduced() || !el) {
+      hideDetail();
+      S.busy = false; S.origin = null;
+      setHash(back, true);
+      syncRoute();
+      return;
+    }
+    detail.classList.remove("is-in");
+    dContent.classList.add("is-swapping");
+    await wait(240);
+    const vw = innerWidth, vh = innerHeight;
+    const flyer = makeFlyer(i, { left: 0, top: 0, width: vw, height: vh }, true);
+    flyer.style.borderRadius = "0px";
+    $(".flyer__media", flyer).style.opacity = 1;
+    hideDetail();
+    dContent.classList.remove("is-swapping");
+    const r = el.getBoundingClientRect();
+    const a = flyer.animate([
+      { left: "0px", top: "0px", width: `${vw}px`, height: `${vh}px`, borderRadius: "0px" },
+      { ...px(r), borderRadius: "4px" }
+    ], { duration: 800, easing: "cubic-bezier(.7,0,.25,1)", fill: "forwards" });
+    await a.finished.catch(() => {});
+    flyer.remove();
+    S.busy = false; S.origin = null;
+    setHash(back, true);
+    syncRoute();
+  }
+
   function hideDetail() {
     detail.hidden = true;
     detail.classList.remove("is-in");
     body.classList.remove("is-detail");
     S.open = -1;
+    document.title = indexEl.hidden ? "Jhon Valencia Santana — Creative Strategy & Digital Innovation" : "Projects — Jhon Valencia Santana";
   }
 
   async function swapDetail(j) {
@@ -573,7 +650,7 @@
       </div>
       <div class="p-hero__shade"></div>
       <div class="p-hero__cap">
-        <h2 class="p-hero__title" id="detail-title">${words(c.title)}</h2>
+        <div>${c.lead ? `<p class="p-hero__concept">${esc(c.lead)}</p>` : ""}<h2 class="p-hero__title" id="detail-title">${words(c.title)}</h2></div>
         <div class="p-hero__tag"><span class="p-hero__num">${esc(c.number)}</span><span>${esc(c.category)}</span><span>${esc(c.year)}</span></div>
       </div>
     </section>`;
@@ -653,9 +730,10 @@
           <div class="duo__img"><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" data-lb></div>
           <figcaption><span class="duo__name">${esc(p.name)}</span><span class="duo__role">${esc(p.role)}</span></figcaption></figure>`).join(`<span class="duo__amp" aria-hidden="true">&amp;</span>`)}</div>`;
     } else if (b.type === "identity") {
-      extra = `<div class="ident rv">
-          <figure class="g ident__logo" style="aspect-ratio:${b.image.w}/${b.image.h}"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" data-lb></figure>
-          <div class="ident__pal">${b.palette.map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div></div>`;
+      const pal = b.palette && b.palette.length;
+      extra = `<div class="ident${pal ? "" : " ident--solo"} rv">
+          <figure class="ident__logo${b.image.contain ? " is-contain" : ""}" style="aspect-ratio:${b.image.w}/${b.image.h};margin:0;border-radius:8px;overflow:hidden;cursor:zoom-in"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" style="width:100%;height:100%" data-lb></figure>
+          ${pal ? "" : "<!--"}<div class="ident__pal">${(b.palette || []).map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div>${pal ? "" : "-->"}</div>`;
     } else if (b.type === "steps") {
       extra = `<ol class="steps rv" style="--n:${b.steps.length}">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
     } else if (b.type === "formats") {
@@ -715,12 +793,13 @@
   function renderAbout(c, i) {
     const tl = ABOUT.timeline.map(([t, a, b]) => `<li><time>${esc(t)}</time><div><strong>${esc(a)}</strong>${b ? `<span>${esc(b)}</span>` : ""}</div></li>`).join("");
     return heroType(c, "THE", "CREATOR") +
-      sec(1, "PROFILE", `<p class="lead">${esc(ABOUT.lead)}</p><div style="height:28px"></div>${ABOUT.bio.map((p) => `<p class="prose">${esc(p)}</p>`).join("")}
+      sec(1, "PROFESSIONAL PROFILE", `<p class="mono" style="font-size:12px;letter-spacing:.1em;margin:0 0 16px">${esc(SITE.title)}</p><p class="lead">${esc(ABOUT.lead)}</p><div style="height:28px"></div>${ABOUT.bio.map((p) => `<p class="prose">${esc(p)}</p>`).join("")}
         <dl class="facts"><div><dt>BASE</dt><dd>Bogotá, Colombia</dd></div><div><dt>EXPERIENCE</dt><dd>15+ años</dd></div><div><dt>FOCUS</dt><dd>Marca · Producto · Innovación</dd></div></dl>`) +
       sec(2, "EXPERIENCE", `<ul class="tl">${tl}</ul>`) +
       sec(3, "EDUCATION & CERTS", `<ul class="list">${ABOUT.education.map((e, k) => `<li><span>${pad2(k + 1)}</span>${esc(e)}</li>`).join("")}</ul>`) +
-      sec(4, "CAPABILITIES", `<div class="chips">${ABOUT.skills.map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>`) +
-      sec(5, "ELSEWHERE", `<div class="links">${bigLink("Behance", SITE.links.behance, "Archivo creativo")}${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria")}${bigLink("GitHub", SITE.links.github, "Código")}</div>`) +
+      sec(4, "CAPABILITIES", `<div class="chips">${(SITE.expertise || ABOUT.skills).map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>`) +
+      sec(5, "CREATIVE PHILOSOPHY", `<p class="lead">${esc(SITE.headline)}</p><div style="height:24px"></div><p class="prose">${esc(SITE.description)}</p>`) +
+      sec(6, "ELSEWHERE", `<div class="links">${bigLink("Behance", SITE.links.behance, "Archivo creativo")}${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria")}${bigLink("GitHub", SITE.links.github, "Código")}</div>`) +
       nextBlock(i) + footer();
   }
 
@@ -787,7 +866,7 @@
       view.insertAdjacentHTML("beforeend", `<p class="browser__hint mono">¿No carga? Algunos sitios no permiten verse dentro de otra página: <a href="${esc(view.dataset.site)}" target="_blank" rel="noopener">ábrelo en una pestaña nueva ↗</a></p>`);
       return;
     }
-    const img = e.target.closest(".g, .duo__img, .cv, .fmt__it, .slide");
+    const img = e.target.closest(".g, .duo__img, .cv, .fmt__it, .slide, .ident__logo");
     if (img) {
       const el = img.querySelector("[data-lb]");
       const k = lbItems().indexOf(el);
@@ -860,13 +939,17 @@
       else if (e.key === "ArrowRight") openLightbox(lbK + 1);
       return;
     }
+    if (S.open < 0 && !indexEl.hidden) {
+      if (e.key === "Escape") { e.preventDefault(); setHash(null); syncRoute(); }
+      return;
+    }
     if (S.open >= 0) {
       if (e.key === "Escape") { e.preventDefault(); goHome(); }
       else if (e.key === "ArrowLeft" && !isTyping(e)) swapDetail(S.open - 1);
       else if (e.key === "ArrowRight" && !isTyping(e)) swapDetail(S.open + 1);
       return;
     }
-    if (!S.ready) return;
+    if (!S.ready || !indexEl.hidden || scrollY > innerHeight * 0.6) return;
     if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); focusActiveSoon(); }
     else if (e.key === "ArrowRight") { e.preventDefault(); step(1); focusActiveSoon(); }
     else if ((e.key === "Enter" || e.key === " ") && (e.target === body || e.target.classList.contains("card") || e.target === document.documentElement)) {
@@ -881,6 +964,117 @@
   cards.forEach((c, i) => c.addEventListener("focus", () => { if (S.ready && i !== activeIndex() && !S.busy) goTo(i); }));
 
   /* ================================================================
+     HOME EDITORIAL + ÍNDICE DE PROYECTOS
+     ================================================================ */
+  const PROJECTS = DECK.filter((c) => c.kind === "project" || c.kind === "archive");
+
+  function pcHTML(c) {
+    const i = DECK.indexOf(c);
+    const k = c.card || {};
+    let media;
+    if (k.hero || k.src) {
+      const fit = k.heroFit || k.fit || "cover";
+      media = `<div class="pc__media" data-fit="${fit}"${k.blend ? " data-blend" : ""} style="--mbg:${k.bg || c.color};--fit:${fit};--pos:${k.heroPos || k.pos || "50% 50%"}">
+        <span class="pc__num">Nº ${esc(c.number)}</span>
+        <img src="${esc(k.hero || k.src)}" alt="${esc(c.title)} — portada" loading="lazy" decoding="async"></div>`;
+    } else {
+      media = `<div class="pc__media pc__media--type" style="--mbg:${c.color};color:${c.ink}">
+        <span class="pc__num">Nº ${esc(c.number)}</span>
+        <span class="pc__type">${esc(c.title)}<i>↗</i></span></div>`;
+    }
+    return `<article class="pc" data-open="${esc(c.id)}" data-i="${i}" data-tags="${esc((c.tags || []).join("|"))}" tabindex="0" role="link" aria-label="${esc(`Explorar proyecto ${c.title}`)}">
+      ${media}
+      <div class="pc__meta"><span>${esc(c.category)}</span><span>${esc(c.year)}</span></div>
+      <h3 class="pc__title"><span>${esc(c.title)}</span></h3>
+      ${c.short ? `<p class="pc__desc">${esc(c.short)}</p>` : ""}
+      <span class="pc__cta">EXPLORAR PROYECTO <i aria-hidden="true">→</i></span>
+    </article>`;
+  }
+
+  function buildHome() {
+    const h = SITE.headline || "";
+    $("#st-h").innerHTML = h.split(" ").map((w, k, arr) =>
+      `<span class="w${k === arr.length - 1 ? " o" : ""}"><span style="transition-delay:${k * 70}ms">${esc(w)}</span></span>`).join(" ");
+    $("#st-role").innerHTML = `<b>●</b> ${esc(SITE.title || "")}<br>${esc(SITE.name)}<br>${esc("Bogotá, Colombia")}`;
+    $("#st-desc").textContent = SITE.description || "";
+    $("#pgrid").innerHTML = PROJECTS.map(pcHTML).join("");
+    $("#exlist").innerHTML = (SITE.expertise || []).map((x, k) => `<li><span>${pad2(k + 1)}</span>${esc(x)}</li>`).join("");
+    $("#cfoot-row").innerHTML = `
+      <a href="mailto:${esc(SITE.email)}">${esc(SITE.email)}</a>
+      <a href="${esc(SITE.links.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="${esc(SITE.links.behance)}" target="_blank" rel="noopener">Behance ↗</a>
+      <span>Bogotá, Colombia</span>
+      <span>© ${new Date().getFullYear()} ${esc(SITE.name)}</span>`;
+    observeIn(home, null);
+  }
+
+  let ixFilter = "Todos";
+  function buildIndex() {
+    const counts = {};
+    PROJECTS.forEach((c) => (c.tags || []).forEach((t) => (counts[t] = (counts[t] || 0) + 1)));
+    const tags = ["Todos", ...Object.keys(counts).sort((a, b) => counts[b] - counts[a] || a.localeCompare(b))];
+    $("#filters").innerHTML = tags.map((t) =>
+      `<button class="filter" data-f="${esc(t)}" aria-pressed="${t === ixFilter}">${esc(t)}<sup>${t === "Todos" ? PROJECTS.length : counts[t]}</sup></button>`).join("");
+    $("#ix-h").innerHTML = `Projects<sup>(${pad2(PROJECTS.length)})</sup>`;
+    renderIndexGrid();
+  }
+  function renderIndexGrid() {
+    const list = PROJECTS.filter((c) => ixFilter === "Todos" || (c.tags || []).includes(ixFilter));
+    $("#ixgrid").innerHTML = list.map(pcHTML).join("");
+    $$(".pc", $("#ixgrid")).forEach((el, k) => { el.style.animationDelay = `${k * 60}ms`; el.classList.add("is-seen"); });
+    $("#ix-count").textContent = `${pad2(list.length)} / ${pad2(PROJECTS.length)} PROYECTOS`;
+  }
+  $("#filters").addEventListener("click", (e) => {
+    const b = e.target.closest("[data-f]");
+    if (!b) return;
+    ixFilter = b.dataset.f;
+    $$(".filter").forEach((x) => x.setAttribute("aria-pressed", x.dataset.f === ixFilter));
+    renderIndexGrid();
+  });
+
+  async function openIndex() {
+    indexEl.hidden = false;
+    body.classList.add("is-index");
+    $("#index-scroll").scrollTop = 0;
+    await nextFrame();
+    indexEl.classList.add("is-in");
+    document.title = "Projects — Jhon Valencia Santana";
+  }
+  async function closeIndex() {
+    indexEl.classList.remove("is-in");
+    await wait(reduced() ? 0 : 300);
+    indexEl.hidden = true;
+    body.classList.remove("is-index");
+  }
+
+  // clic / Enter sobre tarjetas editoriales
+  function onPc(e) {
+    const pc = e.target.closest(".pc");
+    if (!pc) return;
+    if (e.type === "keydown" && e.key !== "Enter" && e.key !== " ") return;
+    e.preventDefault();
+    if (S.busy || S.open >= 0) return;
+    openCard(+pc.dataset.i, { from: $(".pc__media", pc), origin: indexEl.hidden ? "grid" : "index" });
+  }
+  [home, indexEl].forEach((root) => {
+    root.addEventListener("click", (e) => { if (e.target.closest(".pc")) onPc(e); });
+    root.addEventListener("keydown", (e) => { if (e.target.classList && e.target.classList.contains("pc")) onPc(e); });
+  });
+
+  // aparición al hacer scroll
+  function observeIn(root, scroller) {
+    const els = $$(".pc, .statement__h", root);
+    if (!("IntersectionObserver" in window) || reduced()) { els.forEach((el) => el.classList.add("is-seen")); return; }
+    const ob = new IntersectionObserver((ens) => ens.forEach((en) => {
+      if (en.isIntersecting) { en.target.classList.add("is-seen"); ob.unobserve(en.target); }
+    }), { root: scroller, rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+    els.forEach((el) => ob.observe(el));
+  }
+
+  buildHome();
+  buildIndex();
+
+  /* ================================================================
      RUTAS (hash → compatible con GitHub Pages)
      ================================================================ */
   const routeId = () => {
@@ -889,28 +1083,37 @@
   };
   const indexOfId = (id) => DECK.findIndex((c) => c.id === id);
   let silentHash = false;
-  function setHash(id) {
-    const h = id ? `#/p/${id}` : "#/";
+  function setHash(id, raw = false) {
+    const h = raw ? id : id ? `#/p/${id}` : "#/";
     if (location.hash !== h) { silentHash = true; location.hash = h; }
   }
-  function goHome() { setHash(null); closeDetail(); }
+  function goHome() {
+    if (S.origin && S.origin !== "deck") return closeDetail();
+    setHash(null); closeDetail();
+  }
 
   function syncRoute() {
     if (S.busy) return;
     const id = routeId();
     const i = id ? indexOfId(id) : -1;
+    const wantIndex = /^#\/projects/.test(location.hash);
     if (i >= 0) {
       if (S.open < 0) openCard(i);
       else if (S.open !== i) swapDetail(i);
     } else if (S.open >= 0) {
       closeDetail();
+      return;
+    } else if (wantIndex && indexEl.hidden) {
+      openIndex();
+    } else if (!wantIndex && !indexEl.hidden) {
+      closeIndex();
     }
     $$(".topbar__nav a").forEach((a) => {
       const n = a.dataset.nav;
-      a.toggleAttribute("aria-current", (n === "work" && !id) || n === id);
+      a.toggleAttribute("aria-current", (n === "projects" && wantIndex) || n === id);
       if (a.hasAttribute("aria-current")) a.setAttribute("aria-current", "page");
     });
-    if (!id) document.title = "JV — The Creative Deck · Jhon Valencia Santana";
+    if (!id) document.title = wantIndex ? "Projects — Jhon Valencia Santana" : "Jhon Valencia Santana — Creative Strategy & Digital Innovation";
   }
   addEventListener("hashchange", () => {
     if (silentHash) { silentHash = false; return; }
@@ -960,9 +1163,16 @@
   addEventListener("resize", () => layout(), { passive: true });
 
   /* ------------------------------------------------------------ arranque */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  scrollTo(0, 0);
   const startId = routeId();
   const startIdx = startId ? indexOfId(startId) : -1;
-  if (startIdx >= 0) {
+  if (/^#\/projects/.test(location.hash)) {
+    S.pos = S.target = Math.min(1, N - 1);
+    finishIntro(false);
+    syncActive();
+    openIndex();
+  } else if (startIdx >= 0) {
     // enlace directo a un proyecto: sin intro
     S.pos = S.target = startIdx;
     finishIntro(false);
