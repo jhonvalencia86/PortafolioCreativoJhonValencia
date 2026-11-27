@@ -64,6 +64,18 @@ window.JV_DECK = [
       ["MI ROL", "Creador · Dirección creativa"]
     ],
     story: [
+      { type: "covers", band: "black", label: "PORTADAS",
+        title: "Una portada para cada conversación.",
+        items: [
+          { src: IMG + "a36cuotas/audiovisual/portada-podcast.webp", alt: "Portada del podcast A 36 Cuotas", w: 1086, h: 1448 },
+          { src: IMG + "a36cuotas/piezas/episodio-creditos-y-prestamos.webp", alt: "Episodio: Créditos y préstamos", w: 1536, h: 864 },
+          { src: IMG + "a36cuotas/piezas/tip-verifica-la-legalidad.webp", alt: "Tip 4: Verifica la legalidad", w: 836, h: 471 },
+          { src: IMG + "a36cuotas/identidad/logo-podcast.webp", alt: "Logo A 36 Cuotas", w: 1672, h: 941 },
+          { src: IMG + "a36cuotas/piezas/tip-define-tu-objetivo.webp", alt: "Tip 1: Define tu objetivo", w: 1536, h: 864 },
+          { src: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp", alt: "Tino y Tado en vivo", w: 1672, h: 941 },
+          { src: IMG + "a36cuotas/piezas/escena-bre-b-calle.webp", alt: "Escena: compra con Bre-B", w: 1536, h: 864 }
+        ] },
+
       { type: "text", label: "EL RETO", title: "Hablar de plata sin que suene a banco.",
         body: "La educación financiera suele presentarse en términos técnicos que dificultan conectar los conceptos con decisiones cotidianas. El reto fue convertir temas como intereses, crédito y fraude en historias comprensibles sin perder rigor." },
 
@@ -106,12 +118,20 @@ window.JV_DECK = [
           ["Web", "Plataforma con contenidos y recursos educativos."]
         ] },
 
-      { type: "figures", band: "black", label: "AUDIOVISUAL",
+      { type: "youtube", band: "black", label: "AUDIOVISUAL · YOUTUBE",
         title: "Al aire desde el estudio de Tino y Tado.",
-        body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto.",
-        items: [
-          { src: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp", alt: "Tino y Tado en vivo en el estudio", w: 1672, h: 941, span: "full" }
-        ] },
+        body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto. Dale play para ver los episodios del canal aquí mismo.",
+        list: "UU6cWds2IAS3J5lKP-8z_3qA",
+        url: "https://www.youtube.com/@a36cuotas",
+        handle: "@A36Cuotas",
+        poster: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp" },
+
+      { type: "web", label: "PLATAFORMA WEB",
+        title: "La casa del proyecto: treintaseiscuotas.com",
+        body: "La web reúne episodios, recursos educativos y la información para aliados. Ábrela aquí dentro o en una pestaña nueva.",
+        url: "https://treintaseiscuotas.com/",
+        domain: "treintaseiscuotas.com",
+        preview: IMG + "a36cuotas/identidad/logo-podcast.webp" },
 
       { type: "figures", label: "ESTRATEGIA DE CONTENIDOS",
         title: "Temas serios en formatos cortos.",

@@ -657,6 +657,30 @@
           <div class="ident__pal">${b.palette.map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div></div>`;
     } else if (b.type === "steps") {
       extra = `<ol class="steps rv">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+    } else if (b.type === "covers") {
+      const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
+      extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
+    } else if (b.type === "youtube") {
+      extra = `<div class="yt rv">
+          <button class="yt__facade" data-yt="${esc(b.list)}" aria-label="Reproducir episodios de A 36 Cuotas en YouTube">
+            <img src="${esc(b.poster)}" alt="" loading="lazy">
+            <span class="yt__play" aria-hidden="true"><svg viewBox="0 0 68 48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3z" fill="#D71920"/><path d="M45 24 27 14v20z" fill="#fff"/></svg></span>
+            <span class="yt__label mono">VER EPISODIOS · ${esc(b.handle)}</span>
+          </button>
+          <a class="yt__link" href="${esc(b.url)}" target="_blank" rel="noopener"><span>Abrir el canal en YouTube</span><span aria-hidden="true">↗</span></a>
+        </div>`;
+    } else if (b.type === "web") {
+      extra = `<div class="browser rv">
+          <div class="browser__bar"><i></i><i></i><i></i><a class="browser__url mono" href="${esc(b.url)}" target="_blank" rel="noopener">🔒 ${esc(b.domain)}</a><a class="browser__go mono" href="${esc(b.url)}" target="_blank" rel="noopener">ABRIR ↗</a></div>
+          <div class="browser__view" data-site="${esc(b.url)}">
+            <div class="browser__cover">
+              <img src="${esc(b.preview)}" alt="" loading="lazy">
+              <div class="browser__actions">
+                <button class="browser__btn" data-load-site>VER EL SITIO AQUÍ</button>
+                <a class="browser__btn browser__btn--ghost" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.domain)} ↗</a>
+              </div>
+            </div>
+          </div></div>`;
     } else if (b.type === "figures") {
       extra = `<div style="height:clamp(24px,3vw,40px)"></div>${figs(b.items)}`;
     }
@@ -726,7 +750,31 @@
 
   dContent.addEventListener("click", (e) => {
     if (e.target.closest("[data-next]")) return swapDetail(S.open + 1);
-    const img = e.target.closest(".g, .duo__img");
+    const yt = e.target.closest("[data-yt]");
+    if (yt) {
+      const f = document.createElement("iframe");
+      f.src = `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(yt.dataset.yt)}&autoplay=1&rel=0`;
+      f.title = "Episodios de A 36 Cuotas en YouTube";
+      f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      f.allowFullscreen = true;
+      f.className = "yt__frame";
+      yt.replaceWith(f);
+      return;
+    }
+    const site = e.target.closest("[data-load-site]");
+    if (site) {
+      const view = site.closest("[data-site]");
+      const f = document.createElement("iframe");
+      f.src = view.dataset.site;
+      f.title = "Sitio web treintaseiscuotas.com";
+      f.loading = "lazy";
+      f.className = "browser__frame";
+      view.innerHTML = "";
+      view.appendChild(f);
+      view.insertAdjacentHTML("beforeend", `<p class="browser__hint mono">¿No carga? Algunos sitios no permiten verse dentro de otra página: <a href="${esc(view.dataset.site)}" target="_blank" rel="noopener">ábrelo en una pestaña nueva ↗</a></p>`);
+      return;
+    }
+    const img = e.target.closest(".g, .duo__img, .cv");
     if (img) {
       const el = img.querySelector("[data-lb]");
       const k = lbItems().indexOf(el);
