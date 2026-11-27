@@ -751,6 +751,11 @@
     } else if (b.type === "covers") {
       const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
       extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
+    } else if (b.type === "youtube" && b.direct) {
+      extra = `<div class="yt rv">
+          <iframe class="yt__frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(b.list)}&rel=0" title="Episodios de A 36 Cuotas en YouTube" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <a class="yt__link" href="${esc(b.url)}" target="_blank" rel="noopener"><span>Ver el canal ${esc(b.handle)} en YouTube</span><span aria-hidden="true">↗</span></a>
+        </div>`;
     } else if (b.type === "youtube") {
       extra = `<div class="yt rv">
           <button class="yt__facade" data-yt="${esc(b.list)}" aria-label="Reproducir episodios de A 36 Cuotas en YouTube">

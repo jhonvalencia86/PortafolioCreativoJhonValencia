@@ -70,6 +70,14 @@ window.JV_DECK = [
       ["MI ROL", "Creador · Dirección creativa"]
     ],
     story: [
+      { type: "youtube", band: "black", label: "YOUTUBE · @A36CUOTAS", direct: true,
+        title: "Al aire desde el estudio de Tino y Tado.",
+        body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto. Mira los episodios del canal aquí mismo.",
+        list: "UU6cWds2IAS3J5lKP-8z_3qA",
+        url: "https://www.youtube.com/@A36Cuotas",
+        handle: "@A36Cuotas",
+        poster: IMG + "a36cuotas/miniaturas/tino-y-tado-en-vivo.webp" },
+
       { type: "text", label: "EL RETO", title: "Hablar de plata sin que suene a banco.",
         body: "Democratizar la educación financiera con un lenguaje cercano y formatos que ayuden a entender decisiones cotidianas sobre el dinero: créditos, intereses, seguros y riesgos de fraude suelen explicarse con palabras que alejan a la gente." },
 
@@ -191,14 +199,6 @@ window.JV_DECK = [
           ["Pagos digitales", "Bre-B y seguridad."]
         ] },
 
-      { type: "youtube", band: "black", label: "AUDIOVISUAL · YOUTUBE",
-        title: "Al aire desde el estudio de Tino y Tado.",
-        body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto. Dale play para ver los episodios del canal aquí mismo.",
-        list: "UU6cWds2IAS3J5lKP-8z_3qA",
-        url: "https://www.youtube.com/@a36cuotas",
-        handle: "@A36Cuotas",
-        poster: IMG + "a36cuotas/miniaturas/tino-y-tado-en-vivo.webp" },
-
       { type: "web", label: "PLATAFORMA WEB",
         title: "La casa del proyecto: treintaseiscuotas.com",
         body: "La web reúne episodios, recursos educativos y la información para aliados. Ábrela aquí dentro o en una pestaña nueva.",
@@ -216,7 +216,7 @@ window.JV_DECK = [
     ],
     links: [
       { label: "treintaseiscuotas.com", url: "https://treintaseiscuotas.com/", sub: "Sitio web" },
-      { label: "YouTube @a36cuotas", url: "https://www.youtube.com/@a36cuotas", sub: "Canal" },
+      { label: "YouTube @A36Cuotas", url: "https://www.youtube.com/@A36Cuotas", sub: "Canal" },
       { label: "Lanzamiento", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-finanzaspersonales-activity-7513704790288158720-Z8vi", sub: "LinkedIn" },
       { label: "Pagos con Bre-B", url: "https://es.linkedin.com/posts/jhonvalenciasantana_breb-a36cuotas-educacionfinanciera-activity-7515534428610121728-rzEF", sub: "LinkedIn" },
       { label: "Alianzas", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-inclusi%C3%B3nfinanciera-activity-7514097489017225218-FYwX", sub: "LinkedIn" }
