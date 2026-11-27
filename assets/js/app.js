@@ -137,10 +137,18 @@
       </div>`;
     }
     if (c.kind === "archive") {
-      return `<div class="cf cf--type">${ticks}
+      const covers = (c.behance || []).filter((p) => p.cover).slice(0, 4);
+      const mosaic = covers.length
+        ? `<div class="cf__mosaic cf__mosaic--${covers.length}">${covers.map((p) => `<img src="${esc(p.cover)}" alt="" draggable="false" decoding="async">`).join("")}</div>`
+        : `<ul class="cf__disc" aria-hidden="true"><li><span>01</span>Campañas</li><li><span>02</span>Identidad</li><li><span>03</span>Editorial</li><li><span>04</span>Publicidad</li><li><span>05</span>Ilustración</li></ul>`;
+      return `<div class="cf cf--be">
         <div class="cf__top"><span class="cf__num">Nº ${esc(c.number)}</span><span>${esc(c.year)}</span></div>
-        <span class="cf__big" style="font-size:calc(var(--card-w)*.19)">THE<br><span class="o">ARCHIVE</span><br>15+ YRS</span>
-        <div><span class="cf__title" style="font-size:calc(var(--card-w)*.09)">BEHANCE ↗</span>${bot}</div>
+        ${mosaic}
+        <div class="cf__befoot">
+          <span class="cf__bename">Behance<i>↗</i></span>
+          <span class="cf__besub">DISEÑO GRÁFICO</span>
+          <div class="cf__bot"><span>BEHANCE.NET/JHXNVALE</span><span>JV®</span></div>
+        </div>
       </div>`;
     }
     return `<div class="cf cf--type">${top}<span class="cf__title">${esc(c.title)}</span>${bot}</div>`;
@@ -865,10 +873,25 @@
   }
 
   function renderArchive(c, i) {
-    return heroType(c, "CREATIVE", "ARCHIVE") +
+    const list = c.behance || [];
+    const embeds = list.length
+      ? `<section class="sec"><div class="sec__grid rv"><p class="sec__label"><b>02</b>PROYECTOS EN BEHANCE</p>
+          <div class="sec__body"><h3 class="st-title">Directo desde Behance.</h3><p class="prose">Cada proyecto se muestra con el visor oficial de Behance. Tócalo para recorrerlo completo.</p></div></div>
+          <div class="be-grid">${list.map((p) => `<figure class="be-item rv">
+            <div class="be-item__frame"><iframe src="https://www.behance.net/embed/project/${encodeURIComponent(p.id)}?ilo0=1" title="${esc(p.title || "Proyecto en Behance")}" loading="lazy" allowfullscreen allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+            <figcaption><a href="https://www.behance.net/gallery/${encodeURIComponent(p.id)}" target="_blank" rel="noopener">${esc(p.title || "Ver en Behance")} ↗</a></figcaption></figure>`).join("")}</div></section>`
+      : "";
+    const big = `<section class="sec band band--be">
+      <div class="sec__grid rv"><p class="sec__label"><b>${list.length ? "03" : "02"}</b>ARCHIVO COMPLETO</p>
+        <div class="sec__body"><h3 class="st-title">Todo el archivo, en Behance.</h3></div></div>
+      <a class="be-big rv" href="${esc(SITE.links.behance)}" target="_blank" rel="noopener">
+        <span class="be-big__label mono">BEHANCE.NET/JHXNVALE</span>
+        <span class="be-big__word">BEHANCE <i aria-hidden="true">↗</i></span>
+        <span class="be-big__sub mono">DISEÑO GRÁFICO · PUBLICIDAD</span>
+      </a></section>`;
+    return heroType(c, "BEHANCE", "GRÁFICO", "p-hero--be") +
       sec(1, "OVERVIEW", `<p class="lead">${esc(c.lead)}</p><div style="height:24px"></div><p class="prose">${esc(c.context)}</p>`) +
-      sec(2, "OPEN THE ARCHIVE", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, "behance.net/jhxnvale")).join("")}</div>`) +
-      nextBlock(i) + footer();
+      embeds + big + nextBlock(i) + footer();
   }
 
   function renderPending(c, i) {

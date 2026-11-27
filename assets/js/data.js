@@ -604,19 +604,26 @@ window.JV_DECK = [
     id: "creative-archive",
     kind: "archive",
     published: true,
-    tags: ["Publicidad", "Diseño gráfico"],
-    short: "Más de quince años de piezas publicitarias, campañas y diseño gráfico en Behance.",
-    title: "CREATIVE ARCHIVE",
-    category: "ADVERTISING / DESIGN",
+    tags: ["Diseño gráfico", "Publicidad"],
+    short: "Mi archivo de diseño gráfico y publicidad en Behance: campañas, piezas y proyectos de más de quince años.",
+    title: "BEHANCE",
+    category: "DISEÑO GRÁFICO",
     year: "2009—2026",
     color: "#0057FF",
     ink: "#FFFFFF",
-    accent: "#6F9BFF",
+    accent: "#9DBBFF",
     theme: "dark",
     card: { template: "type" },
-    lead: "Más de quince años de publicidad y diseño.",
+    lead: "Más de quince años de diseño gráfico y publicidad.",
     context:
-      "El archivo completo de piezas publicitarias, campañas y diseño gráfico vive en Behance. Esta carta es la puerta de entrada.",
+      "Campañas, piezas publicitarias, identidad y diseño editorial de mi trayectoria en agencias y proyectos propios. El archivo completo vive en Behance.",
+    /* Proyectos de Behance incrustados con el visor oficial.
+       Para agregar uno, copia el número que aparece en su enlace:
+       behance.net/gallery/123456789/Nombre-del-proyecto  →  id: "123456789"
+       cover (opcional): imagen en assets/img/behance/ para mostrarla dentro de la carta. */
+    behance: [
+      // { id: "123456789", title: "Nombre del proyecto", cover: "assets/img/behance/proyecto.webp" }
+    ],
     links: [{ label: "Ver archivo en Behance", url: "https://www.behance.net/jhxnvale" }]
   },
 
