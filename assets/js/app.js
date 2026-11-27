@@ -789,7 +789,17 @@
   }
   const chipsHTML = (arr) => arr && arr.length ? `<div class="chips" style="margin-top:22px">${arr.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
 
+  function socialEmbed(url) {
+    const u = String(url.url || url);
+    let m = u.match(/tiktok\.com\/.*\/video\/(\d+)/);
+    if (m) return `<figure class="reel reel--tt"><iframe src="https://www.tiktok.com/player/v1/${m[1]}?music_info=1&description=0&rel=0" title="Video de TikTok" loading="lazy" allow="fullscreen; encrypted-media" allowfullscreen></iframe><figcaption><a href="${esc(u)}" target="_blank" rel="noopener">Ver en TikTok ↗</a></figcaption></figure>`;
+    m = u.match(/instagram\.com\/(?:reel|reels|p)\/([\w-]+)/);
+    if (m) return `<figure class="reel reel--ig"><iframe src="https://www.instagram.com/reel/${m[1]}/embed/" title="Reel de Instagram" loading="lazy" allowfullscreen></iframe><figcaption><a href="${esc(u)}" target="_blank" rel="noopener">Ver en Instagram ↗</a></figcaption></figure>`;
+    return "";
+  }
+
   function storyBlock(b, n) {
+    if (b.type === "social" && !(b.items && b.items.length)) return "";
     const head = `<div class="sec__grid rv"><p class="sec__label"><b>${pad2(n)}</b>${esc(b.label)}</p>
       <div class="sec__body">${b.title ? `<h3 class="st-title">${esc(b.title)}</h3>` : ""}${b.body ? `<p class="prose">${esc(b.body)}</p>` : ""}${chipsHTML(b.chips)}</div></div>`;
     const cls = `sec st st--${b.type}${b.band ? ` band band--${b.band}` : ""}`;
@@ -805,6 +815,12 @@
           ${pal ? "" : "<!--"}<div class="ident__pal">${(b.palette || []).map(([nm, hex]) => `<div class="sw" style="--sw:${hex};color:${lum(hex) < 0.45 ? "#fff" : "#151515"}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div>${pal ? "" : "-->"}</div>`;
     } else if (b.type === "steps") {
       extra = `<ol class="steps rv" style="--n:${b.steps.length}">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+    } else if (b.type === "manifesto") {
+      extra = `<div class="mani rv">${b.words.map((w, k) => `<span class="mani__w${k % 2 ? " o" : ""}">${esc(w)}</span>${k < b.words.length - 1 ? '<span class="mani__x">×</span>' : ""}`).join("")}</div>`;
+    } else if (b.type === "split") {
+      extra = `<div class="split rv"><figure class="split__img" style="aspect-ratio:${b.image.w}/${b.image.h}"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" data-lb></figure></div>`;
+    } else if (b.type === "social") {
+      extra = `<div class="reels rv">${b.items.map(socialEmbed).join("")}</div>`;
     } else if (b.type === "formats") {
       extra = b.groups.map((g) => {
         const row = g.cols === 3
@@ -868,7 +884,7 @@
   function renderStory(c, i) {
     const facts = `<dl class="facts facts--4">${(c.facts || []).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
     let n = 1;
-    const blocks = c.story.map((b) => storyBlock(b, ++n)).join("");
+    const blocks = c.story.filter((b) => !(b.type === "social" && !(b.items && b.items.length))).map((b) => storyBlock(b, ++n)).join("");
     const links = c.links && c.links.length
       ? sec(++n, "ENLACES", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, l.sub || "")).join("")}</div>`)
       : "";

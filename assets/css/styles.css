@@ -1127,3 +1127,35 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 }
 /* logos sobre blanco: más presencia */
 .pc__media[data-blend] img { padding: 12% 14%; }
+
+/* ---------------------------------------------------------------- Chrome Lovers */
+.band--pink { background: #E0368A; color: #fff; --dfg: #fff; --dline: rgba(255,255,255,.3); --dmuted: rgba(255,255,255,.8); --acc: #151515; }
+.band--pink .duo__img { border-color: #151515; box-shadow: 10px 14px 0 -2px #151515; background: #151515; }
+.band--pink .duo__amp { color: #151515; }
+.band--pink .duo__role { color: #fff; }
+
+.mani { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1em .25em; margin-top: clamp(20px, 3vw, 40px);
+  font-family: var(--f-display); font-weight: 700; letter-spacing: -.06em; line-height: .88; font-size: clamp(54px, 10.5vw, 190px); }
+.mani__w.o { color: transparent; -webkit-text-stroke: 2px #E0368A; }
+.mani__x { color: #E0368A; font-size: .5em; letter-spacing: 0; }
+.st--manifesto .sec__body .prose { font-family: var(--f-mono); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+
+.st--split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 70px); align-items: center; }
+.st--split > .sec__grid { display: block; }
+.st--split > .sec__grid .sec__label { margin-bottom: 18px; }
+.split { order: -1; margin: 0; }
+.split__img { margin: 0; border-radius: 8px; overflow: hidden; cursor: zoom-in; max-height: 88vh; }
+.split__img img { width: 100%; height: 100%; object-fit: cover; }
+
+.reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(14px, 2vw, 28px); margin-top: clamp(30px, 4vw, 56px); }
+.reel { margin: 0; }
+.reel iframe { display: block; width: 100%; aspect-ratio: 9 / 16; border: 0; border-radius: 12px; background: #000; }
+.reel--ig iframe { aspect-ratio: auto; height: min(140vw, 760px); background: #fff; }
+.reel figcaption { margin-top: 10px; font-family: var(--f-mono); font-size: 12px; letter-spacing: .06em; }
+.reel figcaption a { text-decoration: none; }
+.reel figcaption a:hover { color: #E0368A; }
+@media (max-width: 900px) {
+  .st--split { grid-template-columns: 1fr; }
+  .reels { grid-auto-flow: column; grid-auto-columns: 72%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .reel { scroll-snap-align: start; }
+}

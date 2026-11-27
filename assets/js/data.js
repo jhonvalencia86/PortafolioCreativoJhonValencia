@@ -238,6 +238,7 @@ window.JV_DECK = [
     color: "#151515",
     ink: "#F4F1EA",
     accent: "#E0368A",
+    paper: "#0E0B10",
     theme: "dark",
     tags: ["Dirección de arte", "Música", "IA"],
     short: "Universo musical y audiovisual que cruza rap, rock y electrónica con Bogotá en clave anime.",
@@ -250,27 +251,52 @@ window.JV_DECK = [
       ["MI ROL", "Dirección de arte · Creación"]
     ],
     story: [
+      /* VIDEOS: pega aquí los enlaces de TikTok o Instagram (Reels).
+         TikTok:    https://www.tiktok.com/@usuario/video/1234567890123456789
+         Instagram: https://www.instagram.com/reel/ABCdef123/
+         Si la lista está vacía, la sección no se muestra. */
+      { type: "social", band: "black", label: "VIDEOS",
+        title: "Chrome Lovers en movimiento.",
+        body: "Clips del universo: personajes, ciudad y música.",
+        items: [
+        ] },
+
       { type: "text", label: "THE PROJECT", title: "Un universo, no solo una canción.",
         body: "Chrome Lovers es un proyecto musical y audiovisual experimental que conecta rap, rock, electrónica, narrativa visual e inteligencia artificial. La música se acompaña de un mundo propio: personajes, ciudad, objetos y una estética coherente en cada pieza." },
-      { type: "figures", band: "black", label: "UNIVERSO CREATIVO",
+
+      { type: "duo", band: "pink", label: "PERSONAJES",
+        title: "Su y J.",
+        body: "Dos protagonistas con personalidades opuestas y complementarias, diseñados como para una serie: retrato, vistas, vestuario y actitud.",
+        cast: [
+          { name: "SU", role: "Intuición · Control · Evolución", src: IMG + "chrome-lovers/su.webp", alt: "Su: retrato y vistas del personaje" },
+          { name: "J", role: "Estrategia · Velocidad · Libertad", src: IMG + "chrome-lovers/j.webp", alt: "J: retrato y vistas del personaje" }
+        ] },
+
+      { type: "manifesto", band: "black", label: "MANIFIESTO",
+        words: ["PLAY", "EXPLORA", "CONECTA", "DOMINA"],
+        body: "Bogotá, más que un juego: es nuestra ciudad." },
+
+      { type: "figures", label: "UNIVERSO CREATIVO",
         title: "Bogotá cyberpunk.",
         body: "La ciudad funciona como un personaje más: calles reconocibles leídas con la estética del anime de los 90, neón, grafiti y cultura skater.",
         items: [
           { src: IMG + "chrome-lovers/chrome-lovers-bogota-cyberpunk.webp", alt: "Key visual: Chrome Lovers en una Bogotá cyberpunk", w: 1312, h: 1199, span: "full" }
         ] },
-      { type: "figures", label: "PERSONAJES",
-        title: "Su y J.",
-        body: "Los dos protagonistas se diseñaron como para una serie: acta visual, rotaciones, vestuario, expresiones, accesorios y paleta, para que se reconozcan en cualquier portada o escena.",
+
+      { type: "figures", label: "HOJAS DE PERSONAJE",
+        title: "Expresiones, vistas y detalles.",
+        body: "Actas visuales en estilo anime retro: expresiones, rotaciones, accesorios y paleta para que los personajes se reconozcan en cualquier portada o escena.",
         items: [
           { src: IMG + "chrome-lovers/acta-visual-chrome-lovers-anime-skater.webp", alt: "Acta visual de personajes: Su y J", w: 1199, h: 1312, span: "half" },
           { src: IMG + "chrome-lovers/hoja-de-personajes-chrome-lovers-retro-anime.webp", alt: "Hoja de personajes retro anime", w: 1199, h: 1312, span: "half" }
         ] },
-      { type: "figures", label: "DIRECCIÓN DE ARTE",
+
+      { type: "split", label: "DIRECCIÓN DE ARTE",
         title: "Vestuario, objetos y calle.",
         body: "La hoja de diseño urbana fija el sistema: prendas, accesorios, tipografía de marca y referencias de color que luego se repiten en portadas y videoclips.",
-        items: [
-          { src: IMG + "chrome-lovers/hoja-de-diseno-urbana-chrome-lovers.webp", alt: "Hoja de diseño urbana de Chrome Lovers", w: 1024, h: 1536, span: "tall" }
-        ] },
+        chips: ["Negro", "Fucsia neón", "Grafiti", "Streetwear", "Skate"],
+        image: { src: IMG + "chrome-lovers/hoja-de-diseno-urbana-chrome-lovers.webp", alt: "Hoja de diseño urbana de Chrome Lovers", w: 1024, h: 1536 } },
+
       { type: "text", label: "CREATIVE TECHNOLOGY", title: "IA como herramienta, criterio como dirección.",
         body: "La inteligencia artificial generativa se usa para explorar personajes, escenarios y variaciones visuales. La dirección de arte define el universo, selecciona y corrige cada resultado para mantener la coherencia del proyecto.",
         chips: ["Dirección de arte", "Diseño de personajes", "Worldbuilding", "IA generativa"] }
