@@ -37,11 +37,12 @@ window.JV_DECK = [
     title: "THE CREATOR",
     category: "ABOUT ME",
     year: "2026",
-    color: "#E8E8E4",
-    ink: "#151515",
-    accent: "#E44832",
-    theme: "light",
-    card: { template: "type" }
+    color: "#120E3A",
+    ink: "#FFFFFF",
+    accent: "#8B6CFF",
+    theme: "dark",
+    card: { template: "type", src: "assets/img/about/card-creator.webp", hero: "assets/img/about/jhon-valencia-duotono.webp", fit: "cover", bg: "#0B0828", pos: "50% 30%" },
+    photo: "assets/img/about/jhon-valencia-duotono.webp"
   },
 
   /* ---------------------------------------------------------------- 01 */

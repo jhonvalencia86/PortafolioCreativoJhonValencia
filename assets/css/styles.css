@@ -940,3 +940,67 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 @media (max-height: 560px) and (min-width: 641px) { .hero__meta { display: flex; } .hero__right { display: none; } .hero__who { font-size: 34px; } }
 .hero__who .hw--o > span { color: transparent; -webkit-text-stroke: 1.6px var(--fg); }
 .hero__name { z-index: 2; }
+
+/* ---------------------------------------------------------------- carta + hero THE CREATOR */
+.cf--about { padding: 0; background: #0B0828; }
+.cf__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.cf__aboutbar { position: absolute; top: 0; bottom: 0; right: 12%; width: 12%; background: #8B6CFF; mix-blend-mode: screen; opacity: .55; }
+.cf--about .cf__top { position: relative; z-index: 2; padding: calc(var(--card-w) * 0.05); color: #fff; }
+.cf__aboutfoot { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: calc(var(--card-w) * 0.05); color: #fff;
+  background: linear-gradient(to top, rgba(7,5,28,.92) 40%, rgba(7,5,28,0)); }
+.cf--about .cf__title { font-size: calc(var(--card-w) * 0.15); line-height: .85; letter-spacing: -.05em; }
+.cf--about .cf__title .o { color: transparent; -webkit-text-stroke: 1px #fff; }
+.cf--about .cf__bot { color: #C9BDFF; }
+
+.p-hero--about { background: var(--c); color: #fff; display: grid; grid-template-columns: 1.1fr 1fr; align-items: stretch; padding: 0; }
+.ab__photo { grid-column: 2; grid-row: 1; margin: 0; position: relative; overflow: hidden; }
+.ab__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(1.06); transition: transform 1.6s var(--ease-out); }
+.detail.is-in .ab__photo img { transform: none; }
+.p-hero--about .p-hero__redbar { right: auto; left: 52%; background: #8B6CFF; mix-blend-mode: screen; opacity: .6; z-index: 1; }
+.ab__text { grid-column: 1; grid-row: 1; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; padding: calc(var(--bar-h) + 30px) var(--pad) 120px; }
+.p-hero--about .p-hero__giant { font-size: clamp(64px, 12.5vw, 230px); color: #fff; margin-right: -30vw; }
+.p-hero--about .p-hero__giant .o { -webkit-text-stroke: 2px #fff; }
+.ab__name { margin: 22px 0 0; font-family: var(--f-display); font-weight: 500; font-size: clamp(20px, 2vw, 30px); letter-spacing: -.02em; color: #C9BDFF; }
+.ab__ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.ab__btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 20px; border-radius: 999px; border: 1.5px solid #fff; color: #fff; text-decoration: none; font-family: var(--f-mono); font-size: 13px; letter-spacing: .06em; transition: background .25s, color .25s, transform .25s var(--ease-out); }
+.ab__btn:hover { background: #fff; color: #120E3A; transform: translateY(-2px); }
+.ab__btn--be { background: #1769FF; border-color: #1769FF; font-weight: 500; }
+.ab__btn--be b { font-family: var(--f-display); font-size: 18px; letter-spacing: -.04em; }
+.ab__btn--be:hover { background: #fff; color: #1769FF; }
+.p-hero--about .p-hero__cap { color: #C9BDFF; z-index: 3; }
+.p-hero--about .p-hero__tag { color: #fff; }
+
+/* bloque Behance gigante */
+.band--be { background: #1769FF; color: #fff; --dfg: #fff; --dline: rgba(255,255,255,.25); --dmuted: rgba(255,255,255,.75); --acc: #fff; }
+.be-big { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 6px 20px; margin-top: clamp(30px, 5vw, 70px); padding-top: 22px; border-top: 2px solid #fff; text-decoration: none; color: #fff; }
+.be-big__label { grid-column: 1 / -1; font-size: 12px; letter-spacing: .1em; opacity: .85; }
+.be-big__word { font-family: var(--f-display); font-weight: 700; letter-spacing: -.07em; line-height: .82; font-size: clamp(72px, 17vw, 300px); }
+.be-big__word i { font-style: normal; display: inline-block; font-size: .5em; vertical-align: top; transition: transform .45s var(--ease-out); }
+.be-big:hover .be-big__word i { transform: translate(14px, -14px); }
+.be-big__sub { font-size: 12px; letter-spacing: .1em; padding-bottom: 1em; }
+
+/* behance en la barra superior */
+.topbar__nav .nav-be { background: #1769FF; color: #fff; padding: 4px 10px; border-radius: 999px; }
+.topbar__nav .nav-be::after { display: none; }
+
+@media (max-width: 900px) {
+  .p-hero--about { grid-template-columns: 1fr; grid-template-rows: 46vh auto; }
+  .ab__photo { grid-column: 1; grid-row: 1; }
+  .ab__text { grid-row: 2; padding: 24px var(--pad) 120px; }
+  .p-hero--about .p-hero__giant { margin-right: 0; font-size: clamp(56px, 17vw, 120px); }
+  .p-hero--about .p-hero__redbar { display: none; }
+  .p-hero--about { height: auto; min-height: 100svh; }
+  .be-big { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .topbar__nav { gap: 10px; }
+  .topbar__nav .nav-be { padding: 3px 7px; }
+  .topbar { grid-template-columns: auto 1fr; }
+  .topbar__nav { justify-self: end; }
+  .topbar__brand { font-size: 0; } .topbar__brand b { font-size: 11px; }
+}
+@media (max-width: 900px) {
+  .p-hero--about { grid-template-rows: 46vh auto auto; }
+  .ab__text { padding-bottom: 28px; }
+  .p-hero--about .p-hero__cap { position: relative; left: auto; right: auto; bottom: auto; grid-row: 3; padding: 0 var(--pad) 28px; }
+}

@@ -119,11 +119,14 @@
 
     // tipográficas
     if (c.kind === "about") {
-      return `<div class="cf cf--type">${ticks}
+      return `<div class="cf cf--about">
+        <img class="cf__photo" src="${esc(c.card.src)}" alt="" draggable="false" decoding="async">
+        <span class="cf__aboutbar"></span>
         <div class="cf__top"><span class="cf__num">Nº ${esc(c.number)}</span><span>${esc(c.category)}</span></div>
-        <span class="cf__redbar"></span>
-        <span class="cf__mono-big cf__plate">J<span style="color:transparent;-webkit-text-stroke:1.2px var(--ink)">V</span><sup>®</sup></span>
-        <div class="cf__plate"><span class="cf__title">${esc(c.title)}</span><div class="cf__bot"><span>JHON VALENCIA</span><span>BOG</span></div></div>
+        <div class="cf__aboutfoot">
+          <span class="cf__title">THE<br><span class="o">CREATOR</span></span>
+          <div class="cf__bot"><span>JHON VALENCIA SANTANA</span><span>JV®</span></div>
+        </div>
       </div>`;
     }
     if (c.kind === "contact") {
@@ -797,14 +800,40 @@
 
   function renderAbout(c, i) {
     const tl = ABOUT.timeline.map(([t, a, b]) => `<li><time>${esc(t)}</time><div><strong>${esc(a)}</strong>${b ? `<span>${esc(b)}</span>` : ""}</div></li>`).join("");
-    return heroType(c, "THE", "CREATOR") +
+    const hero = `<section class="p-hero p-hero--about" style="--c:${c.color};--ink:${c.ink};--mbg:${c.color}">
+      <figure class="ab__photo"><img src="${esc(c.photo)}" alt="Retrato de Jhon Valencia Santana" fetchpriority="high"></figure>
+      <span class="p-hero__redbar"></span>
+      <div class="ab__text">
+        <p class="p-hero__concept">${esc(SITE.title)}</p>
+        <h2 class="p-hero__giant" id="detail-title" aria-label="The Creator"><span class="ln"><span>THE</span></span><span class="ln"><span class="o">CREATOR</span></span></h2>
+        <p class="ab__name">Jhon Valencia Santana</p>
+        <div class="ab__ctas">
+          <a class="ab__btn ab__btn--be" href="${esc(SITE.links.behance)}" target="_blank" rel="noopener"><b>Bē</b> Ver portafolio en Behance <span aria-hidden="true">↗</span></a>
+          <a class="ab__btn" href="${esc(SITE.links.linkedin)}" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="p-hero__cap"><span class="mono" style="font-size:12px;letter-spacing:.08em">BOGOTÁ, COLOMBIA</span>
+        <div class="p-hero__tag"><span class="p-hero__num">${esc(c.number)}</span><span>${esc(c.category)}</span><span>${esc(c.year)}</span></div></div>
+    </section>`;
+    const behance = `<section class="sec band band--be">
+      <div class="sec__grid rv"><p class="sec__label"><b>02</b>CREATIVE ARCHIVE</p>
+        <div class="sec__body"><h3 class="st-title">Más de quince años de trabajo creativo, en Behance.</h3>
+        <p class="prose">Campañas, piezas publicitarias y diseño gráfico de mi trayectoria en agencias y proyectos propios.</p></div></div>
+      <a class="be-big rv" href="${esc(SITE.links.behance)}" target="_blank" rel="noopener">
+        <span class="be-big__label mono">BEHANCE.NET/JHXNVALE</span>
+        <span class="be-big__word">BEHANCE <i aria-hidden="true">↗</i></span>
+        <span class="be-big__sub mono">ABRIR PORTAFOLIO COMPLETO</span>
+      </a>
+    </section>`;
+    return hero +
       sec(1, "PROFESSIONAL PROFILE", `<p class="mono" style="font-size:12px;letter-spacing:.1em;margin:0 0 16px">${esc(SITE.title)}</p><p class="lead">${esc(ABOUT.lead)}</p><div style="height:28px"></div>${ABOUT.bio.map((p) => `<p class="prose">${esc(p)}</p>`).join("")}
         <dl class="facts"><div><dt>BASE</dt><dd>Bogotá, Colombia</dd></div><div><dt>EXPERIENCE</dt><dd>15+ años</dd></div><div><dt>FOCUS</dt><dd>Marca · Producto · Innovación</dd></div></dl>`) +
-      sec(2, "EXPERIENCE", `<ul class="tl">${tl}</ul>`) +
-      sec(3, "EDUCATION & CERTS", `<ul class="list">${ABOUT.education.map((e, k) => `<li><span>${pad2(k + 1)}</span>${esc(e)}</li>`).join("")}</ul>`) +
-      sec(4, "CAPABILITIES", `<div class="chips">${(SITE.expertise || ABOUT.skills).map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>`) +
-      sec(5, "CREATIVE PHILOSOPHY", `<p class="lead">${esc(SITE.headline)}</p><div style="height:24px"></div><p class="prose">${esc(SITE.description)}</p>`) +
-      sec(6, "ELSEWHERE", `<div class="links">${bigLink("Behance", SITE.links.behance, "Archivo creativo")}${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria")}${bigLink("GitHub", SITE.links.github, "Código")}</div>`) +
+      behance +
+      sec(3, "EXPERIENCE", `<ul class="tl">${tl}</ul>`) +
+      sec(4, "EDUCATION & CERTS", `<ul class="list">${ABOUT.education.map((e, k) => `<li><span>${pad2(k + 1)}</span>${esc(e)}</li>`).join("")}</ul>`) +
+      sec(5, "CAPABILITIES", `<div class="chips">${(SITE.expertise || ABOUT.skills).map((s) => `<span class="chip">${esc(s)}</span>`).join("")}</div>`) +
+      sec(6, "CREATIVE PHILOSOPHY", `<p class="lead">${esc(SITE.headline)}</p><div style="height:24px"></div><p class="prose">${esc(SITE.description)}</p>`) +
+      sec(7, "ELSEWHERE", `<div class="links">${bigLink("Behance", SITE.links.behance, "Archivo creativo")}${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria")}${bigLink("GitHub", SITE.links.github, "Código")}</div>`) +
       nextBlock(i) + footer();
   }
 
