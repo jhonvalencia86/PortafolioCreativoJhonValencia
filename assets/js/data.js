@@ -61,7 +61,7 @@ window.JV_DECK = [
     theme: "light",
     tags: ["Branding", "Educación financiera", "Contenido", "IA"],
     short: "Podcast y plataforma de educación financiera con personajes, humor y producción asistida por IA.",
-    card: { template: "frame", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/portadas/podcast-urbano.webp", fit: "contain", bg: "#151515", pos: "50% 50%", heroInk: "#F4F0E9" },
+    card: { template: "full", src: IMG + "a36cuotas/card-podcast.webp", hero: IMG + "a36cuotas/miniaturas/el-podcast-de-tino-y-tado.webp", fit: "cover", heroFit: "cover", bg: "#151515", pos: "50% 50%", heroPos: "55% 50%" },
     lead: "Aprende de plata antes de ponerla a cuotas.",
     facts: [
       ["TIPO", "Proyecto propio"],

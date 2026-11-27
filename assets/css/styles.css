@@ -902,3 +902,10 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 .pc:hover .pc__type i { transform: translate(8px, -8px); }
 .pc__media--type img { display: none; }
 .pc__media[data-blend] { background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+
+/* hero horizontal en celular vertical: se ve completo, sin recortar */
+@media (max-width: 640px) and (orientation: portrait) {
+  .p-hero[data-fit="cover"] .p-hero__media { background-image: none !important; display: flex; align-items: flex-start; padding-top: calc(var(--bar-h) + 40px); }
+  .p-hero[data-fit="cover"] .p-hero__media img { height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .p-hero[data-fit="cover"] .p-hero__shade { background: linear-gradient(to top, rgba(0,0,0,.6), transparent 55%); }
+}

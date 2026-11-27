@@ -836,6 +836,7 @@
     if (c.paper) detail.style.setProperty("--dbg", c.paper); else detail.style.removeProperty("--dbg");
     const r = c.layout === "story" ? renderStory : { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
     dContent.innerHTML = r(c, i);
+    lazyDetail();
     $("#d-count").textContent = `${pad2(i + 1)} / ${pad2(N)}`;
     document.title = `${c.title} — JV · The Creative Deck`;
   }
@@ -881,6 +882,22 @@
     detail.classList.toggle("is-scrolled", dScroll.scrollTop > innerHeight * 0.85);
   }, { passive: true });
 
+  /* carga diferida propia (fiable en Safari dentro del panel con scroll) */
+  let lazyIO = null;
+  function lazyDetail() {
+    const imgs = $$('img[loading="lazy"]', dContent);
+    imgs.forEach((im) => { im.dataset.src = im.getAttribute("src"); im.removeAttribute("src"); im.removeAttribute("loading"); });
+    const load = (im) => { if (im.dataset.src) { im.src = im.dataset.src; delete im.dataset.src; } };
+    if (lazyIO) lazyIO.disconnect();
+    if (!("IntersectionObserver" in window)) { imgs.forEach(load); return; }
+    lazyIO = new IntersectionObserver((ens) => ens.forEach((en) => {
+      if (en.isIntersecting) { load(en.target); lazyIO.unobserve(en.target); }
+    }), { root: dScroll, rootMargin: "120% 0px 120% 0px" });
+    imgs.forEach((im) => lazyIO.observe(im));
+    // red de seguridad: si algo falla, cargar todo tras unos segundos
+    setTimeout(() => imgs.forEach(load), 6000);
+  }
+
   /* reveal on scroll */
   let io = null;
   function observeReveals() {
@@ -902,7 +919,7 @@
     const items = lbItems();
     if (!items.length) return;
     lbK = mod2(k, items.length);
-    const g = { src: items[lbK].currentSrc || items[lbK].src, alt: items[lbK].alt };
+    const g = { src: items[lbK].currentSrc || items[lbK].src || items[lbK].dataset.src, alt: items[lbK].alt };
     $("#lb-img").src = g.src;
     $("#lb-img").alt = g.alt;
     $("#lb-cap").textContent = `${pad2(lbK + 1)} / ${pad2(items.length)} — ${g.alt}`;
@@ -1069,6 +1086,9 @@
       if (en.isIntersecting) { en.target.classList.add("is-seen"); ob.unobserve(en.target); }
     }), { root: scroller, rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
     els.forEach((el) => ob.observe(el));
+    const check = () => els.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add("is-seen"); });
+    (scroller || window).addEventListener("scroll", check, { passive: true });
+    setTimeout(check, 500);
   }
 
   buildHome();
