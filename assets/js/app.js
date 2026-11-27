@@ -68,6 +68,15 @@
       .join("");
   });
 
+  // Nombre + PORTFOLIO: cada letra es una carta que gira (cara sólida / cara contorno)
+  $$(".flip-row").forEach((row, r) => {
+    row.innerHTML = [...row.dataset.w]
+      .map((ch, i) => ch === " "
+        ? `<span class="fl fl--sp"></span>`
+        : `<span class="fl" style="--i:${i};--r:${r}"><span class="fl__f">${ch}</span><span class="fl__b">${ch}</span></span>`)
+      .join("");
+  });
+
   if (mqHover.matches && !reduced()) {
     addEventListener("pointermove", (e) => {
       if (S.open >= 0) return;
@@ -903,7 +912,7 @@
 
   function renderDetail(i) {
     const c = DECK[i];
-    detail.style.setProperty("--acc", c.accent || "#E44832");
+    detail.style.setProperty("--acc", c.accent || "#6A3CF2");
     detail.classList.toggle("theme-dark", c.theme === "dark");
     if (c.paper) detail.style.setProperty("--dbg", c.paper); else detail.style.removeProperty("--dbg");
     const r = c.layout === "story" ? renderStory : { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
