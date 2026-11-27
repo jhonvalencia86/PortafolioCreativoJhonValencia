@@ -815,6 +815,14 @@
           ${pal ? "" : "<!--"}<div class="ident__pal">${(b.palette || []).map(([nm, hex]) => `<div class="sw" style="--sw:${hex};color:${lum(hex) < 0.45 ? "#fff" : "#151515"}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div>${pal ? "" : "-->"}</div>`;
     } else if (b.type === "steps") {
       extra = `<ol class="steps rv" style="--n:${b.steps.length}">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+    } else if (b.type === "films") {
+      extra = `<div class="films rv">${b.items.map((it) => {
+        if (it.kind === "note") return `<div class="film film--vert film--note"><strong>${esc(it.title)}</strong><p>${esc(it.text)}</p></div>`;
+        if (it.kind === "image") return `<figure class="film film--vert"><div class="film__box" style="aspect-ratio:${it.w}/${it.h}"><img src="${esc(it.src)}" alt="${esc(it.title)}" loading="lazy" data-lb></div><figcaption>${esc(it.title)}</figcaption></figure>`;
+        return `<figure class="film film--${it.span || "half"}"><div class="film__box" style="aspect-ratio:${it.w}/${it.h}">
+            <video controls playsinline preload="none" poster="${esc(it.poster)}"><source src="${esc(it.src)}" type="video/mp4"></video></div>
+            <figcaption><span>${esc(it.title)}</span>${it.dur ? `<span class="mono">${esc(it.dur)}</span>` : ""}</figcaption></figure>`;
+      }).join("")}</div>`;
     } else if (b.type === "manifesto") {
       extra = `<div class="mani rv">${b.words.map((w, k) => `<span class="mani__w${k % 2 ? " o" : ""}">${esc(w)}</span>${k < b.words.length - 1 ? '<span class="mani__x">×</span>' : ""}`).join("")}</div>`;
     } else if (b.type === "split") {
@@ -1047,6 +1055,10 @@
     // red de seguridad: si algo falla, cargar todo tras unos segundos
     setTimeout(() => imgs.forEach(load), 6000);
   }
+
+  dContent.addEventListener("play", (e) => {
+    $$("video", dContent).forEach((v) => { if (v !== e.target && !v.paused) v.pause(); });
+  }, true);
 
   /* reveal on scroll */
   let io = null;

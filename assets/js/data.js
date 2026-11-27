@@ -255,12 +255,23 @@ window.JV_DECK = [
          TikTok:    https://www.tiktok.com/@usuario/video/1234567890123456789
          Instagram: https://www.instagram.com/reel/ABCdef123/
          Si la lista está vacía, la sección no se muestra. */
-      { type: "social", band: "black", label: "VIDEOS · INSTAGRAM",
+      { type: "films", band: "black", label: "VIDEOS",
         title: "Chrome Lovers en movimiento.",
-        body: "Clips del universo: personajes, ciudad y música, publicados en Instagram.",
-        profile: { platform: "Instagram", handle: "@chrxme_lovers", url: "https://www.instagram.com/chrxme_lovers/" },
+        body: "Videoclips, visualizer y piezas animadas del universo. Dale play: todo se reproduce aquí mismo, con sonido opcional.",
         items: [
+          { kind: "video", span: "full", src: "assets/video/chrome-lovers/chrome-lovers-01.mp4", poster: "assets/video/chrome-lovers/chrome-lovers-01-poster.webp", w: 1280, h: 720, title: "Videoclip animado · Bogotá", dur: "2:28" },
+          { kind: "video", span: "vert", src: "assets/video/chrome-lovers/chrome-lovers-02.mp4", poster: "assets/video/chrome-lovers/chrome-lovers-02-poster.webp", w: 720, h: 1280, title: "Visualizer vertical · portada del álbum", dur: "2:59" },
+          { kind: "image", span: "vert", src: IMG + "chrome-lovers/hoverbikes.webp", w: 864, h: 1536, title: "Su y J · key visual hover-bikes" },
+          { kind: "note", span: "vert", title: "Un universo en 9:16", text: "Cada pieza vertical está pensada para Reels: los mismos personajes, vestuario y fucsia de marca, adaptados al celular." },
+          { kind: "video", span: "full", src: "assets/video/chrome-lovers/chrome-lovers-03.mp4", poster: "assets/video/chrome-lovers/chrome-lovers-03-poster.webp", w: 1280, h: 720, title: "Live session · la bodega", dur: "2:06" },
+          { kind: "video", span: "half", src: "assets/video/chrome-lovers/chrome-lovers-04.mp4", poster: "assets/video/chrome-lovers/chrome-lovers-04-poster.webp", w: 1280, h: 720, title: "Pieza animada · el viaje", dur: "1:09" },
+          { kind: "video", span: "half", src: "assets/video/chrome-lovers/chrome-lovers-05.mp4", poster: "assets/video/chrome-lovers/chrome-lovers-05-poster.webp", w: 1280, h: 720, title: "Pieza animada · motos", dur: "1:29" }
         ] },
+
+      { type: "social", label: "INSTAGRAM",
+        title: "Síguelo en Instagram.",
+        profile: { platform: "Instagram", handle: "@chrxme_lovers", url: "https://www.instagram.com/chrxme_lovers/" },
+        items: [] },
 
       { type: "text", label: "THE PROJECT", title: "Un universo, no solo una canción.",
         body: "Chrome Lovers es un proyecto musical y audiovisual experimental que conecta rap, rock, electrónica, narrativa visual e inteligencia artificial. La música se acompaña de un mundo propio: personajes, ciudad, objetos y una estética coherente en cada pieza." },

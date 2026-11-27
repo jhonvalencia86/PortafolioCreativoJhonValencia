@@ -1470,6 +1470,36 @@
       "web_path": "assets/video/tucrm-como-funciona.mp4",
       "format": "16:9",
       "codec": "H.264/AAC"
+    },
+    {
+      "project": "chrome-lovers",
+      "web_path": "assets/video/chrome-lovers/chrome-lovers-01.mp4",
+      "format": "16:9",
+      "codec": "H.264/AAC 720p"
+    },
+    {
+      "project": "chrome-lovers",
+      "web_path": "assets/video/chrome-lovers/chrome-lovers-02.mp4",
+      "format": "9:16",
+      "codec": "H.264/AAC 720p"
+    },
+    {
+      "project": "chrome-lovers",
+      "web_path": "assets/video/chrome-lovers/chrome-lovers-03.mp4",
+      "format": "16:9",
+      "codec": "H.264/AAC 720p"
+    },
+    {
+      "project": "chrome-lovers",
+      "web_path": "assets/video/chrome-lovers/chrome-lovers-04.mp4",
+      "format": "16:9",
+      "codec": "H.264/AAC 720p"
+    },
+    {
+      "project": "chrome-lovers",
+      "web_path": "assets/video/chrome-lovers/chrome-lovers-05.mp4",
+      "format": "16:9",
+      "codec": "H.264/AAC 720p"
     }
   ]
 }

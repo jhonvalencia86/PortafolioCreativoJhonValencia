@@ -1170,3 +1170,26 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 .igcard__txt strong { font-family: var(--f-display); font-size: clamp(28px, 5vw, 80px); letter-spacing: -.05em; line-height: .95; overflow-wrap: anywhere; }
 .igcard__go { font-size: 12px; letter-spacing: .1em; border: 1px solid #fff; border-radius: 999px; padding: 10px 14px; white-space: nowrap; }
 @media (max-width: 640px) { .igcard { grid-template-columns: auto 1fr; } .igcard__go { grid-column: 1 / -1; justify-self: start; } }
+
+/* galería de videos Chrome Lovers */
+.films { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(28px, 3vw, 48px) clamp(14px, 1.8vw, 26px); margin-top: clamp(30px, 4vw, 56px); align-items: start; }
+.film { margin: 0; }
+.film--full { grid-column: 1 / -1; }
+.film--half { grid-column: span 6; }
+.film--vert { grid-column: span 4; }
+.film__box { border-radius: 10px; overflow: hidden; background: #000; }
+.film__box video, .film__box img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.film--vert .film__box { cursor: zoom-in; }
+.film--vert:has(video) .film__box { cursor: auto; }
+.film figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 10px; font-size: 14px; }
+.film figcaption .mono { font-size: 12px; color: var(--dmuted); }
+.film--note { align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding: clamp(20px, 2.4vw, 36px);
+  border-radius: 10px; background: #E0368A; color: #fff; min-height: 260px; }
+.film--note strong { font-family: var(--f-display); font-size: clamp(30px, 3.4vw, 56px); letter-spacing: -.045em; line-height: .95; }
+.film--note p { margin: 0; font-size: 15px; line-height: 1.5; }
+@media (max-width: 900px) {
+  .film--half { grid-column: 1 / -1; }
+  .film--vert { grid-column: span 6; }
+  .film--note { grid-column: 1 / -1; min-height: 0; }
+}
+@media (max-width: 640px) { .film--vert { grid-column: 1 / -1; } .film--vert .film__box { max-height: 82vh; aspect-ratio: auto !important; } .film--vert video { max-height: 82vh; } }
