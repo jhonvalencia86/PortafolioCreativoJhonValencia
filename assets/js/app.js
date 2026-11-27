@@ -92,7 +92,7 @@
     return {
       src, fit,
       blend: k.blend ? ' data-blend="1"' : "",
-      style: `--mbg:${k.bg || c.color};--fit:${fit};--pos:${pos}`
+      style: `--mbg:${(hero && k.heroBg) || k.bg || c.color};--fit:${fit};--pos:${pos}`
     };
   }
 
@@ -373,7 +373,7 @@
      ================================================================ */
   function makeFlyer(i, rect, plain = false) {
     const c = DECK[i];
-    const m = mediaAttrs(c, "hero");
+    const m = mediaAttrs(c, plain || !(c.card && c.card.flyFromCard) ? "hero" : "card");
     if (!plain) m.src = c.card && c.card.src;
     const f = document.createElement("div");
     f.className = plain ? "flyer flyer--plain" : "flyer";
@@ -754,6 +754,13 @@
     } else if (b.type === "covers") {
       const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
       extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
+    } else if (b.type === "video") {
+      extra = `<div class="yt rv">
+          <video class="vid" controls playsinline preload="none" poster="${esc(b.poster)}" style="aspect-ratio:${b.w}/${b.h}">
+            <source src="${esc(b.src)}" type="video/mp4">
+            Tu navegador no reproduce video. <a href="${esc(b.src)}">Descárgalo aquí</a>.
+          </video>
+        </div>`;
     } else if (b.type === "youtube" && b.direct) {
       extra = `<div class="yt rv">
           <iframe class="yt__frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(b.list)}&rel=0" title="Episodios de A 36 Cuotas en YouTube" loading="eager" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

@@ -1004,3 +1004,6 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
   .ab__text { padding-bottom: 28px; }
   .p-hero--about .p-hero__cap { position: relative; left: auto; right: auto; bottom: auto; grid-row: 3; padding: 0 var(--pad) 28px; }
 }
+
+.vid { display: block; width: 100%; height: auto; border-radius: 12px; background: #000; }
+.band--yellow .st-title { max-width: 20ch; }

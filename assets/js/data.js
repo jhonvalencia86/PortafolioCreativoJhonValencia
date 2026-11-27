@@ -339,38 +339,90 @@ window.JV_DECK = [
     title: "CHAPPETAG",
     category: "AGROTECH / DIGITAL INNOVATION",
     year: "2026",
-    color: "#14522F",
+    color: "#023D23",
     ink: "#FFFFFF",
-    accent: "#1E8449",
+    accent: "#1F8A3B",
+    paper: "#F4F3EC",
     theme: "light",
     tags: ["AgroTech", "Innovación", "Producto digital", "Branding"],
-    short: "Identificación ganadera con NFC y QR para acceder a la información de cada animal desde el celular.",
-    card: { template: "frame", src: IMG + "chappetag/card.webp", hero: IMG + "chappetag/cover.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
+    short: "Chapeta con NFC y QR más una app de campo: la historia de cada animal, en el celular del ganadero.",
+    card: { template: "frame", src: IMG + "chappetag/card-logo.webp", hero: IMG + "chappetag/campana/portada-web.webp", fit: "cover", heroFit: "cover", bg: "#FFFFFF", heroBg: "#023D23", heroPos: "50% 50%", ar: "16 / 9", flyFromCard: true },
     lead: "Ganado conectado. Un campo más inteligente.",
     facts: [
       ["AÑO", "2026"],
       ["TIPO", "Proyecto propio"],
       ["INDUSTRIA", "Agro · Ganadería"],
-      ["MI ROL", "Creador · Estrategia de producto"]
+      ["MI ROL", "Creador · Producto · Marca"]
     ],
     story: [
-      { type: "text", label: "THE CHALLENGE", title: "La historia de cada animal, en papel o en la memoria.",
-        body: "En muchas fincas la información del ganado (peso, sanidad, reproducción) está dispersa o no existe, y eso dificulta la trazabilidad y las decisiones." },
-      { type: "text", label: "STRATEGY & CONCEPT", title: "Una chapeta que se lee con el celular.",
-        body: "ChAppeTag integra NFC y QR en la identificación del animal para facilitar el acceso a su información y la trazabilidad. El nombre lo dice todo: dentro de “chapeta” aparecen “App” y “Tag”.",
-        chips: ["NFC", "QR", "Trazabilidad", "App de campo"] },
-      { type: "identity", label: "IDENTIDAD VISUAL",
-        title: "Campo y tecnología en un solo símbolo.",
-        body: "La vaca con chapeta NFC, la nube de datos y el arco verde resumen la propuesta. Las mayúsculas internas del nombre revelan el producto.",
-        image: { src: IMG + "chappetag/presentacion-de-logo-chappetagcuntegn.webp", alt: "Presentación del logo ChAppeTag", w: 1536, h: 1024 },
-        palette: [] },
-      { type: "figures", label: "SOLUCIÓN",
-        title: "Del campo conectado al negocio.",
-        body: "Storyboard del uso en finca y esquema del modelo de negocio.",
+      { type: "video", band: "black", label: "VIDEO · CHAPPETAG EN 36 SEGUNDOS",
+        title: "Del potrero al celular.",
+        body: "La pieza audiovisual resume la propuesta: el ganadero recorre su finca, lee la chapeta de cada animal con el celular y controla sus lotes desde la app.",
+        src: "assets/video/chappetag-ganado-conectado.mp4",
+        poster: "assets/video/chappetag-ganado-conectado-poster.webp",
+        w: 1920, h: 1080 },
+
+      { type: "text", label: "THE CHALLENGE", title: "La historia de cada animal vive en un cuaderno o en la memoria.",
+        body: "En muchas fincas la información del ganado —peso, sanidad, reproducción, movimientos— está dispersa o no existe. Sin datos confiables es difícil demostrar trazabilidad, tomar decisiones o acceder a mejores condiciones comerciales." },
+
+      { type: "text", band: "yellow", label: "STRATEGY & CONCEPT", title: "Una chapeta que se lee con el celular.",
+        body: "ChAppeTag convierte la chapeta tradicional de identificación en una puerta de entrada digital: cada animal lleva una chapeta física con NFC y código QR que, al leerse con el celular, abre su historial en la app. El nombre lo explica solo: dentro de “chapeta” aparecen “App” y “Tag”.",
+        chips: ["Chapeta NFC + QR", "App de campo", "Trazabilidad", "Funciona sin señal", "El ganadero controla sus datos"] },
+
+      { type: "steps", label: "CÓMO FUNCIONA",
+        title: "Cinco pasos, del registro al ingreso.",
+        body: "El recorrido completo del ganadero, tal como lo plantea el modelo del producto.",
+        steps: [
+          ["Registro", "El ganadero registra su finca y sus lotes en la plataforma, gratis."],
+          ["Identificación", "Cada animal recibe una chapeta física con NFC o código QR."],
+          ["Trazabilidad", "Peso, salud y fotos quedan registrados, incluso sin señal."],
+          ["Control", "El ganadero decide qué información de cada lote es pública."],
+          ["Ingresos", "Un fee simbólico de activación por chapeta, pagado una sola vez."]
+        ] },
+
+      { type: "figures", label: "PRODUCTO · EXPERIENCIA",
+        title: "Así funciona para el ganadero.",
+        body: "Infografías del recorrido: registrar la finca, colocar la chapeta, guardar el historial, controlar la información y obtener beneficios.",
         items: [
-          { src: IMG + "chappetag/del-campo-conectado-al-futuro.webp", alt: "Storyboard: del campo conectado al futuro", w: 1536, h: 1024, span: "full" },
-          { src: IMG + "chappetag/como-funciona-el-negocio-de-chappetag.webp", alt: "Cómo funciona el negocio de ChAppeTag", w: 1672, h: 941, span: "full" }
-        ] }
+          { src: IMG + "chappetag/producto/journey.webp", alt: "Así funciona ChAppeTag para el ganadero: tres pasos", w: 1672, h: 941, span: "full" },
+          { src: IMG + "chappetag/producto/infografia.webp", alt: "Infografía en cinco pasos del uso de ChAppeTag", w: 1672, h: 941, span: "full" }
+        ] },
+
+      { type: "figures", label: "MODELO DE NEGOCIO",
+        title: "La plataforma subsidia la chapeta.",
+        body: "La chapeta física la subsidia la plataforma y el ganadero solo paga la activación. El cobro simbólico filtra el compromiso real sin convertirse en una barrera de entrada.",
+        items: [
+          { src: IMG + "chappetag/estrategia/modelo-negocio.webp", alt: "Cómo funciona el negocio de ChAppeTag", w: 1672, h: 941, span: "full" }
+        ] },
+
+      { type: "identity", label: "IDENTIDAD VISUAL",
+        title: "Una chapeta que emite señal.",
+        body: "El símbolo es la propia chapeta ganadera con ondas de conexión: el objeto que todo ganadero reconoce, convertido en tecnología. Amarillo de chapeta para el símbolo, verde noche para el campo y mayúsculas internas (Ch·App·e·Tag) que revelan el producto dentro del nombre.",
+        image: { src: IMG + "chappetag/identidad/logo-color.webp", alt: "Logo ChAppeTag: Ganado conectado", w: 1672, h: 941, contain: true },
+        palette: [["Amarillo chapeta", "#FCC300"], ["Verde noche", "#023D23"], ["Crema", "#F0F0E8"], ["Blanco", "#FFFFFF"]] },
+
+      { type: "figures", label: "SISTEMA DE MARCA",
+        title: "Versiones y aplicaciones.",
+        body: "El sistema funciona sobre fondo claro, verde y amarillo, en horizontal y en versión compacta. La exploración inicial con la vaca y la nube de datos sirvió para fijar el concepto antes de simplificarlo en la chapeta.",
+        items: [
+          { src: IMG + "chappetag/identidad/sistema-visual.webp", alt: "Sistema visual: versiones sobre claro, verde y amarillo", w: 1536, h: 1024, span: "full" },
+          { src: IMG + "chappetag/identidad/logo-alternativo.webp", alt: "Logo sobre fondo oscuro", w: 1800, h: 600, span: "half" },
+          { src: IMG + "chappetag/identidad/logo-variante.webp", alt: "Logo horizontal sobre claro", w: 1800, h: 600, span: "half" },
+          { src: IMG + "chappetag/identidad/logo-concepto.webp", alt: "Exploración inicial de concepto: vaca, chapeta NFC y datos", w: 1254, h: 1254, span: "half" }
+        ] },
+
+      { type: "figures", label: "CAMPAÑA",
+        title: "Tecnología que impulsa el campo colombiano.",
+        body: "Portada web, storyboard en seis momentos (origen, desafío, solución, conexión, control y resultado) y una pieza editorial tipo brochure.",
+        items: [
+          { src: IMG + "chappetag/campana/portada-web.webp", alt: "Portada web: trazabilidad inteligente para tu ganado", w: 1672, h: 941, span: "full" },
+          { src: IMG + "chappetag/campana/storyboard.webp", alt: "Storyboard de campaña en seis momentos", w: 1536, h: 1024, span: "wide" },
+          { src: IMG + "chappetag/campana/brochure.webp", alt: "Brochure: tu ganado identificado, tu finca bajo control", w: 1055, h: 1491, span: "tall" }
+        ] },
+
+      { type: "text", label: "MI APORTE", title: "De la tesis de negocio a la marca.",
+        body: "Definí el problema, la solución y el modelo de negocio, y desarrollé el naming, la identidad y las piezas de comunicación.",
+        chips: ["Tesis de negocio", "Estrategia de producto", "Modelo de monetización", "Naming", "Identidad visual", "Campaña"] }
     ],
     links: [{ label: "chappetag.com", url: "https://chappetag.com", sub: "Sitio web" }]
   },
