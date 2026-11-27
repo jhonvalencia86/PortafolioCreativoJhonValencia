@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>JV — The Creative Deck · Jhon Valencia Santana</title>
+  <meta name="description" content="Portafolio de Jhon Valencia Santana — dirección creativa, estrategia digital e innovación. Explora la baraja: cada carta es un proyecto." />
+  <meta name="theme-color" content="#E8E8E4" />
+  <meta property="og:title" content="JV — The Creative Deck" />
+  <meta property="og:description" content="Creative direction. Digital strategy. Innovation. Bogotá, Colombia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og.jpg" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="is-intro">
+  <a class="skip" href="#deck">Saltar a la baraja</a>
+
+  <!-- Intro: monograma -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__mono"><span>J</span><span>V</span><sup>®</sup></div>
+  </div>
+
+  <!-- ===================== HOME ===================== -->
+  <main class="home" id="home">
+    <div class="paper" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <a class="topbar__brand" href="#/" data-nav="work">JV® — CREATIVE STUDIO</a>
+      <nav class="topbar__nav" aria-label="Principal">
+        <a href="#/" data-nav="work">WORK</a>
+        <a href="#/p/about" data-nav="about">ABOUT</a>
+        <a href="#/p/contact" data-nav="contact">CONTACT</a>
+      </nav>
+      <span class="topbar__place">BOGOTÁ, COLOMBIA / 2026</span>
+    </header>
+
+    <!-- marcas de registro -->
+    <span class="reg reg--tl" aria-hidden="true"></span>
+    <span class="reg reg--tr" aria-hidden="true"></span>
+    <span class="reg reg--ml" aria-hidden="true"></span>
+    <span class="reg reg--mr" aria-hidden="true"></span>
+
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__block" aria-hidden="true"></div>
+      <p class="hero__eyebrow"><span class="mono">(JV—26)</span> WELCOME TO MY</p>
+      <h1 class="kinetic" id="hero-title" aria-label="Portfolio">
+        <span class="kinetic__layer kinetic__layer--o2" aria-hidden="true" data-word="PORTFOLIO"></span>
+        <span class="kinetic__layer kinetic__layer--o1" aria-hidden="true" data-word="PORTFOLIO"></span>
+        <span class="kinetic__layer kinetic__layer--solid" aria-hidden="true" data-word="PORTFOLIO"></span>
+      </h1>
+      <div class="hero__meta">
+        <p class="hero__subtitle">Creative direction.<br />Digital strategy.<br />Innovation.</p>
+        <p class="hero__index mono"><span>JHON VALENCIA SANTANA — VOL. 02</span><span class="hero__now" id="deck-now" aria-live="polite"></span></p>
+      </div>
+    </section>
+
+    <section class="deck" id="deck" aria-label="Baraja de proyectos" aria-roledescription="carrusel">
+      <div class="deck__stage" id="stage"></div>
+
+      <div class="deck__ui">
+        <div class="deck__hint">
+          <strong>ELIGE UNA CARTA</strong>
+          <span>Every card tells a story.</span>
+        </div>
+        <div class="deck__controls">
+          <button class="arrow" id="prev" aria-label="Carta anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          </button>
+          <p class="deck__counter mono" aria-live="polite"><span id="count-cur">01</span><i></i><span id="count-total">10</span></p>
+          <button class="arrow" id="next" aria-label="Carta siguiente">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+        <div class="deck__keys mono" aria-hidden="true">
+          <span>DRAG</span><span>SCROLL</span><span>← →</span><span>ENTER</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===================== DETALLE ===================== -->
+  <div class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" hidden>
+    <div class="detail__bar">
+      <button class="detail__back" id="back"><span aria-hidden="true">←</span> BACK TO THE DECK</button>
+      <div class="detail__pager">
+        <button class="arrow arrow--sm" id="d-prev" aria-label="Proyecto anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+        <span class="mono" id="d-count">01 / 10</span>
+        <button class="arrow arrow--sm" id="d-next" aria-label="Proyecto siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+      </div>
+    </div>
+    <div class="detail__scroll" id="detail-scroll">
+      <div class="detail__content" id="detail-content"></div>
+    </div>
+  </div>
+
+  <!-- ===================== LIGHTBOX ===================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Galería" hidden>
+    <button class="lightbox__close" id="lb-close" aria-label="Cerrar">CLOSE ✕</button>
+    <button class="arrow lightbox__prev" id="lb-prev" aria-label="Imagen anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg></button>
+    <figure class="lightbox__fig"><img id="lb-img" alt="" /><figcaption class="mono" id="lb-cap"></figcaption></figure>
+    <button class="arrow lightbox__next" id="lb-next" aria-label="Imagen siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg></button>
+  </div>
+
+  <noscript><p style="padding:2rem;font-family:sans-serif">Este portafolio necesita JavaScript. Mientras tanto: <a href="https://www.behance.net/jhxnvale">Behance</a> · <a href="mailto:jhxnvale86@gmail.com">jhxnvale86@gmail.com</a></p></noscript>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
