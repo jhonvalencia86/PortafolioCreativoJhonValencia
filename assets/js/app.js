@@ -274,7 +274,12 @@
     last = now;
 
     const auto = autoOn();
-    if (auto) S.target += dt * AUTO_SPEED;
+    if (auto) {
+      // la baraja se mece alrededor de THE CREATOR, que queda siempre al centro
+      const home = S.target + wrapOffset(HOME_I, S.target);
+      const base = Math.round(home);
+      S.target = base + Math.sin(now / 1000 * 0.75) * 0.4;
+    }
     if (!S.dragging) {
       const k = reduced() ? 1 : 1 - Math.exp(-dt * 11);
       S.pos += (S.target - S.pos) * k;
@@ -296,7 +301,7 @@
     else raf = 0;
   }
   /* giro automático de la rueda (se pausa al interactuar) */
-  const AUTO_SPEED = 0.16;           // cartas por segundo
+  const HOME_I = Math.max(0, DECK.findIndex((c) => c.kind === "about"));
   let lastTouch = -1e9;
   const touch = () => { lastTouch = performance.now(); if (Math.abs(S.target - Math.round(S.target)) > 0.001 && !S.dragging) S.target = Math.round(S.target); };
   function autoOn() {
@@ -1322,8 +1327,8 @@
     syncActive();
     openCard(startIdx, { animate: false });
   } else {
-    // arranca con la carta 01 al centro
-    S.pos = S.target = Math.min(1, N - 1);
+    // arranca con THE CREATOR al centro
+    S.pos = S.target = HOME_I;
     runIntro().then(() => syncRoute());
   }
 })();
