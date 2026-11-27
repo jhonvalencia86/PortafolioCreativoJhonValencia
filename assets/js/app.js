@@ -715,6 +715,8 @@
   }
 
 
+  const lum = (hex) => { const n = parseInt(hex.replace("#", ""), 16); const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255; return (0.299 * r + 0.587 * g + 0.114 * b) / 255; };
+
   /* ---- caso narrativo (layout: "story") */
   function figs(items, startK) {
     return `<div class="gallery">${items.map((g, k) => `<figure class="g g--${g.span || "half"} reveal">
@@ -736,7 +738,7 @@
       const pal = b.palette && b.palette.length;
       extra = `<div class="ident${pal ? "" : " ident--solo"} rv">
           <figure class="ident__logo${b.image.contain ? " is-contain" : ""}" style="aspect-ratio:${b.image.w}/${b.image.h};margin:0;border-radius:8px;overflow:hidden;cursor:zoom-in"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" style="width:100%;height:100%" data-lb></figure>
-          ${pal ? "" : "<!--"}<div class="ident__pal">${(b.palette || []).map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div>${pal ? "" : "-->"}</div>`;
+          ${pal ? "" : "<!--"}<div class="ident__pal">${(b.palette || []).map(([nm, hex]) => `<div class="sw" style="--sw:${hex};color:${lum(hex) < 0.45 ? "#fff" : "#151515"}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div>${pal ? "" : "-->"}</div>`;
     } else if (b.type === "steps") {
       extra = `<ol class="steps rv" style="--n:${b.steps.length}">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
     } else if (b.type === "formats") {
@@ -750,7 +752,8 @@
       extra = `<div class="slides rv"><p class="slides__spec mono">${esc(b.spec)}</p><div class="slides__grid">${b.items.map((it, k) =>
         `<figure class="slide${k === 0 ? " slide--lead" : ""}"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" decoding="async" width="${it.w}" height="${it.h}" data-lb><span class="slide__n mono">${pad2(k + 1)}</span></figure>`).join("")}</div></div>`;
     } else if (b.type === "cards") {
-      extra = `<ol class="cards rv">${b.cards.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+      const cc = b.colors ? b.colors.map(([bg, fg], k) => `--k${k}:${bg};--f${k}:${fg}`).join(";") : "";
+      extra = `<ol class="cards rv${b.colors ? " cards--custom" : ""}" style="${cc}">${b.cards.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
     } else if (b.type === "covers") {
       const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
       extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
@@ -774,6 +777,11 @@
             <span class="yt__label mono">VER EPISODIOS · ${esc(b.handle)}</span>
           </button>
           <a class="yt__link" href="${esc(b.url)}" target="_blank" rel="noopener"><span>Abrir el canal en YouTube</span><span aria-hidden="true">↗</span></a>
+        </div>`;
+    } else if (b.type === "web" && b.direct) {
+      extra = `<div class="browser browser--live rv">
+          <div class="browser__bar"><i></i><i></i><i></i><a class="browser__url mono" href="${esc(b.url)}" target="_blank" rel="noopener">🔒 ${esc(b.domain)}</a><a class="browser__go mono" href="${esc(b.url)}" target="_blank" rel="noopener">ABRIR EN PESTAÑA ↗</a></div>
+          <div class="browser__view"><iframe class="browser__frame" src="${esc(b.url)}" title="${esc(b.domain)}" loading="lazy"></iframe></div>
         </div>`;
     } else if (b.type === "web") {
       extra = `<div class="browser rv">

@@ -486,41 +486,96 @@ window.JV_DECK = [
     title: "TU CRM SEGURO",
     category: "INSURTECH / SAAS",
     year: "2026",
-    color: "#0F7A3D",
+    color: "#002D1D",
     ink: "#FFFFFF",
-    accent: "#0F7A3D",
+    accent: "#1A8A2E",
+    paper: "#F3F6F3",
     theme: "light",
     tags: ["InsurTech", "Producto digital", "Branding"],
-    short: "Concepto de CRM para intermediarios y agencias de seguros: gestión comercial y relación con clientes.",
-    card: { template: "frame", src: IMG + "tu-crm-seguro/card.webp", hero: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
-    lead: "Relacionamiento de verdad con tu cliente, a un clic.",
+    short: "CRM para intermediarios de seguros: clientes, pólizas, renovaciones, cartera y avisos del día listos para enviar.",
+    card: { template: "frame", src: IMG + "tu-crm-seguro/card-logo.webp", hero: IMG + "tu-crm-seguro/escritorio/landing.webp", fit: "cover", heroFit: "cover", bg: "#FFFFFF", heroBg: "#002D1D", heroPos: "50% 0%", heroInk: "#002D1D", ar: "16 / 10", flyFromCard: true },
+    lead: "Cada póliza a tiempo. Cada cliente atendido.",
     facts: [
       ["AÑO", "2026"],
-      ["TIPO", "Proyecto conceptual"],
-      ["INDUSTRIA", "Seguros"],
-      ["MI ROL", "Producto · Identidad visual"]
+      ["TIPO", "Prototipo funcional"],
+      ["INDUSTRIA", "Seguros · Intermediación"],
+      ["MI ROL", "Estrategia de producto · UX · Desarrollo"]
     ],
     story: [
-      { type: "text", label: "THE CHALLENGE", title: "Vender seguros es cuidar relaciones.",
-        body: "Los intermediarios y agencias de seguros gestionan clientes, pólizas y seguimientos con herramientas dispersas. El concepto plantea un CRM especializado para su gestión comercial y su relación con los clientes." },
-      { type: "text", label: "PROPUESTA DE VALOR", title: "Un CRM hecho para el intermediario.",
-        body: "En lugar de adaptar un CRM genérico, la propuesta parte de cómo trabaja una agencia de seguros: clientes, pólizas, renovaciones y seguimiento en un mismo lugar.",
-        chips: ["Clientes", "Pólizas", "Seguimiento", "Gestión comercial"] },
-      { type: "figures", label: "IDENTIDAD VISUAL",
+      { type: "web", direct: true, label: "PLATAFORMA EN VIVO",
+        title: "Pruébalo aquí mismo.",
+        body: "La plataforma está publicada y funciona en el navegador. Entra, registra un asesor y usa “Herramientas → Cargar ejemplos” para ver una agencia ficticia con datos.",
+        url: "https://jhonvalencia86.github.io/seguros/",
+        domain: "jhonvalencia86.github.io/seguros",
+        preview: IMG + "tu-crm-seguro/escritorio/landing.webp" },
+
+      { type: "video", band: "black", label: "CÓMO FUNCIONA · 10 SEGUNDOS",
+        title: "El día de un asesor, en diez segundos.",
+        src: "assets/video/tucrm-como-funciona.mp4",
+        poster: "assets/video/tucrm-como-funciona-poster.webp",
+        w: 1280, h: 720 },
+
+      { type: "text", label: "THE CHALLENGE", title: "Vender seguros es no dejar vencer nada.",
+        body: "Un intermediario vive de renovaciones, pagos y seguimiento. Cuando la información está en hojas de cálculo y chats, se escapan vencimientos, primas en mora y siniestros sin gestión, y el cliente lo nota." },
+
+      { type: "cards", label: "PROPUESTA DE VALOR", colors: [["#3DBB3F", "#002D1D"], ["#FFFFFF", "#002D1D"], ["#002D1D", "#FFFFFF"]],
+        title: "Todo lo que el asesor necesita hoy, en una pantalla.",
+        body: "Una sola página, sin instalación, que se puede instalar como app y sigue funcionando sin internet.",
+        cards: [
+          ["Hoy", "Pólizas vencidas, primas en mora, renovaciones a 30 días y siniestros sin gestión."],
+          ["Tablero", "Prima por ramo y aseguradora, cartera, embudo y siniestralidad. Tocar una barra filtra todo."],
+          ["Automatizaciones", "Avisos por fecha: renovación, pago, bienvenida, cumpleaños. Nadie recibe el mismo aviso dos veces."],
+          ["Campañas", "Envíos por WhatsApp, SMS o correo, con aprobación uno a uno por defecto."],
+          ["Trazabilidad", "Quién cambió qué y cuándo, con el valor anterior y el nuevo."],
+          ["Datos propios", "Importa y exporta CSV y Excel, y guarda copia en Google Sheets."]
+        ] },
+
+      { type: "formats", label: "INTERFACES",
+        title: "Escritorio y celular.",
+        body: "Capturas tomadas de la plataforma con los datos de ejemplo de una agencia ficticia: ningún dato corresponde a clientes reales.",
+        groups: [
+          { name: "Escritorio", spec: "16:10 — operación diaria del asesor", cols: 2, items: [
+            { src: IMG + "tu-crm-seguro/escritorio/hoy.webp", alt: "Hoy: prima vigente, salud de la cartera y pendientes del día", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/tablero.webp", alt: "Tablero: indicadores y “fábrica de seguros” interactiva", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/clientes.webp", alt: "Clientes con etapa, asesor y próxima renovación", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/polizas.webp", alt: "Pólizas con vigencia, prima y estado de cartera", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/siniestros.webp", alt: "Siniestros con estado y días sin gestión", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/pipeline.webp", alt: "Pipeline comercial por etapas", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/trazabilidad.webp", alt: "Trazabilidad: quién cambió qué y cuándo", w: 1800, h: 1125 },
+            { src: IMG + "tu-crm-seguro/escritorio/campanas.webp", alt: "Campañas: automatizaciones por fecha y envíos masivos", w: 1800, h: 1125 }
+          ] },
+          { name: "Celular", spec: "Navegación inferior · instalable como app", cols: 3, items: [
+            { src: IMG + "tu-crm-seguro/movil/hoy.webp", alt: "Hoy en el celular", w: 780, h: 1688 },
+            { src: IMG + "tu-crm-seguro/movil/tablero.webp", alt: "Tablero en el celular", w: 780, h: 1688 },
+            { src: IMG + "tu-crm-seguro/movil/clientes.webp", alt: "Clientes en el celular", w: 780, h: 1688 },
+            { src: IMG + "tu-crm-seguro/movil/polizas.webp", alt: "Pólizas en el celular", w: 780, h: 1688 }
+          ] }
+        ] },
+
+      { type: "identity", label: "IDENTIDAD VISUAL",
+        title: "Protección y conexión, a un clic.",
+        body: "El isotipo une un escudo de protección con dos personas conectadas dentro de la “C” de CRM. Verdes de confianza, tipografía redonda y directa, y la promesa “relacionamiento de verdad con tu cliente, a un clic”.",
+        image: { src: IMG + "tu-crm-seguro/marca/logo-tucrm-full.webp", alt: "Logo TuCRM Seguro", w: 1100, h: 270, contain: true },
+        palette: [["Verde noche", "#002D1D"], ["Verde", "#1A8A2E"], ["Verde claro", "#3DBB3F"], ["Blanco", "#FFFFFF"]] },
+
+      { type: "figures", label: "EXPLORACIÓN DE MARCA",
         title: "Diez rutas para una marca.",
-        body: "Exploración de diez propuestas de logo alrededor de protección y conexión, hasta llegar a un sistema verde y directo con la promesa “a un clic”.",
+        body: "Exploración de diez propuestas de logo y aplicaciones en banners hasta llegar al sistema final.",
         items: [
           { src: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", alt: "Exploración de 10 propuestas de logo", w: 1199, h: 1312, span: "tall" },
-          { src: IMG + "tu-crm-seguro/logo-tucrm-seguro-proteccion-y-conexion.webp", alt: "Logo final: protección y conexión", w: 1800, h: 600, span: "full" }
-        ] },
-      { type: "figures", label: "PIEZAS",
-        title: "La promesa en banners.",
-        items: [
+          { src: IMG + "tu-crm-seguro/logo-tucrm-seguro-proteccion-y-conexion.webp", alt: "Logo: protección y conexión", w: 1800, h: 600, span: "full" },
           { src: IMG + "tu-crm-seguro/tucrm-seguro-relacionamiento-de-verdad.webp", alt: "Banner: relacionamiento de verdad", w: 1800, h: 600, span: "full" },
           { src: IMG + "tu-crm-seguro/banner-de-tucrm-seguro-con-boton-a-un-click.webp", alt: "Banner con botón a un clic", w: 1800, h: 600, span: "full" }
-        ] }
+        ] },
+
+      { type: "text", label: "CREATIVE TECHNOLOGY", title: "Diseñado y desarrollado de punta a punta.",
+        body: "Estrategia de producto, UX e ingeniería full-stack con un flujo de trabajo aumentado con IA. Es una sola página sin dependencias, con datos guardados en el navegador y un puente en Google Apps Script para envíos automáticos y copias en Google Sheets.",
+        chips: ["Estrategia de producto", "UX / UI", "Desarrollo web", "PWA sin conexión", "Google Apps Script", "Identidad visual"] }
     ],
-    links: []
+    links: [
+      { label: "Ver la plataforma", url: "https://jhonvalencia86.github.io/seguros/", sub: "En vivo" },
+      { label: "Código en GitHub", url: "https://github.com/jhonvalencia86/seguros", sub: "Repositorio" }
+    ]
   },
 
   /* ---------------------------------------------------------------- 07 */

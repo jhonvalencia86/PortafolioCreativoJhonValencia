@@ -1007,3 +1007,10 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 
 .vid { display: block; width: 100%; height: auto; border-radius: 12px; background: #000; }
 .band--yellow .st-title { max-width: 20ch; }
+
+.browser--live .browser__view { aspect-ratio: 16 / 10; background: #fff; }
+@media (max-width: 640px) { .browser--live .browser__view { aspect-ratio: 9 / 16; } }
+
+.cards--custom li:nth-child(3n+1) { background: var(--k0); color: var(--f0); }
+.cards--custom li:nth-child(3n+2) { background: var(--k1); color: var(--f1); }
+.cards--custom li:nth-child(3n) { background: var(--k2); color: var(--f2); }
