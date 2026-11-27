@@ -544,7 +544,7 @@ window.JV_DECK = [
     id: "profane-noise",
     kind: "project",
     layout: "story",
-    published: true,
+    published: false, // oculto a pedido de Jhon,
     title: "PROFANE NOISE",
     category: "GRAPHIC DESIGN / ART DIRECTION",
     year: "2026",
@@ -589,7 +589,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 06 */
   {
-    number: "06",
+    number: "05",
     id: "tu-crm-seguro",
     kind: "project",
     layout: "story",
@@ -711,7 +711,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 08 */
   {
-    number: "08",
+    number: "06",
     id: "creative-archive",
     kind: "archive",
     published: true,
@@ -758,7 +758,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 12 */
   {
-    number: "12",
+    number: "07",
     id: "contact",
     kind: "contact",
     published: true,

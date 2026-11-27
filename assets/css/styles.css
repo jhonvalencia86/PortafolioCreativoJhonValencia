@@ -1199,3 +1199,8 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 
 .p-hero__media[data-fit="contain"] img { padding: var(--hpad, 8% 10% 16%); }
 @media (max-width: 900px) { .p-hero__media[data-fit="contain"] img { padding: 12% 8% 40%; } }
+
+@media (min-width: 901px) {
+  .pgrid:not(.pgrid--index) > .pc:nth-child(7n+5):nth-last-child(2),
+  .pgrid:not(.pgrid--index) > .pc:nth-child(7n+6):last-child { grid-column: span 6; --rowh: min(28vw, 450px); }
+}
