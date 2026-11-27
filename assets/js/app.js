@@ -84,11 +84,14 @@
      ================================================================ */
   function mediaAttrs(c, which = "card") {
     const k = c.card || {};
-    const src = which === "hero" ? k.hero || k.src : k.src;
+    const hero = which === "hero";
+    const src = hero ? k.hero || k.src : k.src;
+    const fit = (hero && k.heroFit) || k.fit || "cover";
+    const pos = (hero && k.heroPos) || k.pos || "50% 50%";
     return {
-      src,
-      fit: k.fit || "cover",
-      style: `--mbg:${k.bg || c.color};--fit:${k.fit || "cover"};--pos:${k.pos || "50% 50%"}`
+      src, fit,
+      blend: k.blend ? ' data-blend="1"' : "",
+      style: `--mbg:${k.bg || c.color};--fit:${fit};--pos:${pos}`
     };
   }
 
@@ -100,7 +103,7 @@
 
     if (t === "frame" || t === "full") {
       const m = mediaAttrs(c);
-      const media = `<div class="cf__media" data-fit="${m.fit}" style="${m.style}"><img src="${esc(m.src)}" alt="" draggable="false" decoding="async"></div>`;
+      const media = `<div class="cf__media" data-fit="${m.fit}"${m.blend} style="${m.style}"><img src="${esc(m.src)}" alt="" draggable="false" decoding="async"></div>`;
       if (t === "frame") {
         return `<div class="cf cf--frame">${ticks}${top}${media}<span class="cf__title">${esc(c.title)}</span>${bot}</div>`;
       }
@@ -366,7 +369,8 @@
      ================================================================ */
   function makeFlyer(i, rect) {
     const c = DECK[i];
-    const m = mediaAttrs(c, "card");
+    const m = mediaAttrs(c, "hero");
+    m.src = c.card && c.card.src;
     const f = document.createElement("div");
     f.className = "flyer";
     f.style.cssText = `left:${rect.left}px;top:${rect.top}px;width:${rect.width}px;height:${rect.height}px;border-radius:14px;--card-w:${rect.width}px`;
@@ -376,7 +380,7 @@
       <div class="flyer__rot">
         <div class="face face--front front" style="--c:${c.color};--ink:${c.ink}">${frontHTML(c)}</div>
         <div class="face face--back back">${backHTML(c)}</div>
-        <div class="flyer__media" data-fit="${m.fit}" style="${m.style};--mbg:${mbg}">${mediaInner}</div>
+        <div class="flyer__media" data-fit="${m.fit}"${m.blend} style="${m.style};--mbg:${mbg}">${mediaInner}</div>
       </div>`;
     document.body.appendChild(f);
     return f;
@@ -563,7 +567,7 @@
     const k = c.card;
     const m = mediaAttrs(c, "hero");
     return `<section class="p-hero" data-fit="${m.fit}" style="${m.style}">
-      <div class="p-hero__media" data-fit="${m.fit}" style="background-image:url('${esc(k.src)}')">
+      <div class="p-hero__media" data-fit="${m.fit}"${m.blend} ${m.fit === "cover" ? `style="background-image:url('${esc(k.src)}')"` : ""}>
         <img src="${esc(m.src)}" alt="${esc(c.title)} — portada" fetchpriority="high" decoding="async">
       </div>
       <div class="p-hero__shade"></div>
@@ -590,8 +594,8 @@
   function gallery(c) {
     if (!c.gallery || !c.gallery.length) return "";
     const items = c.gallery
-      .map((g, k) => `<figure class="g g--${g.span || "half"} reveal" data-k="${k}" style="aspect-ratio:${g.w}/${g.h}">
-          <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}">
+      .map((g, k) => `<figure class="g g--${g.span || "half"} reveal" style="aspect-ratio:${g.w}/${g.h}">
+          <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" data-lb>
           <figcaption>${pad2(k + 1)} — ${esc(g.alt)}</figcaption></figure>`)
       .join("");
     return `<section class="sec"><div class="sec__grid rv" style="margin-bottom:28px"><p class="sec__label"><b>05</b>VISUAL GALLERY</p><div class="sec__body"><p class="prose" style="margin:0">${c.gallery.length} pieza${c.gallery.length > 1 ? "s" : ""} · clic para ampliar</p></div></div><div class="gallery">${items}</div></section>`;
@@ -619,7 +623,7 @@
         <div><h3>MY ROLE</h3><ul class="list">${(c.role || []).map((r, k) => `<li><span>${pad2(k + 1)}</span>${esc(r)}</li>`).join("")}</ul></div>
         <div><h3>PROCESS & DELIVERABLES</h3><div class="chips">${(c.deliverables || []).map((d) => `<span class="chip">${esc(d)}</span>`).join("")}</div></div></div>`;
     const links = c.links && c.links.length
-      ? sec(6, "EXTERNAL LINKS", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url)).join("")}</div>`)
+      ? sec(6, "EXTERNAL LINKS", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, l.sub || "")).join("")}</div>`)
       : "";
     return heroImage(c) +
       sec(1, "OVERVIEW", `<p class="lead">${esc(c.lead)}</p>${facts}`) +
@@ -627,6 +631,48 @@
       sec(3, "CREATIVE CONCEPT", `<p class="prose">${esc(c.concept)}</p>`) +
       sec(4, "MY ROLE", role) +
       gallery(c) + links + nextBlock(i) + footer();
+  }
+
+
+  /* ---- caso narrativo (layout: "story") */
+  function figs(items, startK) {
+    return `<div class="gallery">${items.map((g, k) => `<figure class="g g--${g.span || "half"} reveal" style="aspect-ratio:${g.w}/${g.h}">
+        <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" data-lb>
+        <figcaption>${esc(g.alt)}</figcaption></figure>`).join("")}</div>`;
+  }
+  const chipsHTML = (arr) => arr && arr.length ? `<div class="chips" style="margin-top:22px">${arr.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
+
+  function storyBlock(b, n) {
+    const head = `<div class="sec__grid rv"><p class="sec__label"><b>${pad2(n)}</b>${esc(b.label)}</p>
+      <div class="sec__body">${b.title ? `<h3 class="st-title">${esc(b.title)}</h3>` : ""}${b.body ? `<p class="prose">${esc(b.body)}</p>` : ""}${chipsHTML(b.chips)}</div></div>`;
+    const cls = `sec st st--${b.type}${b.band ? ` band band--${b.band}` : ""}`;
+    let extra = "";
+    if (b.type === "duo") {
+      extra = `<div class="duo">${b.cast.map((p, k) => `<figure class="duo__p rv">
+          <div class="duo__img"><img src="${esc(p.src)}" alt="${esc(p.alt)}" loading="lazy" data-lb></div>
+          <figcaption><span class="duo__name">${esc(p.name)}</span><span class="duo__role">${esc(p.role)}</span></figcaption></figure>`).join(`<span class="duo__amp" aria-hidden="true">&amp;</span>`)}</div>`;
+    } else if (b.type === "identity") {
+      extra = `<div class="ident rv">
+          <figure class="g ident__logo" style="aspect-ratio:${b.image.w}/${b.image.h}"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" data-lb></figure>
+          <div class="ident__pal">${b.palette.map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div></div>`;
+    } else if (b.type === "steps") {
+      extra = `<ol class="steps rv">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+    } else if (b.type === "figures") {
+      extra = `<div style="height:clamp(24px,3vw,40px)"></div>${figs(b.items)}`;
+    }
+    return `<section class="${cls}">${head}${extra}</section>`;
+  }
+
+  function renderStory(c, i) {
+    const facts = `<dl class="facts facts--4">${(c.facts || []).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
+    let n = 1;
+    const blocks = c.story.map((b) => storyBlock(b, ++n)).join("");
+    const links = c.links && c.links.length
+      ? sec(++n, "ENLACES", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, l.sub || "")).join("")}</div>`)
+      : "";
+    return heroImage(c) +
+      sec(1, "OVERVIEW", `<p class="lead">${esc(c.lead)}</p>${facts}`) +
+      blocks + links + nextBlock(i) + footer();
   }
 
   function renderAbout(c, i) {
@@ -671,7 +717,8 @@
     const c = DECK[i];
     detail.style.setProperty("--acc", c.accent || "#E44832");
     detail.classList.toggle("theme-dark", c.theme === "dark");
-    const r = { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
+    if (c.paper) detail.style.setProperty("--dbg", c.paper); else detail.style.removeProperty("--dbg");
+    const r = c.layout === "story" ? renderStory : { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
     dContent.innerHTML = r(c, i);
     $("#d-count").textContent = `${pad2(i + 1)} / ${pad2(N)}`;
     document.title = `${c.title} — JV · The Creative Deck`;
@@ -679,8 +726,12 @@
 
   dContent.addEventListener("click", (e) => {
     if (e.target.closest("[data-next]")) return swapDetail(S.open + 1);
-    const g = e.target.closest(".g");
-    if (g) openLightbox(+g.dataset.k);
+    const img = e.target.closest(".g, .duo__img");
+    if (img) {
+      const el = img.querySelector("[data-lb]");
+      const k = lbItems().indexOf(el);
+      if (k >= 0) openLightbox(k);
+    }
   });
   $("#back").addEventListener("click", () => goHome());
   $("#d-prev").addEventListener("click", () => swapDetail(S.open - 1));
@@ -702,12 +753,12 @@
      LIGHTBOX
      ================================================================ */
   let lbK = 0;
-  const lbItems = () => (S.open >= 0 && DECK[S.open].gallery) || [];
+  const lbItems = () => $$("img[data-lb]", dContent);
   function openLightbox(k) {
     const items = lbItems();
     if (!items.length) return;
     lbK = mod2(k, items.length);
-    const g = items[lbK];
+    const g = { src: items[lbK].currentSrc || items[lbK].src, alt: items[lbK].alt };
     $("#lb-img").src = g.src;
     $("#lb-img").alt = g.alt;
     $("#lb-cap").textContent = `${pad2(lbK + 1)} / ${pad2(items.length)} — ${g.alt}`;

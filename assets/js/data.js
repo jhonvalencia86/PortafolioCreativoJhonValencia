@@ -45,28 +45,108 @@ window.JV_DECK = [
     number: "01",
     id: "a36cuotas",
     kind: "project",
+    layout: "story",
     published: true,
     title: "A 36 CUOTAS",
-    category: "BRANDING / FINTECH",
+    category: "BRANDING / EDUCACIÓN FINANCIERA",
     year: "2026",
     color: "#FFD52B",
     ink: "#151515",
-    accent: "#E4322B",
+    accent: "#D71920",
+    paper: "#F4F0E9",
     theme: "light",
-    card: { template: "frame", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/cover.webp", fit: "cover", bg: "#FFFFFF", pos: "50% 40%" },
-    lead: "Educación financiera que se ve, se escucha y se entiende.",
-    context:
-      "A 36 Cuotas es un proyecto de educación financiera con web, canal de YouTube y podcast. Lo conducen Tino y Tado, dos títeres que hablan de crédito, ahorro y deudas sin tecnicismos.",
-    concept:
-      "Un universo de personajes con identidad amarilla y roja, pensado para que hablar de plata se sienta cercano. Cada personaje representa un perfil distinto frente al dinero.",
-    role: ["Creador del proyecto", "Concepto y dirección creativa", "Diseño del universo de personajes", "Estrategia de aliados y patrocinio"],
-    deliverables: ["Identidad visual", "Personajes", "Web", "Contenido audiovisual", "Presentación para aliados"],
-    gallery: [
-      { src: IMG + "a36cuotas/personajes-y-recursos-de-a-36-cuotas.webp", alt: "Personajes y recursos gráficos de A 36 Cuotas", w: 1536, h: 1024, span: "wide" }
+    card: { template: "full", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/audiovisual/portada-podcast.webp", fit: "cover", heroFit: "contain", bg: "#FFD52B", pos: "50% 30%" },
+    lead: "Aprende de plata antes de ponerla a cuotas.",
+    facts: [
+      ["TIPO", "Proyecto independiente"],
+      ["AÑO", "2026"],
+      ["ESTADO", "En desarrollo y divulgación"],
+      ["MI ROL", "Creador · Dirección creativa"]
+    ],
+    story: [
+      { type: "text", label: "EL RETO", title: "Hablar de plata sin que suene a banco.",
+        body: "La educación financiera suele presentarse en términos técnicos que dificultan conectar los conceptos con decisiones cotidianas. El reto fue convertir temas como intereses, crédito y fraude en historias comprensibles sin perder rigor." },
+
+      { type: "duo", band: "yellow", label: "LA IDEA",
+        title: "Una marca educativa gratuita y cercana, conducida por dos personajes.",
+        body: "Tino y Tado son personajes ficticios que conversan sobre situaciones reales. Entre los dos convierten una duda de plata en una decisión.",
+        cast: [
+          { name: "TINO", role: "El impulso y la curiosidad", src: IMG + "a36cuotas/piezas/tino.webp", alt: "Tino, títere de fieltro con gafas oscuras y una taza con su nombre" },
+          { name: "TADO", role: "Preguntas, contrastes y criterio para decidir", src: IMG + "a36cuotas/piezas/tado.webp", alt: "Tado, títere de fieltro con gorra gris haciendo pulgares arriba" }
+        ] },
+
+      { type: "identity", label: "SISTEMA DE IDENTIDAD",
+        title: "Editorial urbano, tipografía contundente, papel y fieltro.",
+        body: "El logo convierte el “36” en un micrófono de podcast: la marca se presenta primero como conversación. Amarillo para llamar la atención, rojo para alertar y negro para darle carácter de calle.",
+        image: { src: IMG + "a36cuotas/identidad/logo-podcast.webp", alt: "Logo A 36 Cuotas — el podcast de Tino & Tado", w: 1672, h: 941 },
+        palette: [["Amarillo", "#FFD52B"], ["Rojo", "#D71920"], ["Negro", "#151515"], ["Papel", "#F4F0E9"], ["Blanco", "#FFFFFF"]] },
+
+      { type: "figures", label: "PERSONAJES",
+        title: "Un universo que crece por perfiles.",
+        body: "Además de Tino y Tado, el universo suma perfiles como el emprendedor, la mamá, el trabajador o la abuela: cada uno abre un tema distinto frente al dinero. Fichas de personalidad, escenarios y una hoja de expresiones mantienen la coherencia en cada pieza.",
+        items: [
+          { src: IMG + "a36cuotas/personajes/universo-personajes.webp", alt: "Universo de personajes y recursos", w: 1536, h: 1024, span: "full" },
+          { src: IMG + "a36cuotas/personajes/tino-ficha-y-escena.webp", alt: "Ficha de personaje de Tino e ideas de escenas", w: 1536, h: 1024, span: "half" },
+          { src: IMG + "a36cuotas/personajes/stickers-tino-tado.webp", alt: "Hoja de expresiones y stickers de Tino y Tado", w: 1536, h: 1024, span: "half" }
+        ] },
+
+      { type: "text", label: "MI ROL", title: "Del concepto al ecosistema digital.",
+        body: "Como creador del proyecto, conecté mi experiencia en servicios financieros, marketing digital e innovación con la conceptualización de marca, la dirección creativa, el diseño de personajes, la narrativa, la estrategia de contenidos y el desarrollo del ecosistema digital.",
+        chips: ["Dirección creativa", "Branding", "Estrategia digital", "Storytelling", "IA generativa", "Educación financiera"] },
+
+      { type: "steps", label: "CONSTRUCCIÓN",
+        title: "Cómo se arma cada pieza.",
+        body: "La inteligencia artificial se usa como apoyo para la generación visual y audiovisual, la iteración de conceptos y el prototipado. Las dramatizaciones se presentan como ficción educativa.",
+        steps: [
+          ["Identidad", "Sistema editorial urbano: logo, color, textura y tipografía."],
+          ["Personajes", "Títeres digitales de fieltro con ficha de personalidad."],
+          ["Guiones", "Situaciones cotidianas convertidas en conversación."],
+          ["Piezas", "Portadas, tips y promocionales para redes."],
+          ["Podcast", "Episodios en estudio con Tino y Tado al aire."],
+          ["Web", "Plataforma con contenidos y recursos educativos."]
+        ] },
+
+      { type: "figures", band: "black", label: "AUDIOVISUAL",
+        title: "Al aire desde el estudio de Tino y Tado.",
+        body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto.",
+        items: [
+          { src: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp", alt: "Tino y Tado en vivo en el estudio", w: 1672, h: 941, span: "full" }
+        ] },
+
+      { type: "figures", label: "ESTRATEGIA DE CONTENIDOS",
+        title: "Temas serios en formatos cortos.",
+        body: "Episodios, clips breves y recursos educativos para distintas edades. Dos ejemplos públicos: el presupuesto para un concierto y una compra cotidiana con Bre-B.",
+        chips: ["Crédito responsable", "Tarjetas", "Ahorro", "Inversión", "Seguros", "Prevención de fraudes", "Pagos inmediatos"],
+        items: [
+          { src: IMG + "a36cuotas/piezas/episodio-creditos-y-prestamos.webp", alt: "Portada de episodio: Créditos y préstamos", w: 1536, h: 864, span: "half" },
+          { src: IMG + "a36cuotas/piezas/tip-verifica-la-legalidad.webp", alt: "Tip 4: Verifica la legalidad", w: 836, h: 471, span: "half" },
+          { src: IMG + "a36cuotas/piezas/escena-bre-b-calle.webp", alt: "Escena en la calle: una compra cotidiana con Bre-B", w: 1536, h: 864, span: "half" },
+          { src: IMG + "a36cuotas/piezas/tip-define-tu-objetivo.webp", alt: "Tip 1: Define tu objetivo", w: 1536, h: 864, span: "half" }
+        ] },
+
+      { type: "figures", label: "SISTEMA EDITORIAL",
+        title: "Una misma voz en presentaciones y campañas.",
+        body: "La identidad se extiende a plantillas de presentación y piezas de comunicación para aliados, manteniendo cintas, recortes y personajes como sello.",
+        items: [
+          { src: IMG + "a36cuotas/campanas/finanzas-sin-enredos.webp", alt: "Narrativa: Finanzas sin enredos", w: 1672, h: 941, span: "full" },
+          { src: IMG + "a36cuotas/campanas/presentacion-visual.webp", alt: "Sistema editorial de presentación", w: 1672, h: 941, span: "half" },
+          { src: IMG + "a36cuotas/campanas/plantilla-editorial.webp", alt: "Plantilla de presentación del podcast", w: 1672, h: 941, span: "half" }
+        ] },
+
+      { type: "text", label: "DISTRIBUCIÓN", title: "Web y YouTube primero.",
+        body: "La plataforma web y YouTube son los canales principales. La propuesta es ampliar el alcance con redes sociales y alianzas con entidades financieras, fintech, aseguradoras, cooperativas y organizaciones educativas. Las alianzas son una propuesta, no acuerdos confirmados." },
+
+      { type: "text", label: "RESULTADOS Y APRENDIZAJE", title: "Lo que existe hoy y cómo se va a medir.",
+        body: "Hay identidad visual, materiales comerciales, contenidos audiovisuales y publicaciones públicas de divulgación. Todavía no hay cifras auditadas de alcance o impacto; estas son las métricas propuestas:",
+        chips: ["Retención de video", "Visitas web", "Interacciones", "Aprendizaje", "Alianzas"] }
     ],
     links: [
-      { label: "treintaseiscuotas.com", url: "https://treintaseiscuotas.com" },
-      { label: "YouTube @a36cuotas", url: "https://www.youtube.com/@a36cuotas" }
+      { label: "treintaseiscuotas.com", url: "https://treintaseiscuotas.com/", sub: "Sitio web" },
+      { label: "YouTube @a36cuotas", url: "https://www.youtube.com/@a36cuotas", sub: "Canal" },
+      { label: "Lanzamiento", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-finanzaspersonales-activity-7513704790288158720-Z8vi", sub: "LinkedIn" },
+      { label: "Pagos con Bre-B", url: "https://es.linkedin.com/posts/jhonvalenciasantana_breb-a36cuotas-educacionfinanciera-activity-7515534428610121728-rzEF", sub: "LinkedIn" },
+      { label: "Alianzas", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-inclusi%C3%B3nfinanciera-activity-7514097489017225218-FYwX", sub: "LinkedIn" }
+      // Instagram pendiente de verificar: { label: "Instagram", url: "https://www.instagram.com/a36cuotas/" }
     ]
   },
 
@@ -113,7 +193,7 @@ window.JV_DECK = [
     ink: "#FFFFFF",
     accent: "#3B6BFF",
     theme: "light",
-    card: { template: "frame", src: IMG + "credito-inteligente/card.webp", hero: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", fit: "contain", bg: "#FBFAF8" },
+    card: { template: "frame", src: IMG + "credito-inteligente/card.webp", hero: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", fit: "contain", blend: true, bg: "#FBFAF8" },
     lead: "¿En qué banco te prestan mejor?",
     context:
       "Producto digital para comparar, simular y entender opciones de crédito en un solo lugar, con información clara para decidir mejor.",
@@ -142,7 +222,7 @@ window.JV_DECK = [
     ink: "#FFFFFF",
     accent: "#1E8449",
     theme: "light",
-    card: { template: "frame", src: IMG + "chappetag/card.webp", hero: IMG + "chappetag/cover.webp", fit: "contain", bg: "#FFFFFF" },
+    card: { template: "frame", src: IMG + "chappetag/card.webp", hero: IMG + "chappetag/cover.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
     lead: "Ganado conectado. Un campo más inteligente.",
     context:
       "Plataforma de identificación y gestión digital de ganado para Colombia: una chapeta NFC + QR que se lee con el celular y una app de campo que guarda la historia de cada animal.",
@@ -201,7 +281,7 @@ window.JV_DECK = [
     ink: "#FFFFFF",
     accent: "#0F7A3D",
     theme: "light",
-    card: { template: "frame", src: IMG + "tu-crm-seguro/card.webp", hero: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", fit: "contain", bg: "#FFFFFF" },
+    card: { template: "frame", src: IMG + "tu-crm-seguro/card.webp", hero: IMG + "tu-crm-seguro/propuestas-de-logo-para-tu-crm-seguro.webp", fit: "contain", blend: true, bg: "#FFFFFF" },
     lead: "Relacionamiento de verdad con tu cliente, a un clic.",
     context:
       "CRM con marca propia para una intermediaria de seguros en Colombia: clientes, pólizas y seguimiento en una herramienta simple que funciona sin internet.",
