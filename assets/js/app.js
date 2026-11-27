@@ -799,7 +799,7 @@
   }
 
   function storyBlock(b, n) {
-    if (b.type === "social" && !(b.items && b.items.length)) return "";
+    if (b.type === "social" && !(b.items && b.items.length) && !b.profile) return "";
     const head = `<div class="sec__grid rv"><p class="sec__label"><b>${pad2(n)}</b>${esc(b.label)}</p>
       <div class="sec__body">${b.title ? `<h3 class="st-title">${esc(b.title)}</h3>` : ""}${b.body ? `<p class="prose">${esc(b.body)}</p>` : ""}${chipsHTML(b.chips)}</div></div>`;
     const cls = `sec st st--${b.type}${b.band ? ` band band--${b.band}` : ""}`;
@@ -820,7 +820,13 @@
     } else if (b.type === "split") {
       extra = `<div class="split rv"><figure class="split__img" style="aspect-ratio:${b.image.w}/${b.image.h}"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" data-lb></figure></div>`;
     } else if (b.type === "social") {
-      extra = `<div class="reels rv">${b.items.map(socialEmbed).join("")}</div>`;
+      const pr = b.profile;
+      const prof = pr ? `<a class="igcard rv" href="${esc(pr.url)}" target="_blank" rel="noopener">
+          <span class="igcard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></span>
+          <span class="igcard__txt"><span class="mono">${esc(pr.platform.toUpperCase())}</span><strong>${esc(pr.handle)}</strong></span>
+          <span class="igcard__go mono">VER PERFIL ↗</span></a>` : "";
+      const items = (b.items || []).map(socialEmbed).join("");
+      extra = `${items ? `<div class="reels rv">${items}</div>` : ""}${prof}`;
     } else if (b.type === "formats") {
       extra = b.groups.map((g) => {
         const row = g.cols === 3
@@ -884,7 +890,7 @@
   function renderStory(c, i) {
     const facts = `<dl class="facts facts--4">${(c.facts || []).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
     let n = 1;
-    const blocks = c.story.filter((b) => !(b.type === "social" && !(b.items && b.items.length))).map((b) => storyBlock(b, ++n)).join("");
+    const blocks = c.story.filter((b) => !(b.type === "social" && !(b.items && b.items.length) && !b.profile)).map((b) => storyBlock(b, ++n)).join("");
     const links = c.links && c.links.length
       ? sec(++n, "ENLACES", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, l.sub || "")).join("")}</div>`)
       : "";

@@ -1159,3 +1159,14 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
   .reels { grid-auto-flow: column; grid-auto-columns: 72%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
   .reel { scroll-snap-align: start; }
 }
+
+.igcard { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: clamp(14px, 2vw, 28px); margin-top: clamp(24px, 3vw, 44px);
+  padding: clamp(18px, 2.4vw, 32px); border-radius: 16px; text-decoration: none; color: #fff;
+  background: linear-gradient(115deg, #E0368A 0%, #8B2CF5 55%, #151515 100%); transition: transform .35s var(--ease-out); }
+.igcard:hover { transform: translateY(-4px); }
+.igcard__icon svg { width: clamp(44px, 5vw, 72px); height: auto; display: block; }
+.igcard__txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.igcard__txt .mono { font-size: 12px; letter-spacing: .12em; opacity: .85; }
+.igcard__txt strong { font-family: var(--f-display); font-size: clamp(28px, 5vw, 80px); letter-spacing: -.05em; line-height: .95; overflow-wrap: anywhere; }
+.igcard__go { font-size: 12px; letter-spacing: .1em; border: 1px solid #fff; border-radius: 999px; padding: 10px 14px; white-space: nowrap; }
+@media (max-width: 640px) { .igcard { grid-template-columns: auto 1fr; } .igcard__go { grid-column: 1 / -1; justify-self: start; } }

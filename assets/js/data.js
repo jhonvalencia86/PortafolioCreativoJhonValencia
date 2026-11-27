@@ -255,9 +255,10 @@ window.JV_DECK = [
          TikTok:    https://www.tiktok.com/@usuario/video/1234567890123456789
          Instagram: https://www.instagram.com/reel/ABCdef123/
          Si la lista está vacía, la sección no se muestra. */
-      { type: "social", band: "black", label: "VIDEOS",
+      { type: "social", band: "black", label: "VIDEOS · INSTAGRAM",
         title: "Chrome Lovers en movimiento.",
-        body: "Clips del universo: personajes, ciudad y música.",
+        body: "Clips del universo: personajes, ciudad y música, publicados en Instagram.",
+        profile: { platform: "Instagram", handle: "@chrxme_lovers", url: "https://www.instagram.com/chrxme_lovers/" },
         items: [
         ] },
 
@@ -301,7 +302,7 @@ window.JV_DECK = [
         body: "La inteligencia artificial generativa se usa para explorar personajes, escenarios y variaciones visuales. La dirección de arte define el universo, selecciona y corrige cada resultado para mantener la coherencia del proyecto.",
         chips: ["Dirección de arte", "Diseño de personajes", "Worldbuilding", "IA generativa"] }
     ],
-    links: []
+    links: [{ label: "Instagram @chrxme_lovers", url: "https://www.instagram.com/chrxme_lovers/", sub: "Instagram" }]
   },
 
   /* ---------------------------------------------------------------- 03 */
