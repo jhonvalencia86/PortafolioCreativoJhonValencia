@@ -139,14 +139,14 @@
     if (c.kind === "archive") {
       const covers = (c.behance || []).filter((p) => p.cover).slice(0, 4);
       const mosaic = covers.length
-        ? `<div class="cf__mosaic cf__mosaic--${covers.length}">${covers.map((p) => `<img src="${esc(p.cover)}" alt="" draggable="false" decoding="async">`).join("")}</div>`
+        ? `<div class="cf__mosaic cf__mosaic--${covers.length}">${covers.map((p) => `<img src="${esc(p.cover)}" alt="" draggable="false" decoding="async" referrerpolicy="no-referrer" onerror="this.style.visibility='hidden'">`).join("")}</div>`
         : `<ul class="cf__disc" aria-hidden="true"><li><span>01</span>Campañas</li><li><span>02</span>Identidad</li><li><span>03</span>Editorial</li><li><span>04</span>Publicidad</li><li><span>05</span>Ilustración</li></ul>`;
       return `<div class="cf cf--be">
         <div class="cf__top"><span class="cf__num">Nº ${esc(c.number)}</span><span>${esc(c.year)}</span></div>
         ${mosaic}
         <div class="cf__befoot">
           <span class="cf__bename">Behance<i>↗</i></span>
-          <span class="cf__besub">DISEÑO GRÁFICO</span>
+          <span class="cf__besub">DISEÑO GRÁFICO${(c.behance || []).length ? ` · ${pad2(c.behance.length)} PROYECTOS` : ""}</span>
           <div class="cf__bot"><span>BEHANCE.NET/JHXNVALE</span><span>JV®</span></div>
         </div>
       </div>`;
@@ -876,7 +876,7 @@
     const list = c.behance || [];
     const embeds = list.length
       ? `<section class="sec"><div class="sec__grid rv"><p class="sec__label"><b>02</b>PROYECTOS EN BEHANCE</p>
-          <div class="sec__body"><h3 class="st-title">Directo desde Behance.</h3><p class="prose">Cada proyecto se muestra con el visor oficial de Behance. Tócalo para recorrerlo completo.</p></div></div>
+          <div class="sec__body"><h3 class="st-title">Directo desde Behance.</h3><p class="prose">${pad2(list.length)} proyectos de diseño gráfico, campañas y publicidad, con el visor oficial de Behance. Recórrelos aquí mismo o ábrelos en Behance.</p></div></div>
           <div class="be-grid">${list.map((p) => `<figure class="be-item rv">
             <div class="be-item__frame"><iframe src="https://www.behance.net/embed/project/${encodeURIComponent(p.id)}?ilo0=1" title="${esc(p.title || "Proyecto en Behance")}" loading="lazy" allowfullscreen allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
             <figcaption><a href="https://www.behance.net/gallery/${encodeURIComponent(p.id)}" target="_blank" rel="noopener">${esc(p.title || "Ver en Behance")} ↗</a></figcaption></figure>`).join("")}</div></section>`

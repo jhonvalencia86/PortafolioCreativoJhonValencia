@@ -620,9 +620,20 @@ window.JV_DECK = [
     /* Proyectos de Behance incrustados con el visor oficial.
        Para agregar uno, copia el número que aparece en su enlace:
        behance.net/gallery/123456789/Nombre-del-proyecto  →  id: "123456789"
-       cover (opcional): imagen en assets/img/behance/ para mostrarla dentro de la carta. */
+       cover: portada del proyecto (las 4 primeras se muestran dentro de la carta). */
     behance: [
-      // { id: "123456789", title: "Nombre del proyecto", cover: "assets/img/behance/proyecto.webp" }
+      { id: "115326631", title: "Brand The Pork House", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/2f3793115326631.604c0e52db4aa.jpg" },
+      { id: "46415173", title: "Proyecto Paz / Los pacificultores", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/ad8af646415173.Y3JvcCw5MDUsNzA4LDE2OSwxMjA.jpg" },
+      { id: "46415349", title: "Posadas Navideñas", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/43142f46415349.593787d401ccc.jpg" },
+      { id: "38760051", title: "Proyecto Lanzamiento Web Santoto", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/b3eb4b38760051.Y3JvcCw2NjcsNTIyLDEzMiww.png" },
+      { id: "63506559", title: "Proyecto Vida Grupo Deudores Banco de Occidente", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/4ad94363506559.Y3JvcCwxNDU3LDExNDAsNjMzLDczMw.jpg" },
+      { id: "53969651", title: "Logo Robotrones (propuesta)", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/f714f353969651.59494c4db0a9b.jpg" },
+      { id: "53409263", title: "RA Intimate", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/a08b4c53409263.5939da7a12749.jpg" },
+      { id: "49263497", title: "Justicia Penal Militar", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/96f0c349263497.Y3JvcCw1MjEsNDA3LDczLDIyMA.png" },
+      { id: "49260579", title: "Proyecto Competencias Colegios", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/a17edd49260579.Y3JvcCw1NzUsNDUwLDY5LDEwMA.png" },
+      { id: "38395997", title: "Campaña Digital, Conéctate con la Santoto", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/e2564c38395997.Y3JvcCw1NjAsNDM4LDEyNiwxMDY.jpg" },
+      { id: "37603257", title: "Campaña Digital, Facebook Ads", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/53d65437603257.Y3JvcCw5ODEsNzY3LDAsMA.jpg" },
+      { id: "36090805", title: "Diseño web y social media", cover: "https://mir-s3-cdn-cf.behance.net/projects/404/6711b636090805.Y3JvcCwxMTU0LDkwMywyMDUsMA.jpg" }
     ],
     links: [{ label: "Ver archivo en Behance", url: "https://www.behance.net/jhxnvale" }]
   },

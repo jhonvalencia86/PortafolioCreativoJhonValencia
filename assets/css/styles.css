@@ -1054,3 +1054,6 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 .p-hero--be .p-hero__giant { font-size: clamp(64px, 14.5vw, 270px); }
 .p-hero--be .p-hero__redbar { background: #9DBBFF; }
 @media (max-width: 640px) { .p-hero--be .p-hero__giant { font-size: 19vw; } }
+
+@media (max-width: 1100px) { .nav-be__long { display: none; } }
+.cf--be .cf__mosaic img { background: rgba(255,255,255,.15); }
