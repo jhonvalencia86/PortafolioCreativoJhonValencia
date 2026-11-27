@@ -991,7 +991,7 @@
     let media;
     if (k.hero || k.src) {
       const fit = k.heroFit || k.fit || "cover";
-      media = `<div class="pc__media" data-fit="${fit}"${k.blend ? " data-blend" : ""} style="--mbg:${k.bg || c.color};--fit:${fit};--pos:${k.heroPos || k.pos || "50% 50%"}">
+      media = `<div class="pc__media" data-fit="${fit}"${k.blend ? " data-blend" : ""} style="--mbg:${k.bg || c.color};--fit:${fit};--pos:${k.heroPos || k.pos || "50% 50%"}${k.ar ? `;--ar:${k.ar}` : ""}">
         <span class="pc__num">Nº ${esc(c.number)}</span>
         <img src="${esc(k.hero || k.src)}" alt="${esc(c.title)} — portada" loading="lazy" decoding="async"></div>`;
     } else {
