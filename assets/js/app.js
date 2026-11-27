@@ -127,7 +127,7 @@
     return {
       src, fit,
       blend: k.blend ? ' data-blend="1"' : "",
-      style: `--mbg:${(hero && k.heroBg) || k.bg || c.color};--fit:${fit};--pos:${pos}`
+      style: `--mbg:${(hero && k.heroBg) || k.bg || c.color};--fit:${fit};--pos:${pos}${hero && k.heroPad ? `;--hpad:${k.heroPad}` : ""}`
     };
   }
 
@@ -839,7 +839,7 @@
       extra = b.groups.map((g) => {
         const row = g.cols === 3
           ? `<div class="fmt__row">${g.items.map((it) => `<figure class="fmt__it" style="flex:${(it.w / it.h).toFixed(3)} 1 0"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" style="aspect-ratio:${it.w}/${it.h}" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`
-          : `<div class="fmt__grid">${g.items.map((it) => `<figure class="fmt__it"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" style="aspect-ratio:${it.w}/${it.h}" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`;
+          : `<div class="fmt__grid${g.cols === 1 ? " fmt__grid--1" : ""}">${g.items.map((it) => `<figure class="fmt__it"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" style="aspect-ratio:${it.w}/${it.h}" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`;
         return `<div class="fmt rv"><div class="fmt__head"><strong>${esc(g.name)}</strong><span class="mono">${esc(g.spec)}</span><span class="mono fmt__count">${pad2(g.items.length)} PIEZAS</span></div>${row}</div>`;
       }).join("");
     } else if (b.type === "deck") {

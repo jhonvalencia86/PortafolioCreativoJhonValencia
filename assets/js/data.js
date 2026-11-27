@@ -324,45 +324,118 @@ window.JV_DECK = [
     layout: "story",
     published: true,
     title: "MI CRÉDITO INTELIGENTE",
-    category: "FINTECH / DIGITAL PRODUCT",
+    category: "FINTECH / PRODUCTO DIGITAL",
     year: "2026",
     color: "#08275B",
     ink: "#FFFFFF",
-    accent: "#2563EB",
+    accent: "#7C4DDE",
+    paper: "#F7F6FB",
     theme: "light",
     tags: ["FinTech", "Producto digital", "Branding", "Educación financiera"],
-    short: "Plataforma para comparar y simular créditos y seguros antes de decidir. No otorga préstamos.",
-    card: { template: "frame", src: IMG + "credito-inteligente/card.webp", hero: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", fit: "contain", blend: true, bg: "#FBFAF8" },
-    lead: "Compara, simula y decide.",
+    short: "Plataforma para comparar y simular créditos antes de decidir, con MICI como guía. No otorga préstamos.",
+    card: { template: "frame", src: IMG + "credito-inteligente/card-mici.webp", hero: IMG + "credito-inteligente/marca/avatar-mici.webp", fit: "cover", heroFit: "contain", bg: "#F9F8F6", heroBg: "#F7F6F4", heroPos: "50% 50%", heroPad: "7% 6% 24% 46%", heroInk: "#08275B", ar: "16 / 9", flyFromCard: true },
+    lead: "Crédito claro. Decisiones inteligentes.",
     facts: [
       ["AÑO", "2026"],
       ["TIPO", "Proyecto propio"],
       ["INDUSTRIA", "FinTech · Educación financiera"],
-      ["MI ROL", "Creador · Estrategia de producto"]
+      ["MI ROL", "Creador · Producto · UX · Marca"]
     ],
     story: [
-      { type: "text", label: "THE PROJECT", title: "¿En qué banco te prestan mejor?",
-        body: "Mi Crédito Inteligente es una plataforma de educación financiera, comparación y simulación de créditos y seguros que ayuda a las personas a tomar decisiones informadas. No otorga préstamos: su papel es explicar y comparar antes de que alguien firme." },
-      { type: "text", label: "PROPUESTA DE VALOR", title: "Entender primero, decidir después.",
-        body: "Comparar tasas, simular cuotas y entender condiciones en un solo lugar, con un lenguaje claro y acompañamiento visual." ,
-        chips: ["Comparar", "Simular", "Aprender", "Decidir"] },
-      { type: "identity", label: "IDENTIDAD VISUAL",
-        title: "Confianza sin frialdad bancaria.",
-        body: "Un monograma M, azules de confianza, un verde que habla de dinero sano y un morado que aporta cercanía. La marca se acompaña de MICI, una mascota-billete con capa que guía al usuario.",
-        image: { src: IMG + "credito-inteligente/logo-mi-credito-inteligente-refinado.webp", alt: "Logo Mi Crédito Inteligente con la mascota MICI", w: 1536, h: 1024, contain: true },
-        palette: [["Verde", "#31C48D"], ["Azul", "#2563EB"], ["Morado", "#7C4DDE"], ["Navy", "#08275B"]] },
-      { type: "figures", label: "VARIACIONES DE MARCA",
-        title: "Un sistema que escala.",
-        body: "Versiones del logo, monograma y aplicaciones para producto y comunicación.",
-        items: [
-          { src: IMG + "credito-inteligente/identidad-fintech-de-mi-credito-inteligente.webp", alt: "Identidad fintech: versiones del logo y monograma", w: 1536, h: 1024, span: "full" }
+      { type: "web", direct: true, label: "PLATAFORMA EN VIVO",
+        title: "Pruébala aquí mismo.",
+        body: "La plataforma está publicada. Navégala dentro del portafolio o ábrela en una pestaña nueva.",
+        url: "https://creditointeligente.finance/",
+        domain: "creditointeligente.finance",
+        preview: IMG + "credito-inteligente/campana/banner-finanzas-faciles.webp" },
+
+      { type: "text", label: "THE CHALLENGE", title: "¿En qué banco te prestan mejor?",
+        body: "Pedir un crédito en Colombia obliga a comparar tasas efectivas anuales, cuotas, plazos y requisitos que cada entidad presenta a su manera. La mayoría de las personas decide con poca información y termina pagando más de lo necesario." },
+
+      { type: "cards", label: "ESTRATEGIA DE MARCA",
+        title: "Acompañar antes de vender.",
+        body: "La estrategia parte de un principio simple: primero entender, luego decidir. Mi Crédito Inteligente no presta dinero; orienta.",
+        colors: [["#31C48D", "#08275B"], ["#FFFFFF", "#08275B"], ["#7C4DDE", "#FFFFFF"]],
+        cards: [
+          ["Propósito", "Acercar el crédito de forma comprensible, responsable y segura, para que cada decisión abra una oportunidad real."],
+          ["Personalidad", "Confiable, cercana, clara, ágil y optimista. Habla con seguridad, sin tecnicismos innecesarios."],
+          ["Promesa", "Orientación transparente y acompañamiento inteligente durante todo el camino financiero."]
         ] },
-      { type: "figures", label: "CAMPAÑAS",
-        title: "MICI al frente.",
-        body: "La mascota protagoniza la comunicación: preguntas directas, tasas a la vista y las cuatro acciones del producto.",
+
+      { type: "steps", band: "lilac", label: "PRODUCTO",
+        title: "Compara. Simula. Decide.",
+        body: "El producto se organiza en cuatro acciones que el usuario reconoce desde la primera pantalla.",
+        steps: [
+          ["Simula", "Calcula la cuota estimada según monto, plazo y tasa."],
+          ["Compara", "Ve tasas de referencia de distintas entidades en un solo lugar."],
+          ["Aprende", "Entiende conceptos como tasa E.A., cuota y plazo, sin tecnicismos."],
+          ["Decide", "Elige con información, antes de acercarte a una entidad."]
+        ] },
+
+      { type: "cards", label: "UX · DECISIONES DE DISEÑO",
+        title: "Diseñado para generar confianza.",
+        body: "Las decisiones de experiencia que se repiten en el producto y en cada pieza de comunicación.",
+        colors: [["#FFFFFF", "#08275B"], ["#2563EB", "#FFFFFF"], ["#FFFFFF", "#08275B"]],
+        cards: [
+          ["Información primero", "“Tu mejor crédito empieza con información”: el mensaje central no es vender, es explicar."],
+          ["Tres datos clave", "Tasa, cuota y plazo como tarjetas simples: lo que la persona necesita para comparar."],
+          ["Tasas a la vista", "Las tasas E.A. aparecen comparadas lado a lado, no escondidas en la letra pequeña."],
+          ["Un solo llamado", "Una acción principal y gratuita, “Compara gratis”, sin formularios largos de entrada."],
+          ["Honestidad explícita", "“Simulación educativa. No garantiza aprobación.” El límite del producto se dice claro."],
+          ["Un guía, no un banco", "MICI acompaña en onboarding, chatbot y educación: humaniza un tema que intimida."]
+        ] },
+
+      { type: "figures", label: "NAMING Y LOGOTIPO",
+        title: "Diez rutas hasta MICI.",
+        body: "La exploración probó escudo, crecimiento, banco, candado y monograma. El sistema final esconde un guiño: el color revela el acrónimo de la mascota dentro del nombre, MI + C + I = MICI.",
         items: [
-          { src: IMG + "credito-inteligente/mi-credito-inteligente-finanzas-mas-faciles.webp", alt: "Banner: ¿En qué banco te prestan mejor?", w: 1677, h: 938, span: "full" }
-        ] }
+          { src: IMG + "credito-inteligente/marca/conceptos-logo.webp", alt: "Exploración de 10 conceptos de logo", w: 1536, h: 1024, span: "half" },
+          { src: IMG + "credito-inteligente/marca/avatar-mici.webp", alt: "Logo final con la mascota MICI", w: 1254, h: 1254, span: "half" },
+          { src: IMG + "credito-inteligente/marca/logo-horizontal.webp", alt: "Firma horizontal: Compara. Simula. Decide.", w: 1800, h: 608, span: "full" }
+        ] },
+
+      { type: "split", label: "MASCOTA",
+        title: "MICI, el crédito que te acompaña.",
+        body: "Un guardián cercano que convierte el crédito en un personaje fácil de recordar: billete verde por el crecimiento, $ COP y franja por el contexto colombiano, capa protectora por el respaldo y movimiento por el progreso.",
+        chips: ["Chatbot", "Educación financiera", "Redes", "Campañas", "Onboarding"],
+        image: { src: IMG + "credito-inteligente/campana/carrusel-3.webp", alt: "MICI con el botón Compara gratis", w: 1254, h: 1254 } },
+
+      { type: "identity", label: "SISTEMA VISUAL",
+        title: "Color y tipografía.",
+        body: "Verde para el progreso, azul para la confianza, morado para la inteligencia y azul marino para el respaldo. Tipografía sans serif humanista y redondeada, con pesos semibold para títulos y regular para explicar.",
+        image: { src: IMG + "credito-inteligente/marca/firma-compara-simula-decide.webp", alt: "Firma de marca: Compara. Simula. Decide.", w: 1800, h: 600, contain: true },
+        palette: [["Verde progreso", "#31C48D"], ["Azul confianza", "#2563EB"], ["Morado inteligencia", "#7C4DDE"], ["Azul marino", "#08275B"]] },
+
+      { type: "deck", band: "black", label: "MANUAL DE IDENTIDAD",
+        title: "Las reglas, en seis páginas.",
+        body: "Estrategia, logotipo y acrónimo, mascota, sistema visual y reglas esenciales de uso: tamaños mínimos, zona de seguridad y lo que nunca se debe hacer.",
+        spec: "MANUAL DE IDENTIDAD VISUAL · V1.0 · 6 PÁGINAS",
+        items: [
+          { src: IMG + "credito-inteligente/manual/01.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 1 de 6", w: 1600, h: 1132 },
+          { src: IMG + "credito-inteligente/manual/02.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 2 de 6", w: 1600, h: 1132 },
+          { src: IMG + "credito-inteligente/manual/03.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 3 de 6", w: 1600, h: 1132 },
+          { src: IMG + "credito-inteligente/manual/04.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 4 de 6", w: 1600, h: 1132 },
+          { src: IMG + "credito-inteligente/manual/05.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 5 de 6", w: 1600, h: 1132 },
+          { src: IMG + "credito-inteligente/manual/06.webp", alt: "Manual de identidad Mi Crédito Inteligente — página 6 de 6", w: 1600, h: 1132 }
+        ] },
+
+      { type: "formats", label: "CAMPAÑA",
+        title: "Un carrusel que cuenta la promesa.",
+        body: "Tres piezas para redes que llevan al usuario del problema a la acción: la pregunta, la herramienta y la invitación a comparar gratis.",
+        groups: [
+          { name: "Carrusel", spec: "1:1 · 3 piezas · Instagram y LinkedIn", cols: 3, items: [
+            { src: IMG + "credito-inteligente/campana/carrusel-1.webp", alt: "1/3 · ¿En qué banco te prestan mejor?", w: 1254, h: 1254 },
+            { src: IMG + "credito-inteligente/campana/carrusel-2.webp", alt: "2/3 · Compara. Simula. Decide.", w: 1254, h: 1254 },
+            { src: IMG + "credito-inteligente/campana/carrusel-3.webp", alt: "3/3 · Tu mejor crédito empieza con información", w: 1254, h: 1254 }
+          ] },
+          { name: "Banner", spec: "16:9 · web y presentaciones", cols: 1, items: [
+            { src: IMG + "credito-inteligente/campana/banner-finanzas-faciles.webp", alt: "Banner: finanzas más fáciles para todos", w: 1677, h: 938 }
+          ] }
+        ] },
+
+      { type: "text", label: "MI APORTE", title: "De la idea al producto publicado.",
+        body: "Definí el problema y la propuesta de valor, diseñé la experiencia y la arquitectura del producto, creé la marca y la mascota, y produje las piezas de campaña.",
+        chips: ["Estrategia de producto", "UX / UI", "Desarrollo web", "Naming", "Identidad visual", "Mascota", "Campaña"] }
     ],
     links: [{ label: "creditointeligente.finance", url: "https://creditointeligente.finance", sub: "Sitio web" }]
   },
