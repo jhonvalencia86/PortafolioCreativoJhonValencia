@@ -546,6 +546,7 @@
     renderDetail(j);
     S.open = j;
     dScroll.scrollTop = 0;
+    detail.classList.remove("is-scrolled");
     dContent.classList.remove("is-swapping");
     await nextFrame();
     detail.classList.add("is-in");
@@ -566,7 +567,7 @@
   function heroImage(c) {
     const k = c.card;
     const m = mediaAttrs(c, "hero");
-    return `<section class="p-hero" data-fit="${m.fit}" style="${m.style}">
+    return `<section class="p-hero" data-fit="${m.fit}" style="${m.style}${k.heroInk ? `;--hink:${k.heroInk}` : ""}">
       <div class="p-hero__media" data-fit="${m.fit}"${m.blend} ${m.fit === "cover" ? `style="background-image:url('${esc(k.src)}')"` : ""}>
         <img src="${esc(m.src)}" alt="${esc(c.title)} — portada" fetchpriority="high" decoding="async">
       </div>
@@ -594,8 +595,8 @@
   function gallery(c) {
     if (!c.gallery || !c.gallery.length) return "";
     const items = c.gallery
-      .map((g, k) => `<figure class="g g--${g.span || "half"} reveal" style="aspect-ratio:${g.w}/${g.h}">
-          <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" data-lb>
+      .map((g, k) => `<figure class="g g--${g.span || "half"} reveal">
+          <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" style="aspect-ratio:${g.w}/${g.h}" data-lb>
           <figcaption>${pad2(k + 1)} — ${esc(g.alt)}</figcaption></figure>`)
       .join("");
     return `<section class="sec"><div class="sec__grid rv" style="margin-bottom:28px"><p class="sec__label"><b>05</b>VISUAL GALLERY</p><div class="sec__body"><p class="prose" style="margin:0">${c.gallery.length} pieza${c.gallery.length > 1 ? "s" : ""} · clic para ampliar</p></div></div><div class="gallery">${items}</div></section>`;
@@ -636,8 +637,8 @@
 
   /* ---- caso narrativo (layout: "story") */
   function figs(items, startK) {
-    return `<div class="gallery">${items.map((g, k) => `<figure class="g g--${g.span || "half"} reveal" style="aspect-ratio:${g.w}/${g.h}">
-        <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" data-lb>
+    return `<div class="gallery">${items.map((g, k) => `<figure class="g g--${g.span || "half"} reveal">
+        <img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" width="${g.w}" height="${g.h}" style="aspect-ratio:${g.w}/${g.h}" data-lb>
         <figcaption>${esc(g.alt)}</figcaption></figure>`).join("")}</div>`;
   }
   const chipsHTML = (arr) => arr && arr.length ? `<div class="chips" style="margin-top:22px">${arr.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
@@ -660,8 +661,8 @@
     } else if (b.type === "formats") {
       extra = b.groups.map((g) => {
         const row = g.cols === 3
-          ? `<div class="fmt__row">${g.items.map((it) => `<figure class="fmt__it" style="flex:${(it.w / it.h).toFixed(3)} 1 0;aspect-ratio:${it.w}/${it.h}"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`
-          : `<div class="fmt__grid">${g.items.map((it) => `<figure class="fmt__it fmt__it--169"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`;
+          ? `<div class="fmt__row">${g.items.map((it) => `<figure class="fmt__it" style="flex:${(it.w / it.h).toFixed(3)} 1 0"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" style="aspect-ratio:${it.w}/${it.h}" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`
+          : `<div class="fmt__grid">${g.items.map((it) => `<figure class="fmt__it"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" style="aspect-ratio:${it.w}/${it.h}" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`;
         return `<div class="fmt rv"><div class="fmt__head"><strong>${esc(g.name)}</strong><span class="mono">${esc(g.spec)}</span><span class="mono fmt__count">${pad2(g.items.length)} PIEZAS</span></div>${row}</div>`;
       }).join("");
     } else if (b.type === "deck") {
@@ -796,6 +797,10 @@
   $("#back").addEventListener("click", () => goHome());
   $("#d-prev").addEventListener("click", () => swapDetail(S.open - 1));
   $("#d-next").addEventListener("click", () => swapDetail(S.open + 1));
+
+  dScroll.addEventListener("scroll", () => {
+    detail.classList.toggle("is-scrolled", dScroll.scrollTop > innerHeight * 0.85);
+  }, { passive: true });
 
   /* reveal on scroll */
   let io = null;

@@ -744,3 +744,25 @@ img { display: block; max-width: 100%; }
   .steps { grid-template-columns: 1fr 1fr !important; }
   .duo__img { max-height: none; }
 }
+
+/* barra del detalle: sólida al bajar para no montarse sobre el texto */
+.detail__bar { transition: opacity .4s, transform .4s var(--ease-out), background-color .3s, color .3s; }
+.detail.is-scrolled .detail__bar { mix-blend-mode: normal; background: var(--dbg); color: var(--dfg); border-bottom: 1px solid var(--dline); }
+.detail.is-scrolled .detail__pager .arrow:hover { background: var(--dfg); color: var(--dbg); }
+.detail.is-scrolled .detail__bar :focus-visible { outline-color: var(--acc); }
+
+/* sin recortes: la imagen manda su proporción y el pie va debajo */
+.g { overflow: visible; background: none; border-radius: 0; }
+.g img { height: auto; object-fit: contain; border-radius: 6px; background: rgba(127,127,127,.1); }
+.g:hover img { transform: translateY(-3px); }
+.g figcaption { position: static; display: block; margin-top: 8px; background: none; color: var(--dmuted); padding: 0; font-size: 11px; }
+.fmt__it { overflow: visible; background: none; box-shadow: none; border-radius: 0; }
+.fmt__it img { height: auto; object-fit: contain; border-radius: 8px; box-shadow: 0 16px 30px -18px rgba(0,0,0,.55); }
+.fmt__it:hover { transform: none; box-shadow: none; }
+.fmt__it:hover img { transform: translateY(-5px); }
+.fmt__it img { transition: transform .45s var(--ease-out); }
+.fmt__it figcaption, .fmt__it:hover figcaption { position: static; opacity: 1; transform: none; background: none; color: var(--dmuted); padding: 0; margin-top: 8px; font-size: 11px; }
+.fmt__grid { align-items: start; }
+@media (max-width: 640px) { .fmt__row .fmt__it figcaption { display: none; } }
+
+.p-hero[data-fit="contain"] .p-hero__cap { color: var(--hink, var(--fg)); }

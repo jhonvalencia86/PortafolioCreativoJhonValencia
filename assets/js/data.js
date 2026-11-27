@@ -55,7 +55,7 @@ window.JV_DECK = [
     accent: "#D71920",
     paper: "#F4F0E9",
     theme: "light",
-    card: { template: "full", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/portadas/podcast-tino-y-tado.webp", fit: "cover", heroFit: "contain", bg: "#FFD52B", pos: "50% 30%" },
+    card: { template: "frame", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/portadas/podcast-urbano.webp", fit: "contain", bg: "#151515", pos: "50% 50%", heroInk: "#F4F0E9" },
     lead: "Aprende de plata antes de ponerla a cuotas.",
     facts: [
       ["TIPO", "Proyecto propio"],
