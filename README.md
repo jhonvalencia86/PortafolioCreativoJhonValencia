@@ -9,7 +9,7 @@ Una baraja de cartas coleccionables en 3D: cada carta es un proyecto y se transf
 
 ## Publicar en GitHub Pages (5 minutos)
 
-1. Crea un repositorio en GitHub llamado `jhon-valencia-portfolio` (público).
+1. Crea un repositorio en GitHub llamado `PortafolioCreativoJhonValencia` (público).
 2. Sube **todo el contenido de esta carpeta** a la rama `main` (incluida la carpeta oculta `.github`).
    - Desde la web: *Add file → Upload files* y arrastra los archivos.
    - Desde la terminal:
@@ -18,12 +18,12 @@ Una baraja de cartas coleccionables en 3D: cada carta es un proyecto y se transf
      git add .
      git commit -m "JV — The Creative Deck"
      git branch -M main
-     git remote add origin https://github.com/jhonvalencia86/jhon-valencia-portfolio.git
+     git remote add origin https://github.com/jhonvalencia86/PortafolioCreativoJhonValencia.git
      git push -u origin main
      ```
 3. En el repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
 4. Espera a que termine el workflow (pestaña *Actions*). El sitio queda en
-   `https://jhonvalencia86.github.io/jhon-valencia-portfolio/`
+   `https://jhonvalencia86.github.io/PortafolioCreativoJhonValencia/`
 
 > Alternativa sin Actions: *Settings → Pages → Deploy from a branch → main / (root)*. También funciona, porque el sitio es HTML estático.
 
