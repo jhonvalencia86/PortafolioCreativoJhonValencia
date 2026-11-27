@@ -48,74 +48,141 @@ window.JV_DECK = [
     layout: "story",
     published: true,
     title: "A 36 CUOTAS",
-    category: "BRANDING / EDUCACIÓN FINANCIERA",
+    category: "BRANDING / DISEÑO EDITORIAL",
     year: "2026",
     color: "#FFD52B",
     ink: "#151515",
     accent: "#D71920",
     paper: "#F4F0E9",
     theme: "light",
-    card: { template: "full", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/audiovisual/portada-podcast.webp", fit: "cover", heroFit: "contain", bg: "#FFD52B", pos: "50% 30%" },
+    card: { template: "full", src: IMG + "a36cuotas/card.webp", hero: IMG + "a36cuotas/portadas/podcast-tino-y-tado.webp", fit: "cover", heroFit: "contain", bg: "#FFD52B", pos: "50% 30%" },
     lead: "Aprende de plata antes de ponerla a cuotas.",
     facts: [
-      ["TIPO", "Proyecto independiente"],
+      ["TIPO", "Proyecto propio"],
       ["AÑO", "2026"],
-      ["ESTADO", "En desarrollo y divulgación"],
+      ["AUDIENCIAS", "Niños · Jóvenes · Adultos"],
       ["MI ROL", "Creador · Dirección creativa"]
     ],
     story: [
-      { type: "covers", band: "black", label: "PORTADAS",
-        title: "Una portada para cada conversación.",
-        items: [
-          { src: IMG + "a36cuotas/audiovisual/portada-podcast.webp", alt: "Portada del podcast A 36 Cuotas", w: 1086, h: 1448 },
-          { src: IMG + "a36cuotas/piezas/episodio-creditos-y-prestamos.webp", alt: "Episodio: Créditos y préstamos", w: 1536, h: 864 },
-          { src: IMG + "a36cuotas/piezas/tip-verifica-la-legalidad.webp", alt: "Tip 4: Verifica la legalidad", w: 836, h: 471 },
-          { src: IMG + "a36cuotas/identidad/logo-podcast.webp", alt: "Logo A 36 Cuotas", w: 1672, h: 941 },
-          { src: IMG + "a36cuotas/piezas/tip-define-tu-objetivo.webp", alt: "Tip 1: Define tu objetivo", w: 1536, h: 864 },
-          { src: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp", alt: "Tino y Tado en vivo", w: 1672, h: 941 },
-          { src: IMG + "a36cuotas/piezas/escena-bre-b-calle.webp", alt: "Escena: compra con Bre-B", w: 1536, h: 864 }
-        ] },
-
       { type: "text", label: "EL RETO", title: "Hablar de plata sin que suene a banco.",
-        body: "La educación financiera suele presentarse en términos técnicos que dificultan conectar los conceptos con decisiones cotidianas. El reto fue convertir temas como intereses, crédito y fraude en historias comprensibles sin perder rigor." },
+        body: "Democratizar la educación financiera con un lenguaje cercano y formatos que ayuden a entender decisiones cotidianas sobre el dinero: créditos, intereses, seguros y riesgos de fraude suelen explicarse con palabras que alejan a la gente." },
 
-      { type: "duo", band: "yellow", label: "LA IDEA",
-        title: "Una marca educativa gratuita y cercana, conducida por dos personajes.",
-        body: "Tino y Tado son personajes ficticios que conversan sobre situaciones reales. Entre los dos convierten una duda de plata en una decisión.",
+      { type: "duo", band: "yellow", label: "LA PROPUESTA",
+        title: "Un ecosistema educativo conducido por dos títeres.",
+        body: "Tino y Tado tienen personalidades complementarias. La narrativa mezcla humor, situaciones reales y explicaciones prácticas: uno se equivoca, el otro explica, y el público aprende sin sentirse en clase.",
         cast: [
-          { name: "TINO", role: "El impulso y la curiosidad", src: IMG + "a36cuotas/piezas/tino.webp", alt: "Tino, títere de fieltro con gafas oscuras y una taza con su nombre" },
-          { name: "TADO", role: "Preguntas, contrastes y criterio para decidir", src: IMG + "a36cuotas/piezas/tado.webp", alt: "Tado, títere de fieltro con gorra gris haciendo pulgares arriba" }
+          { name: "TINO", role: "Impulsivo, curioso, aprende de sus errores", src: IMG + "a36cuotas/personajes/tino.webp", alt: "Tino, títere con gafas oscuras y audífonos en el estudio" },
+          { name: "TADO", role: "Analítico y equilibrado, explica alternativas y consecuencias", src: IMG + "a36cuotas/personajes/tado.webp", alt: "Tado, títere con gorra gris y buzo blanco en el estudio" }
         ] },
 
       { type: "identity", label: "SISTEMA DE IDENTIDAD",
-        title: "Editorial urbano, tipografía contundente, papel y fieltro.",
-        body: "El logo convierte el “36” en un micrófono de podcast: la marca se presenta primero como conversación. Amarillo para llamar la atención, rojo para alertar y negro para darle carácter de calle.",
+        title: "Editorial urbano: papel, cinta y fieltro.",
+        body: "El logo convierte el “36” en un micrófono: la marca se presenta como conversación. El amarillo llama la atención, el rojo marca alertas y temas clave, y el negro le da carácter de calle. Las texturas de papel rasgado, las cintas y los subrayados a mano hacen que todo se sienta cercano, no corporativo.",
         image: { src: IMG + "a36cuotas/identidad/logo-podcast.webp", alt: "Logo A 36 Cuotas — el podcast de Tino & Tado", w: 1672, h: 941 },
         palette: [["Amarillo", "#FFD52B"], ["Rojo", "#D71920"], ["Negro", "#151515"], ["Papel", "#F4F0E9"], ["Blanco", "#FFFFFF"]] },
 
-      { type: "figures", label: "PERSONAJES",
-        title: "Un universo que crece por perfiles.",
-        body: "Además de Tino y Tado, el universo suma perfiles como el emprendedor, la mamá, el trabajador o la abuela: cada uno abre un tema distinto frente al dinero. Fichas de personalidad, escenarios y una hoja de expresiones mantienen la coherencia en cada pieza.",
-        items: [
-          { src: IMG + "a36cuotas/personajes/universo-personajes.webp", alt: "Universo de personajes y recursos", w: 1536, h: 1024, span: "full" },
-          { src: IMG + "a36cuotas/personajes/tino-ficha-y-escena.webp", alt: "Ficha de personaje de Tino e ideas de escenas", w: 1536, h: 1024, span: "half" },
-          { src: IMG + "a36cuotas/personajes/stickers-tino-tado.webp", alt: "Hoja de expresiones y stickers de Tino y Tado", w: 1536, h: 1024, span: "half" }
+      { type: "formats", label: "PORTADAS",
+        title: "Una portada para cada pantalla.",
+        body: "La misma escena del estudio se adapta a cada formato sin perder el logo ni a los personajes. En vertical manda el póster; en horizontal, la miniatura tiene que leerse en un segundo: título grande, una cara expresiva y un objeto que cuenta el tema.",
+        groups: [
+          { name: "Pósters verticales", spec: "3:4 · 9:16 — Spotify, Reels, Stories y TikTok", cols: 3, items: [
+            { src: IMG + "a36cuotas/portadas/podcast-tino-y-tado.webp", alt: "Portada del podcast — 3:4", w: 1086, h: 1448 },
+            { src: IMG + "a36cuotas/portadas/podcast-vertical.webp", alt: "Portada vertical del podcast — 9:16", w: 941, h: 1672 },
+            { src: IMG + "a36cuotas/portadas/podcast-urbano.webp", alt: "Portada urbana Finanzas sin enredos — 9:16", w: 941, h: 1672 }
+          ] },
+          { name: "Miniaturas de YouTube", spec: "16:9 — episodios, tips y clips", cols: 2, items: [
+            { src: IMG + "a36cuotas/miniaturas/el-podcast-de-tino-y-tado.webp", alt: "El podcast de Tino & Tado", w: 1672, h: 941 },
+            { src: IMG + "a36cuotas/miniaturas/creditos-y-prestamos.webp", alt: "Episodio: Créditos y préstamos — cómo no caer en fraudes", w: 1672, h: 941 },
+            { src: IMG + "a36cuotas/miniaturas/tino-y-tado-en-vivo.webp", alt: "Tino y Tado en vivo — On Air", w: 1672, h: 941 },
+            { src: IMG + "a36cuotas/miniaturas/tino-y-tado-en-el-podcast.webp", alt: "Tino y Tado en el podcast", w: 1672, h: 941 },
+            { src: IMG + "a36cuotas/miniaturas/tip-verifica-la-legalidad.webp", alt: "Tip 4: Verifica la legalidad", w: 836, h: 471 },
+            { src: IMG + "a36cuotas/miniaturas/tip-define-tu-objetivo.webp", alt: "Tip 1: Define tu objetivo", w: 1536, h: 864 },
+            { src: IMG + "a36cuotas/miniaturas/escena-bre-b.webp", alt: "Escena en la calle: una compra con Bre-B", w: 1536, h: 864 },
+            { src: IMG + "a36cuotas/miniaturas/consejos-financieros.webp", alt: "Serie de tips: liquidez, riesgo y legalidad", w: 1672, h: 941 }
+          ] }
         ] },
 
-      { type: "text", label: "MI ROL", title: "Del concepto al ecosistema digital.",
-        body: "Como creador del proyecto, conecté mi experiencia en servicios financieros, marketing digital e innovación con la conceptualización de marca, la dirección creativa, el diseño de personajes, la narrativa, la estrategia de contenidos y el desarrollo del ecosistema digital.",
-        chips: ["Dirección creativa", "Branding", "Estrategia digital", "Storytelling", "IA generativa", "Educación financiera"] },
+      { type: "figures", label: "PERSONAJES",
+        title: "Un universo que crece por perfiles.",
+        body: "Además de Tino y Tado, el universo suma perfiles como la universitaria, el emprendedor, la mamá, el trabajador o la abuela: cada uno abre un tema distinto frente al dinero. Fichas de personalidad, ideas de escena y una hoja de expresiones mantienen la coherencia en cada pieza.",
+        items: [
+          { src: IMG + "a36cuotas/personajes/universo-personajes.webp", alt: "Universo de personajes y recursos", w: 1536, h: 1024, span: "full" },
+          { src: IMG + "a36cuotas/personajes/tino-y-tado-en-escena.webp", alt: "Ficha de personaje de Tino e ideas de escena", w: 1536, h: 1024, span: "half" },
+          { src: IMG + "a36cuotas/personajes/hoja-de-pegatinas.webp", alt: "Hoja de expresiones y stickers de Tino y Tado", w: 1536, h: 1024, span: "half" }
+        ] },
 
-      { type: "steps", label: "CONSTRUCCIÓN",
-        title: "Cómo se arma cada pieza.",
-        body: "La inteligencia artificial se usa como apoyo para la generación visual y audiovisual, la iteración de conceptos y el prototipado. Las dramatizaciones se presentan como ficción educativa.",
+      { type: "deck", band: "black", label: "DISEÑO EDITORIAL · PRESENTACIÓN",
+        title: "16 diapositivas, un solo sistema.",
+        body: "La presentación del proyecto aplica la identidad a una retícula repetible: titular en cinta amarilla, personaje recortado a un lado, iconografía roja y fondo de papel. Cambia el contenido, nunca la gramática visual.",
+        spec: "PRESENTACIÓN DEL PROYECTO · 16 DIAPOSITIVAS · 1920×1080",
+        items: [
+          { src: IMG + "a36cuotas/deck/01.webp", alt: "Presentación A 36 Cuotas — diapositiva 1 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/02.webp", alt: "Presentación A 36 Cuotas — diapositiva 2 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/03.webp", alt: "Presentación A 36 Cuotas — diapositiva 3 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/04.webp", alt: "Presentación A 36 Cuotas — diapositiva 4 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/05.webp", alt: "Presentación A 36 Cuotas — diapositiva 5 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/06.webp", alt: "Presentación A 36 Cuotas — diapositiva 6 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/07.webp", alt: "Presentación A 36 Cuotas — diapositiva 7 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/08.webp", alt: "Presentación A 36 Cuotas — diapositiva 8 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/09.webp", alt: "Presentación A 36 Cuotas — diapositiva 9 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/10.webp", alt: "Presentación A 36 Cuotas — diapositiva 10 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/11.webp", alt: "Presentación A 36 Cuotas — diapositiva 11 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/12.webp", alt: "Presentación A 36 Cuotas — diapositiva 12 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/13.webp", alt: "Presentación A 36 Cuotas — diapositiva 13 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/14.webp", alt: "Presentación A 36 Cuotas — diapositiva 14 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/15.webp", alt: "Presentación A 36 Cuotas — diapositiva 15 de 16", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/deck/16.webp", alt: "Presentación A 36 Cuotas — diapositiva 16 de 16", w: 1400, h: 788 }
+        ] },
+
+      { type: "deck", label: "DISEÑO EDITORIAL · PITCH",
+        title: "La versión sobria para aliados.",
+        body: "Para conversaciones con entidades, el sistema se vuelve más editorial: bloques de color plano rojo y papel, titulares en dos tonos, numeración grande y las miniaturas de los episodios como prueba de que el contenido ya existe.",
+        spec: "PITCH EDITORIAL · 10 DIAPOSITIVAS · 1920×1080",
+        items: [
+          { src: IMG + "a36cuotas/pitch/01.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 1 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/02.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 2 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/03.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 3 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/04.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 4 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/05.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 5 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/06.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 6 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/07.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 7 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/08.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 8 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/09.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 9 de 10", w: 1400, h: 788 },
+          { src: IMG + "a36cuotas/pitch/10.webp", alt: "Pitch editorial A 36 Cuotas — diapositiva 10 de 10", w: 1400, h: 788 }
+        ] },
+
+      { type: "figures", label: "PIEZAS DE COMUNICACIÓN",
+        title: "Del mosaico a la plantilla.",
+        body: "Mosaicos de narrativa, infografías de 16 paneles y plantillas editables para que cualquier pieza nueva salga con la misma voz.",
+        items: [
+          { src: IMG + "a36cuotas/editorial/finanzas-sin-enredos.webp", alt: "Mosaico narrativo: Finanzas sin enredos", w: 1672, h: 941, span: "full" },
+          { src: IMG + "a36cuotas/editorial/infografia-16-paneles.webp", alt: "Infografía de A 36 Cuotas en 16 paneles", w: 1672, h: 941, span: "half" },
+          { src: IMG + "a36cuotas/editorial/plantilla-del-podcast.webp", alt: "Plantilla editorial del podcast", w: 1672, h: 941, span: "half" }
+        ] },
+
+      { type: "steps", label: "PROCESO CREATIVO",
+        title: "De la necesidad a la pieza publicada.",
+        body: "La inteligencia artificial apoya la ideación, los recursos visuales, los guiones y los clips. Antes de publicar, todo pasa por revisión humana de exactitud financiera y coherencia editorial.",
         steps: [
-          ["Identidad", "Sistema editorial urbano: logo, color, textura y tipografía."],
-          ["Personajes", "Títeres digitales de fieltro con ficha de personalidad."],
-          ["Guiones", "Situaciones cotidianas convertidas en conversación."],
-          ["Piezas", "Portadas, tips y promocionales para redes."],
-          ["Podcast", "Episodios en estudio con Tino y Tado al aire."],
-          ["Web", "Plataforma con contenidos y recursos educativos."]
+          ["Necesidades", "Qué le cuesta entender a la gente sobre su plata."],
+          ["Audiencias", "Niños, jóvenes y adultos, con temas por etapa."],
+          ["Personajes", "Tino, Tado y el universo de perfiles."],
+          ["Guion", "Situaciones reales contadas como conversación."],
+          ["Prototipo visual", "Portadas, escenas y sistema editorial."],
+          ["Producción", "Episodios, clips y piezas asistidas por IA."],
+          ["Distribución", "Web y YouTube, con medición propuesta."]
+        ] },
+
+      { type: "cards", label: "LÍNEAS EDITORIALES",
+        title: "Seis temas, explicados sin enredos.",
+        body: "Formatos previstos: podcast, clips de 10 segundos, videos educativos y piezas gráficas por edades.",
+        cards: [
+          ["Créditos", "Comparar tasas, plazos y costos."],
+          ["Tarjetas", "Intereses, cuotas y compras conscientes."],
+          ["Ahorro e inversión", "Metas, riesgos y hábitos."],
+          ["Seguros", "Protección y lectura de coberturas."],
+          ["Fraudes", "Señales de alerta y verificación de entidades."],
+          ["Pagos digitales", "Bre-B y seguridad."]
         ] },
 
       { type: "youtube", band: "black", label: "AUDIOVISUAL · YOUTUBE",
@@ -124,7 +191,7 @@ window.JV_DECK = [
         list: "UU6cWds2IAS3J5lKP-8z_3qA",
         url: "https://www.youtube.com/@a36cuotas",
         handle: "@A36Cuotas",
-        poster: IMG + "a36cuotas/audiovisual/tino-tado-en-vivo.webp" },
+        poster: IMG + "a36cuotas/miniaturas/tino-y-tado-en-vivo.webp" },
 
       { type: "web", label: "PLATAFORMA WEB",
         title: "La casa del proyecto: treintaseiscuotas.com",
@@ -133,32 +200,13 @@ window.JV_DECK = [
         domain: "treintaseiscuotas.com",
         preview: IMG + "a36cuotas/identidad/logo-podcast.webp" },
 
-      { type: "figures", label: "ESTRATEGIA DE CONTENIDOS",
-        title: "Temas serios en formatos cortos.",
-        body: "Episodios, clips breves y recursos educativos para distintas edades. Dos ejemplos públicos: el presupuesto para un concierto y una compra cotidiana con Bre-B.",
-        chips: ["Crédito responsable", "Tarjetas", "Ahorro", "Inversión", "Seguros", "Prevención de fraudes", "Pagos inmediatos"],
-        items: [
-          { src: IMG + "a36cuotas/piezas/episodio-creditos-y-prestamos.webp", alt: "Portada de episodio: Créditos y préstamos", w: 1536, h: 864, span: "half" },
-          { src: IMG + "a36cuotas/piezas/tip-verifica-la-legalidad.webp", alt: "Tip 4: Verifica la legalidad", w: 836, h: 471, span: "half" },
-          { src: IMG + "a36cuotas/piezas/escena-bre-b-calle.webp", alt: "Escena en la calle: una compra cotidiana con Bre-B", w: 1536, h: 864, span: "half" },
-          { src: IMG + "a36cuotas/piezas/tip-define-tu-objetivo.webp", alt: "Tip 1: Define tu objetivo", w: 1536, h: 864, span: "half" }
-        ] },
+      { type: "text", label: "MI APORTE", title: "Del concepto a la producción.",
+        body: "Diseñé el proyecto de punta a punta, conectando mi experiencia en servicios financieros con la dirección creativa.",
+        chips: ["Conceptualización", "Estrategia de producto y contenidos", "Dirección creativa", "Identidad visual", "Diseño de personajes", "Producción audiovisual con IA", "Estrategia de alianzas y distribución"] },
 
-      { type: "figures", label: "SISTEMA EDITORIAL",
-        title: "Una misma voz en presentaciones y campañas.",
-        body: "La identidad se extiende a plantillas de presentación y piezas de comunicación para aliados, manteniendo cintas, recortes y personajes como sello.",
-        items: [
-          { src: IMG + "a36cuotas/campanas/finanzas-sin-enredos.webp", alt: "Narrativa: Finanzas sin enredos", w: 1672, h: 941, span: "full" },
-          { src: IMG + "a36cuotas/campanas/presentacion-visual.webp", alt: "Sistema editorial de presentación", w: 1672, h: 941, span: "half" },
-          { src: IMG + "a36cuotas/campanas/plantilla-editorial.webp", alt: "Plantilla de presentación del podcast", w: 1672, h: 941, span: "half" }
-        ] },
-
-      { type: "text", label: "DISTRIBUCIÓN", title: "Web y YouTube primero.",
-        body: "La plataforma web y YouTube son los canales principales. La propuesta es ampliar el alcance con redes sociales y alianzas con entidades financieras, fintech, aseguradoras, cooperativas y organizaciones educativas. Las alianzas son una propuesta, no acuerdos confirmados." },
-
-      { type: "text", label: "RESULTADOS Y APRENDIZAJE", title: "Lo que existe hoy y cómo se va a medir.",
-        body: "Hay identidad visual, materiales comerciales, contenidos audiovisuales y publicaciones públicas de divulgación. Todavía no hay cifras auditadas de alcance o impacto; estas son las métricas propuestas:",
-        chips: ["Retención de video", "Visitas web", "Interacciones", "Aprendizaje", "Alianzas"] }
+      { type: "text", label: "SOSTENIBILIDAD Y RESULTADOS", title: "Lo que existe hoy y cómo se va a medir.",
+        body: "El modelo propuesto es colaborar con bancos, fintech, cooperativas y aseguradoras mediante patrocinios o intercambio de contenido, conservando la independencia editorial; no hay alianzas cerradas. Hoy existen piezas gráficas, personajes, propuestas y plantillas editables, pero todavía no hay métricas verificadas. Estos son los indicadores propuestos:",
+        chips: ["Alcance", "Retención de video", "Interacciones", "Tráfico web", "Aprendizaje"] }
     ],
     links: [
       { label: "treintaseiscuotas.com", url: "https://treintaseiscuotas.com/", sub: "Sitio web" },
@@ -166,7 +214,7 @@ window.JV_DECK = [
       { label: "Lanzamiento", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-finanzaspersonales-activity-7513704790288158720-Z8vi", sub: "LinkedIn" },
       { label: "Pagos con Bre-B", url: "https://es.linkedin.com/posts/jhonvalenciasantana_breb-a36cuotas-educacionfinanciera-activity-7515534428610121728-rzEF", sub: "LinkedIn" },
       { label: "Alianzas", url: "https://es.linkedin.com/posts/jhonvalenciasantana_a36cuotas-educaci%C3%B3nfinanciera-inclusi%C3%B3nfinanciera-activity-7514097489017225218-FYwX", sub: "LinkedIn" }
-      // Instagram pendiente de verificar: { label: "Instagram", url: "https://www.instagram.com/a36cuotas/" }
+      // Instagram, TikTok y Spotify: pendientes de confirmar.
     ]
   },
 

@@ -656,7 +656,19 @@
           <figure class="g ident__logo" style="aspect-ratio:${b.image.w}/${b.image.h}"><img src="${esc(b.image.src)}" alt="${esc(b.image.alt)}" loading="lazy" data-lb></figure>
           <div class="ident__pal">${b.palette.map(([nm, hex]) => `<div class="sw" style="--sw:${hex}"><span>${esc(nm)}</span><code>${esc(hex)}</code></div>`).join("")}</div></div>`;
     } else if (b.type === "steps") {
-      extra = `<ol class="steps rv">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+      extra = `<ol class="steps rv" style="--n:${b.steps.length}">${b.steps.map(([t, d], k) => `<li><span class="steps__n">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+    } else if (b.type === "formats") {
+      extra = b.groups.map((g) => {
+        const row = g.cols === 3
+          ? `<div class="fmt__row">${g.items.map((it) => `<figure class="fmt__it" style="flex:${(it.w / it.h).toFixed(3)} 1 0;aspect-ratio:${it.w}/${it.h}"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`
+          : `<div class="fmt__grid">${g.items.map((it) => `<figure class="fmt__it fmt__it--169"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" data-lb><figcaption>${esc(it.alt)}</figcaption></figure>`).join("")}</div>`;
+        return `<div class="fmt rv"><div class="fmt__head"><strong>${esc(g.name)}</strong><span class="mono">${esc(g.spec)}</span><span class="mono fmt__count">${pad2(g.items.length)} PIEZAS</span></div>${row}</div>`;
+      }).join("");
+    } else if (b.type === "deck") {
+      extra = `<div class="slides rv"><p class="slides__spec mono">${esc(b.spec)}</p><div class="slides__grid">${b.items.map((it, k) =>
+        `<figure class="slide${k === 0 ? " slide--lead" : ""}"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" decoding="async" width="${it.w}" height="${it.h}" data-lb><span class="slide__n mono">${pad2(k + 1)}</span></figure>`).join("")}</div></div>`;
+    } else if (b.type === "cards") {
+      extra = `<ol class="cards rv">${b.cards.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
     } else if (b.type === "covers") {
       const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
       extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
@@ -774,7 +786,7 @@
       view.insertAdjacentHTML("beforeend", `<p class="browser__hint mono">¿No carga? Algunos sitios no permiten verse dentro de otra página: <a href="${esc(view.dataset.site)}" target="_blank" rel="noopener">ábrelo en una pestaña nueva ↗</a></p>`);
       return;
     }
-    const img = e.target.closest(".g, .duo__img, .cv");
+    const img = e.target.closest(".g, .duo__img, .cv, .fmt__it, .slide");
     if (img) {
       const el = img.querySelector("[data-lb]");
       const k = lbItems().indexOf(el);
