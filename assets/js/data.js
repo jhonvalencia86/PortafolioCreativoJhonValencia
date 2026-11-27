@@ -73,7 +73,7 @@ window.JV_DECK = [
       { type: "youtube", band: "black", label: "YOUTUBE · @A36CUOTAS", direct: true,
         title: "Al aire desde el estudio de Tino y Tado.",
         body: "El podcast es el formato central: un set cálido y urbano que funciona igual en video, portada y clip corto. Mira los episodios del canal aquí mismo.",
-        list: "UU6cWds2IAS3J5lKP-8z_3qA",
+        list: "UULF6cWds2IAS3J5lKP-8z_3qA",
         url: "https://www.youtube.com/@A36Cuotas",
         handle: "@A36Cuotas",
         poster: IMG + "a36cuotas/miniaturas/tino-y-tado-en-vivo.webp" },
