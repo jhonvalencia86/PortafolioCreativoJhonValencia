@@ -164,6 +164,17 @@
         </div>
       </div>`;
     }
+    if (c.kind === "po") {
+      const st = [0, 1, 2, 3, 4].map((k) => { const a = (k / 5) * Math.PI * 2 - Math.PI / 2; return `<circle cx="${(50 + Math.cos(a) * 34).toFixed(1)}" cy="${(50 + Math.sin(a) * 34).toFixed(1)}" r="5"/>`; }).join("");
+      return `<div class="cf cf--po">${ticks}
+        <div class="cf__top"><span class="cf__num">Nº ${esc(c.number)}</span><span>15+ AÑOS</span></div>
+        <svg class="cf__loop" viewBox="0 0 100 100" aria-hidden="true">
+          <circle cx="50" cy="50" r="34" class="cf__loop-r"/><g class="cf__loop-s">${st}</g>
+          <circle cx="50" cy="50" r="16" class="cf__loop-c"/><text x="50" y="54" text-anchor="middle">PO</text></svg>
+        <div><span class="cf__title">THE PRODUCT<br><span class="o">OWNER</span></span>
+        <div class="cf__bot"><span>BANCA DIGITAL</span><span>JV®</span></div></div>
+      </div>`;
+    }
     if (c.kind === "contact") {
       return `<div class="cf cf--type">${ticks}
         <div class="cf__top"><span class="cf__num">Nº ${esc(c.number)}</span><span>${esc(c.category)}</span></div>
@@ -907,6 +918,134 @@
       blocks + links + nextBlock(i) + footer();
   }
 
+  /* ================================================================
+     THE PRODUCT OWNER — página con gráficas animadas
+     ================================================================ */
+  function renderPO(c, i) {
+    const n = (v) => `<span class="po-n">${v}</span>`;
+    const hero = `<section class="p-hero p-hero--po" style="--c:${c.color};--ink:#fff;--mbg:${c.color}">
+      <div class="po-hero">
+        <p class="p-hero__concept">${esc(c.lead)}</p>
+        <h2 class="p-hero__giant" id="detail-title" aria-label="The Product Owner"><span class="ln"><span>PRODUCT</span></span><span class="ln"><span class="o">OWNER</span></span></h2>
+        <svg class="po-path" viewBox="0 0 1000 120" aria-hidden="true">
+          <path class="po-path__line" d="M60 80 C 200 10, 300 110, 360 60 S 560 10, 640 60 S 840 110, 900 40"/>
+          ${[["60","80","Idea"],["360","60","Discovery"],["640","60","MVP"],["900","40","Producción"]].map(([x, y, t], k) =>
+            `<g class="po-node" style="--d:${0.5 + k * 0.45}s"><circle cx="${x}" cy="${y}" r="9"/><text x="${x}" y="${+y + 34}" text-anchor="middle">${t}</text></g>`).join("")}
+        </svg>
+      </div>
+      <div class="p-hero__cap"><span class="mono" style="font-size:12px;letter-spacing:.08em">JHON VALENCIA SANTANA</span>
+        <div class="p-hero__tag"><span class="p-hero__num">${esc(c.number)}</span><span>${esc(c.category)}</span><span>${esc(c.year)}</span></div></div>
+    </section>`;
+
+    const kpis = `<div class="po-kpis rv">${c.kpis.map((k) => `<div class="po-kpi">
+        <strong><span>${esc(k.prefix)}</span><span data-count="${k.value}">${k.value.toLocaleString("es-CO")}</span><span>${esc(k.suffix)}</span></strong>
+        <em class="mono">${esc(k.unit)}</em><p>${esc(k.label)}</p></div>`).join("")}</div>`;
+
+    const y0 = 2017, y1 = 2027, span = y1 - y0;
+    const years = Array.from({ length: span + 1 }, (_, k) => y0 + k);
+    const tl = `<div class="po-tl rv">
+      <div class="po-tl__axis">${years.map((y) => `<span style="left:${((y - y0) / span) * 100}%">${y}</span>`).join("")}</div>
+      ${c.timeline.map((t, k) => `<div class="po-tl__row" style="--d:${k * 0.18}s">
+        <div class="po-tl__label"><strong>${esc(t.org)}</strong><span class="mono">${esc(t.role)}</span></div>
+        <div class="po-tl__track"><i style="left:${((t.from - y0) / span) * 100}%;width:${((t.to - t.from) / span) * 100}%"></i></div>
+        <p>${esc(t.text)}</p></div>`).join("")}
+    </div>`;
+
+    const dd = `<div class="po-dd rv">
+      <svg viewBox="0 0 1000 300" aria-hidden="true">
+        <path class="po-dd__shape" d="M20 150 L260 30 L500 150 L260 270 Z"/>
+        <path class="po-dd__shape po-dd__shape--b" d="M500 150 L740 30 L980 150 L740 270 Z"/>
+        <line class="po-dd__mid" x1="260" y1="30" x2="260" y2="270"/><line class="po-dd__mid" x1="740" y1="30" x2="740" y2="270"/>
+        ${[["140", "Descubrir"], ["380", "Definir"], ["620", "Desarrollar"], ["860", "Entregar"]].map(([x, t], k) =>
+          `<text class="po-dd__t" x="${x}" y="158" text-anchor="middle" style="--d:${1 + k * 0.25}s">${t}</text>`).join("")}
+        <text class="po-dd__cap" x="260" y="296" text-anchor="middle">PROBLEMA CORRECTO</text>
+        <text class="po-dd__cap" x="740" y="296" text-anchor="middle">SOLUCIÓN CORRECTA</text>
+      </svg>
+      <ol class="po-cols">${c.method.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>
+    </div>`;
+
+    const stages = ["Backlog", "Planning", "Sprint", "Review", "Retro"];
+    const R = 150, cx = 200, cy = 200;
+    const scrum = `<div class="po-split rv">
+      <svg class="po-loop" viewBox="0 0 400 400" aria-hidden="true">
+        <circle class="po-loop__ring" cx="${cx}" cy="${cy}" r="${R}"/>
+        <circle class="po-loop__track" cx="${cx}" cy="${cy}" r="${R}"/>
+        <g class="po-loop__spin"><circle cx="${cx}" cy="${cy - R}" r="10" class="po-loop__dot"/></g>
+        ${stages.map((s, k) => { const a = (k / stages.length) * Math.PI * 2 - Math.PI / 2; const x = cx + Math.cos(a) * R, y = cy + Math.sin(a) * R;
+          return `<g class="po-loop__st" style="--d:${k * 0.2}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="34"/><text x="${x.toFixed(1)}" y="${(y + 5).toFixed(1)}" text-anchor="middle">${s}</text></g>`; }).join("")}
+        <circle class="po-loop__core" cx="${cx}" cy="${cy}" r="62"/>
+        <text class="po-loop__ct" x="${cx}" y="${cy - 4}" text-anchor="middle">Incremento</text>
+        <text class="po-loop__cs" x="${cx}" y="${cy + 20}" text-anchor="middle">cada 2 semanas</text>
+      </svg>
+      <div><ul class="list po-list">
+        <li><span>01</span>Visión y roadmap del producto</li>
+        <li><span>02</span>Backlog priorizado con OKR</li>
+        <li><span>03</span>Historias de usuario y criterios de aceptación</li>
+        <li><span>04</span>Puente entre negocio, TI y proveedores</li>
+        <li><span>05</span>Cumplimiento de ANS y validaciones normativas</li>
+      </ul></div>
+    </div>`;
+
+    const dots = [[78, 22, "Nuevo canal WhatsApp"], [70, 34, "Journey crédito"], [30, 28, "Core bancario"], [82, 62, "Ajustes UX"], [28, 70, "Reportes"], [60, 18, "Onboarding digital"]];
+    const matrix = `<div class="po-split po-split--rev rv">
+      <div class="po-mx">
+        <div class="po-mx__q po-mx__q--1"><span>Quick wins</span></div><div class="po-mx__q po-mx__q--2"><span>Grandes apuestas</span></div>
+        <div class="po-mx__q po-mx__q--3"><span>Mejoras menores</span></div><div class="po-mx__q po-mx__q--4"><span>Evitar</span></div>
+        <span class="po-mx__ax po-mx__ax--y mono">IMPACTO ↑</span><span class="po-mx__ax po-mx__ax--x mono">ESFUERZO →</span>
+        ${dots.map(([x, y, t], k) => `<i class="po-mx__dot" style="--px:${(100 - x) / 100};--py:${y / 100};--d:${k * 0.15}s" title="${esc(t)}"></i>`).join("")}
+      </div>
+      <div><p class="prose">Cada iniciativa se evalúa por su impacto en los OKR contra el esfuerzo de construirla. Así el equipo entrega primero lo que más mueve el negocio.</p>
+        <p class="note">Iniciativas ilustrativas. No corresponden a un backlog real.</p></div>
+    </div>`;
+
+    const N = c.channels.length;
+    const eco = `<div class="po-eco rv"><svg viewBox="0 0 600 600" aria-hidden="true">
+      ${c.channels.map((ch, k) => { const a = (k / N) * Math.PI * 2 - Math.PI / 2; const x = 300 + Math.cos(a) * 225, y = 300 + Math.sin(a) * 225;
+        return `<line class="po-eco__ln" x1="300" y1="300" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}" style="--d:${k * 0.12}s"/>
+          <g class="po-eco__n" style="--d:${0.4 + k * 0.12}s"><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="46"/><text x="${x.toFixed(1)}" y="${(y + 5).toFixed(1)}" text-anchor="middle">${esc(ch)}</text></g>`; }).join("")}
+      <circle class="po-eco__pulse" cx="300" cy="300" r="88"/>
+      <circle class="po-eco__core" cx="300" cy="300" r="88"/>
+      <text class="po-eco__ct" x="300" y="292" text-anchor="middle">Producto</text><text class="po-eco__ct" x="300" y="322" text-anchor="middle">financiero digital</text>
+    </svg></div>`;
+
+    const funnel = `<div class="po-funnel rv">${[["Visitas", 100], ["Registro", 72], ["Solicitud", 50], ["Aprobación", 34], ["Desembolso", 24]].map(([t, w], k) =>
+      `<div class="po-funnel__row" style="--w:${w}%;--d:${k * 0.15}s"><i></i><span>${t}</span></div>`).join("")}
+      <div class="po-funnel__badge"><strong>+60%</strong><span>conversión y adopción del canal digital (FNA)</span></div></div>`;
+
+    const edu = `<div class="po-edu rv"><ul class="tl">${c.education.map(([a, b]) => `<li><time>EDUCACIÓN</time><div><strong>${esc(a)}</strong><span>${esc(b)}</span></div></li>`).join("")}</ul>
+      <div class="po-certs">${c.certs.map((x) => `<span>${esc(x)}</span>`).join("")}</div></div>`;
+
+    let k = 0;
+    const S = (label, title, body, extra, band = "") => `<section class="sec st${band ? ` band ${band}` : ""}"><div class="sec__grid rv"><p class="sec__label"><b>${pad2(++k)}</b>${label}</p>
+      <div class="sec__body"><h3 class="st-title">${title}</h3>${body ? `<p class="prose">${body}</p>` : ""}</div></div>${extra}</section>`;
+    return hero +
+      S("PERFIL", "Producto, negocio y tecnología en la misma mesa.", esc(c.summary), kpis) +
+      S("TRAYECTORIA", "Nueve años construyendo producto en banca y seguros.", "", tl) +
+      S("MÉTODO", "Primero el problema correcto, luego la solución correcta.", "Design Thinking para descubrir y definir; ágil para desarrollar y entregar.", dd) +
+      S("EJECUCIÓN ÁGIL", "Scrum, Kanban y ágil híbrido.", "Equipos multidisciplinarios entre negocio, TI y proveedores, entregando en ciclos cortos.", scrum, "band--po2") +
+      S("PRIORIZACIÓN", "OKR e impacto contra esfuerzo.", "", matrix) +
+      S("ECOSISTEMA", "Un producto financiero toca muchas piezas.", "Coordino canales, tecnología, proveedores y negocio para que el producto llegue completo a producción.", eco) +
+      S("CONVERSIÓN", "Optimizar el funnel con datos.", "Análisis del recorrido del cliente para quitar fricción en cada paso del canal digital.", funnel) +
+      S("HERRAMIENTAS", "Cómo trabajo.", "", `<div class="chips rv" style="margin-top:28px">${c.tools.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>`) +
+      S("FORMACIÓN", "Formación y certificaciones.", "", edu) +
+      sec(++k, "CONTACTO", `<div class="links">${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria completa")}${bigLink(SITE.email, `mailto:${SITE.email}`, "Email")}</div>`) +
+      nextBlock(i) + footer();
+  }
+
+  function runCounters() {
+    const els = $$("[data-count]", dContent);
+    const go = (el) => {
+      const end = +el.dataset.count; delete el.dataset.count;
+      if (reduced()) { el.textContent = end.toLocaleString("es-CO"); return; }
+      const t0 = performance.now(), D = 1600;
+      const f = (now) => { const p = Math.min(1, (now - t0) / D); el.textContent = Math.round(end * easeOut(p)).toLocaleString("es-CO"); if (p < 1) requestAnimationFrame(f); };
+      el.textContent = "0"; requestAnimationFrame(f);
+    };
+    if (!("IntersectionObserver" in window)) return els.forEach(go);
+    const ob = new IntersectionObserver((ens) => ens.forEach((en) => { if (en.isIntersecting) { go(en.target); ob.unobserve(en.target); } }), { root: dScroll, threshold: 0.5 });
+    els.forEach((el) => ob.observe(el));
+  }
+
   function renderAbout(c, i) {
     const tl = ABOUT.timeline.map(([t, a, b]) => `<li><time>${esc(t)}</time><div><strong>${esc(a)}</strong>${b ? `<span>${esc(b)}</span>` : ""}</div></li>`).join("");
     const hero = `<section class="p-hero p-hero--about" style="--c:${c.color};--ink:${c.ink};--mbg:${c.color}">
@@ -992,9 +1131,10 @@
     detail.style.setProperty("--acc", c.accent || "#E44832");
     detail.classList.toggle("theme-dark", c.theme === "dark");
     if (c.paper) detail.style.setProperty("--dbg", c.paper); else detail.style.removeProperty("--dbg");
-    const r = c.layout === "story" ? renderStory : { about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
+    const r = c.layout === "story" ? renderStory : { po: renderPO, about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
     dContent.innerHTML = r(c, i);
     lazyDetail();
+    if (c.kind === "po") setTimeout(runCounters, 50);
     $("#d-count").textContent = `${pad2(i + 1)} / ${pad2(N)}`;
     document.title = `${c.title} — JV · The Creative Deck`;
   }

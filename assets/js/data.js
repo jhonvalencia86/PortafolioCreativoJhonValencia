@@ -45,9 +45,58 @@ window.JV_DECK = [
     photo: "assets/img/about/jhon-valencia-duotono.webp"
   },
 
-  /* ---------------------------------------------------------------- 01 */
+  /* ---------------------------------------------------------------- 01 · PO */
   {
     number: "01",
+    id: "product-owner",
+    kind: "po",
+    published: true,
+    title: "THE PRODUCT OWNER",
+    category: "BANCA DIGITAL · PRODUCTO",
+    year: "2017—2026",
+    color: "#0A1433",
+    ink: "#FFFFFF",
+    accent: "#4C8DFF",
+    paper: "#0A1433",
+    theme: "dark",
+    tags: ["Producto digital", "FinTech", "Innovación"],
+    short: "15+ años creando productos y canales digitales en banca y seguros: discovery, roadmap, ágil y resultados medibles.",
+    card: { template: "type" },
+    lead: "Productos digitales financieros, de la idea a producción.",
+    summary: "Product Owner con más de 15 años liderando productos y canales digitales en el sector financiero y asegurador. Especialista en discovery, roadmapping, journey mapping end-to-end y priorización basada en OKR e impacto/esfuerzo.",
+    kpis: [
+      { value: 15, prefix: "+", suffix: "", unit: "años", label: "liderando productos y canales digitales en banca y seguros" },
+      { value: 60, prefix: "+", suffix: "%", unit: "conversión", label: "en conversión y adopción del canal digital del FNA, optimizando el funnel con datos" },
+      { value: 50, prefix: "", suffix: "%", unit: "más rápido", label: "mejora en el tiempo de entrega de funcionalidades con priorización OKR (FNA)" },
+      { value: 4000, prefix: "$", suffix: " M", unit: "COP / mes", label: "KPI sostenido en libranza digital en Credivalores – Banco Credifinanciera" }
+    ],
+    timeline: [
+      { from: 2017.25, to: 2020.9, org: "Aseguradora Solidaria de Colombia", role: "Medios Digitales", text: "Productos y journeys digitales del sector asegurador, nuevos canales alternos y comité de innovación." },
+      { from: 2020.85, to: 2021.25, org: "Credivalores – Banco Credifinanciera", role: "Canales Digitales", text: "Roadmap y journeys de crédito digital: $4.000 M mensuales en libranza digital." },
+      { from: 2021.5, to: 2022.5, org: "Fondo Nacional del Ahorro (Serviola)", role: "Director Comercial Canales Digitales", text: "Funnel optimizado con datos: +60% en conversión. Nuevos canales: WhatsApp, SMS y mailing." },
+      { from: 2022.5, to: 2025.9, org: "Fondo Nacional del Ahorro", role: "Product Owner", text: "Discovery, visión y roadmap de los productos digitales. 50% menos tiempo de entrega." },
+      { from: 2025.9, to: 2026.9, org: "Consultor independiente", role: "Transformación y producto digital", text: "Diseño de productos y servicios digitales, de la necesidad al MVP y la mejora continua." }
+    ],
+    method: [
+      ["Descubrir", "Discovery, entrevistas y journey mapping end-to-end."],
+      ["Definir", "Visión, OKR y problema a resolver."],
+      ["Desarrollar", "Historias de usuario, backlog y MVP con TI y proveedores."],
+      ["Entregar", "Lanzamiento, analítica y mejora continua."]
+    ],
+    channels: ["App y web", "WhatsApp", "SMS", "Mailing", "TI y core", "Proveedores", "Analítica", "Negocio"],
+    tools: ["Discovery", "Roadmapping", "Backlog", "Journey mapping", "OKR", "Impacto / esfuerzo", "Historias de usuario", "Scrum", "Kanban", "Ágil híbrido", "Design Thinking", "Jira", "Confluence", "Miro", "Analítica digital"],
+    education: [
+      ["Maestría en Innovación", "Universidad EAN · en curso"],
+      ["Maestría en Marketing Digital y Comercio Electrónico", "UNIR, España"],
+      ["Especialización en Gerencia de Mercadeo", "Politécnico Grancolombiano"],
+      ["Publicista", "Universidad Central"]
+    ],
+    certs: ["Scrum Master · 2025", "IA para Gerentes · Microsoft y LinkedIn · 2026", "Google Project Management · 2024", "Fintech y Banca Digital · CESA · 2023", "Transformación Digital de Gobiernos · BID · 2024", "Product Owner · Platzi · 2022", "Design Thinking · Javeriana · 2017", "IA para el sector público · MinTIC · 2025"]
+  },
+
+  /* ---------------------------------------------------------------- 01 */
+  {
+    number: "02",
     id: "a36cuotas",
     kind: "project",
     layout: "story",
@@ -227,7 +276,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 02 */
   {
-    number: "02",
+    number: "03",
     id: "chrome-lovers",
     kind: "project",
     layout: "story",
@@ -318,7 +367,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 03 */
   {
-    number: "03",
+    number: "04",
     id: "credito-inteligente",
     kind: "project",
     layout: "story",
@@ -442,7 +491,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 04 */
   {
-    number: "04",
+    number: "05",
     id: "chappetag",
     kind: "project",
     layout: "story",
@@ -589,7 +638,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 06 */
   {
-    number: "05",
+    number: "06",
     id: "tu-crm-seguro",
     kind: "project",
     layout: "story",
@@ -711,7 +760,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 08 */
   {
-    number: "06",
+    number: "07",
     id: "creative-archive",
     kind: "archive",
     published: true,
@@ -758,7 +807,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 12 */
   {
-    number: "07",
+    number: "08",
     id: "contact",
     kind: "contact",
     published: true,
