@@ -190,5 +190,24 @@
 
   <script src="assets/js/data.js?v=20261127z"></script>
   <script src="assets/js/app.js?v=20261127z"></script>
+  <!-- Analítica: GoatCounter (sin cookies). Cuenta cada vista, incluidas las rutas #/p/... -->
+  <script>
+    window.goatcounter = { no_onload: true };
+    (function () {
+      var last = "";
+      function hit(n) {
+        n = n || 0;
+        if (!window.goatcounter || !window.goatcounter.count) { if (n < 20) setTimeout(function () { hit(n + 1); }, 500); return; }
+        var h = location.hash.replace(/^#\/?/, "");
+        var path = h ? "/" + h : "/";
+        if (path === last) return; last = path;
+        var t = document.title;
+        window.goatcounter.count({ path: path, title: t });
+      }
+      window.addEventListener("hashchange", function () { setTimeout(hit, 300); });
+      window.addEventListener("load", function () { setTimeout(hit, 300); });
+    })();
+  </script>
+  <script data-goatcounter="https://jhonvalencia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
