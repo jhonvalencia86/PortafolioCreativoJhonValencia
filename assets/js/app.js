@@ -987,15 +987,76 @@
     </div>`;
 
     const dots = [[78, 22, "Nuevo canal WhatsApp"], [70, 34, "Journey crédito"], [30, 28, "Core bancario"], [82, 62, "Ajustes UX"], [28, 70, "Reportes"], [60, 18, "Onboarding digital"]];
-    const matrix = `<div class="po-split po-split--rev rv">
-      <div class="po-mx">
+    const mxSvg = `<div class="po-mx">
         <div class="po-mx__q po-mx__q--1"><span>Quick wins</span></div><div class="po-mx__q po-mx__q--2"><span>Grandes apuestas</span></div>
         <div class="po-mx__q po-mx__q--3"><span>Mejoras menores</span></div><div class="po-mx__q po-mx__q--4"><span>Evitar</span></div>
         <span class="po-mx__ax po-mx__ax--y mono">IMPACTO ↑</span><span class="po-mx__ax po-mx__ax--x mono">ESFUERZO →</span>
         ${dots.map(([x, y, t], k) => `<i class="po-mx__dot" style="--px:${(100 - x) / 100};--py:${y / 100};--d:${k * 0.15}s" title="${esc(t)}"></i>`).join("")}
-      </div>
-      <div><p class="prose">Cada iniciativa se evalúa por su impacto en los OKR contra el esfuerzo de construirla. Así el equipo entrega primero lo que más mueve el negocio.</p>
-        <p class="note">Iniciativas ilustrativas. No corresponden a un backlog real.</p></div>
+      </div>`;
+
+    // RICE
+    const rice = [["Onboarding digital", 8.4], ["Recordatorio de pago por SMS", 6.1], ["Simulador de crédito", 4.7], ["Rediseño del portal", 1.9]];
+    const riceD = `<div class="pr-rice">
+      <div class="pr-formula"><span><b>R</b>each</span><em>×</em><span><b>I</b>mpact</span><em>×</em><span><b>C</b>onfidence</span><em>÷</em><span><b>E</b>ffort</span></div>
+      ${rice.map(([t, v], k) => `<div class="pr-bar" style="--w:${(v / 8.4) * 100}%;--d:${0.25 + k * 0.14}s"><span class="pr-bar__t">${pad2(k + 1)} · ${esc(t)}</span><span class="pr-bar__v">${v.toFixed(1)}</span><i></i></div>`).join("")}
+    </div>`;
+
+    // WSJF
+    const wsjf = [["Ajuste normativo SFC", [8, 13, 8], 5], ["Pagos inmediatos", [13, 8, 5], 8], ["App: nuevo home", [8, 3, 2], 13]];
+    const wsjfD = `<div class="pr-wsjf">
+      <div class="pr-formula"><span>Valor negocio</span><em>+</em><span>Criticidad tiempo</span><em>+</em><span>Reducción riesgo</span><em>÷</em><span>Tamaño</span></div>
+      ${wsjf.map(([t, seg, size], k) => { const cod = seg[0] + seg[1] + seg[2];
+        return `<div class="pr-wrow" style="--d:${0.25 + k * 0.18}s"><span class="pr-wrow__t">${esc(t)}</span>
+          <div class="pr-wrow__stack">${seg.map((v, j) => `<i class="s${j}" style="--w:${(v / 34) * 100}%;--dd:${j * 0.12}s"></i>`).join("")}</div>
+          <span class="pr-wrow__div mono">÷ ${size}</span><strong class="pr-wrow__r">${(cod / size).toFixed(1)}</strong></div>`; }).join("")}
+      <div class="pr-legend mono"><span class="s0">Valor</span><span class="s1">Tiempo</span><span class="s2">Riesgo</span></div>
+    </div>`;
+
+    // MoSCoW
+    const msc = [["Must", "pr-m", ["Validación de identidad", "Firma digital", "Cumplimiento SFC"]], ["Should", "pr-s", ["Simulador", "Notificaciones push"]], ["Could", "pr-c", ["Modo oscuro", "Chat en vivo"]], ["Won't", "pr-w", ["Integración cripto"]]];
+    let mi = 0;
+    const mscD = `<div class="pr-msc">${msc.map(([t, cl, items]) => `<div class="pr-msc__col ${cl}"><strong>${t}</strong>${items.map((x) => `<span style="--d:${0.2 + (mi++) * 0.09}s">${esc(x)}</span>`).join("")}</div>`).join("")}</div>`;
+
+    // Kano
+    const kanoD = `<div class="pr-chart"><svg viewBox="0 0 420 300" aria-hidden="true">
+      <line class="pr-ax" x1="210" y1="14" x2="210" y2="286"/><line class="pr-ax" x1="14" y1="150" x2="406" y2="150"/>
+      <text class="pr-axt" x="216" y="24">Satisfacción +</text><text class="pr-axt" x="216" y="284">Insatisfacción</text>
+      <text class="pr-axt" x="306" y="142">Funcionalidad →</text>
+      <path class="pr-ln pr-ln--a" pathLength="1" d="M20 282 C 150 250, 220 175, 400 160"/>
+      <path class="pr-ln pr-ln--b" pathLength="1" d="M20 262 L 400 38"/>
+      <path class="pr-ln pr-ln--c" pathLength="1" d="M20 142 C 220 140, 300 110, 400 18"/>
+      <g class="pr-lab"><circle class="c-a" cx="330" cy="166" r="5"/><text x="300" y="192">Básicas</text>
+      <circle class="c-b" cx="110" cy="209" r="5"/><text x="122" y="232">Desempeño</text>
+      <circle class="c-c" cx="330" cy="88" r="5"/><text x="226" y="70">Encantadoras</text></g>
+    </svg>
+    <ul class="pr-keys"><li><i class="c-a"></i><b>Básicas:</b> el pago se refleja al instante.</li><li><i class="c-b"></i><b>Desempeño:</b> aprobar el crédito más rápido.</li><li><i class="c-c"></i><b>Encantadoras:</b> crédito preaprobado en un clic.</li></ul></div>`;
+
+    // Cost of Delay
+    const codD = `<div class="pr-chart"><svg viewBox="0 0 420 300" aria-hidden="true">
+      <line class="pr-ax" x1="30" y1="270" x2="406" y2="270"/><line class="pr-ax" x1="30" y1="14" x2="30" y2="270"/>
+      <text class="pr-axt" x="300" y="290">Tiempo →</text><text class="pr-axt" x="38" y="26">Valor perdido</text>
+      <line class="pr-dl" x1="240" y1="20" x2="240" y2="270"/><text class="pr-axt pr-axt--m" x="246" y="44">Fecha normativa</text>
+      <path class="pr-ln pr-ln--b" pathLength="1" d="M30 270 L 400 170"/>
+      <path class="pr-ln pr-ln--c" pathLength="1" d="M30 270 L 240 262 L 240 60 L 400 52"/>
+      <path class="pr-ln pr-ln--a" pathLength="1" d="M30 270 C 70 150, 110 70, 400 40"/>
+    </svg>
+    <ul class="pr-keys"><li><i class="c-b"></i><b>Estándar:</b> cada semana de espera cuesta lo mismo.</li><li><i class="c-c"></i><b>Fecha fija:</b> no cuesta nada hasta la fecha, luego todo.</li><li><i class="c-a"></i><b>Urgente:</b> el valor se pierde rápido, va primero.</li></ul></div>`;
+
+    const methods = [
+      ["RICE", "Puntaje por alcance e impacto", riceD, "Le doy a cada iniciativa un puntaje: a cuántos clientes llega, cuánto los mueve y qué tan seguros estamos, dividido por el esfuerzo.", "Backlog grande con datos de uso. Pone a todas las ideas bajo el mismo criterio y saca la discusión de las opiniones."],
+      ["WSJF", "Costo de retraso ÷ tamaño", wsjfD, "Weighted Shortest Job First: sube lo que más cuesta aplazar y menos tarda en salir.", "Planeación por incrementos con varios equipos, proveedores y dependencias. Clave cuando hay normativa encima."],
+      ["MoSCoW", "Alcance del MVP", mscD, "Separo lo que el producto debe tener para salir de lo que puede esperar.", "Releases con fecha fija y MVPs. Negocio y TI acuerdan alcance sin pelear cada historia."],
+      ["Kano", "Qué espera y qué sorprende", kanoD, "Clasifico funcionalidades por cómo cambian la satisfacción del cliente.", "Discovery y diseño de propuesta de valor: evita invertir de más en lo básico y de menos en lo que diferencia."],
+      ["Cost of Delay", "Cuánto cuesta esperar", codD, "Modelo cómo se pierde valor cada semana que algo no sale.", "Cuando hay fechas regulatorias o ventanas de mercado. Explica a comité por qué algo va antes."],
+      ["Impacto / Esfuerzo", "Matriz con OKR", mxSvg, "Cada iniciativa se ubica por su impacto en los OKR contra el esfuerzo de construirla.", "Revisión rápida de roadmap con negocio. Saca los quick wins y deja claras las grandes apuestas."],
+    ];
+    const pri = `<div class="po-pri rv" data-pri>
+      <div class="po-pri__nav" role="tablist">${methods.map(([t, s], k) => `<button type="button" role="tab" class="po-pri__tab${k ? "" : " is-on"}" data-k="${k}" aria-selected="${k ? "false" : "true"}"><span class="mono">${pad2(k + 1)}</span><strong>${t}</strong><small>${s}</small><i class="po-pri__prog"></i></button>`).join("")}</div>
+      <div class="po-pri__stage">${methods.map(([t, s, d, what, when], k) => `<div class="po-pri__panel${k ? "" : " is-on"}" role="tabpanel" data-k="${k}">
+        <div class="po-pri__viz">${d}</div>
+        <div class="po-pri__txt"><p class="mono po-pri__kick">${pad2(k + 1)} / ${pad2(methods.length)}</p><h4>${t}</h4><p>${what}</p><p class="po-pri__when"><b class="mono">CUÁNDO LO USO</b>${when}</p></div>
+      </div>`).join("")}</div>
+      <p class="note">Ejemplos ilustrativos para mostrar cada método. No corresponden a un backlog real.</p>
     </div>`;
 
     const N = c.channels.length;
@@ -1020,16 +1081,34 @@
       <div class="sec__body"><h3 class="st-title">${title}</h3>${body ? `<p class="prose">${body}</p>` : ""}</div></div>${extra}</section>`;
     return hero +
       S("PERFIL", "Producto, negocio y tecnología en la misma mesa.", esc(c.summary), kpis) +
+      S("PRIORIZACIÓN", "Priorizar es decidir qué no se hace.", "Uso varios métodos según el momento: datos para ordenar el backlog, costo de retraso cuando hay normativa encima y MoSCoW para cerrar el alcance de un MVP.", pri, "band--po2") +
       S("TRAYECTORIA", "Nueve años construyendo producto en banca y seguros.", "", tl) +
       S("MÉTODO", "Primero el problema correcto, luego la solución correcta.", "Design Thinking para descubrir y definir; ágil para desarrollar y entregar.", dd) +
-      S("EJECUCIÓN ÁGIL", "Scrum, Kanban y ágil híbrido.", "Equipos multidisciplinarios entre negocio, TI y proveedores, entregando en ciclos cortos.", scrum, "band--po2") +
-      S("PRIORIZACIÓN", "OKR e impacto contra esfuerzo.", "", matrix) +
+      S("EJECUCIÓN ÁGIL", "Scrum, Kanban y ágil híbrido.", "Equipos multidisciplinarios entre negocio, TI y proveedores, entregando en ciclos cortos.", scrum) +
       S("ECOSISTEMA", "Un producto financiero toca muchas piezas.", "Coordino canales, tecnología, proveedores y negocio para que el producto llegue completo a producción.", eco) +
       S("CONVERSIÓN", "Optimizar el funnel con datos.", "Análisis del recorrido del cliente para quitar fricción en cada paso del canal digital.", funnel) +
       S("HERRAMIENTAS", "Cómo trabajo.", "", `<div class="chips rv" style="margin-top:28px">${c.tools.map((x) => `<span class="chip">${esc(x)}</span>`).join("")}</div>`) +
       S("FORMACIÓN", "Formación y certificaciones.", "", edu) +
       sec(++k, "CONTACTO", `<div class="links">${bigLink("LinkedIn", SITE.links.linkedin, "Trayectoria completa")}${bigLink(SITE.email, `mailto:${SITE.email}`, "Email")}</div>`) +
       nextBlock(i) + footer();
+  }
+
+  let priTimer = 0;
+  function initPri() {
+    clearInterval(priTimer);
+    const root = $("[data-pri]", dContent); if (!root) return;
+    const tabs = $$(".po-pri__tab", root), panels = $$(".po-pri__panel", root);
+    let cur = 0, auto = true;
+    const go = (k) => { cur = k;
+      tabs.forEach((t, j) => { t.classList.toggle("is-on", j === k); t.setAttribute("aria-selected", j === k); t.classList.remove("is-run"); });
+      panels.forEach((p, j) => p.classList.toggle("is-on", j === k));
+      if (auto) { void tabs[k].offsetWidth; tabs[k].classList.add("is-run"); }
+      const nav = tabs[k].parentNode; nav.scrollTo({ left: tabs[k].offsetLeft - (nav.clientWidth - tabs[k].offsetWidth) / 2, behavior: "smooth" });
+    };
+    tabs.forEach((t, j) => t.addEventListener("click", () => { auto = false; clearInterval(priTimer); go(j); }));
+    const io = new IntersectionObserver((es) => { if (!es[0].isIntersecting || !auto) return; io.disconnect(); go(0);
+      priTimer = setInterval(() => { if (!auto || !root.isConnected) return clearInterval(priTimer); go((cur + 1) % tabs.length); }, 7000); }, { threshold: 0.35 });
+    io.observe(root);
   }
 
   function runCounters() {
@@ -1134,7 +1213,7 @@
     const r = c.layout === "story" ? renderStory : { po: renderPO, about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
     dContent.innerHTML = r(c, i);
     lazyDetail();
-    if (c.kind === "po") setTimeout(runCounters, 50);
+    if (c.kind === "po") { setTimeout(runCounters, 50); initPri(); }
     $("#d-count").textContent = `${pad2(i + 1)} / ${pad2(N)}`;
     document.title = `${c.title} — JV · The Creative Deck`;
   }
