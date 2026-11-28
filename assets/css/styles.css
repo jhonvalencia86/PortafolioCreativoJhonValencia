@@ -1801,3 +1801,26 @@ html[data-theme="night"] .bx-cd__line li::before { box-shadow: 0 0 0 5px rgba(95
 @media (prefers-reduced-motion: reduce) {
   .theme-tg, .theme-tg * { transition: none !important; animation: none !important; }
 }
+
+/* ---------- WhatsApp flotante ---------- */
+.wa { position: fixed; right: 14px; bottom: 14px; z-index: 80; display: flex; align-items: center; height: 42px; padding: 0 11px; border-radius: 999px;
+  background: rgba(21,21,21,.86); color: #fff; text-decoration: none; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 8px 24px -10px rgba(0,0,0,.45); transition: background-color .3s, box-shadow .3s, transform .4s var(--ease-out), bottom .4s var(--ease-out);
+  animation: waIn .7s 2.2s both var(--ease-out); }
+.wa svg { width: 20px; height: 20px; flex: none; fill: #25D366; }
+.wa span { max-width: 0; overflow: hidden; white-space: nowrap; font-family: var(--f-mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  opacity: 0; transition: max-width .45s var(--ease-out), opacity .3s, margin .45s var(--ease-out); }
+.wa:hover, .wa:focus-visible { background: #128C4A; box-shadow: 0 10px 28px -8px rgba(18,140,74,.6); }
+.wa:hover svg, .wa:focus-visible svg { fill: #fff; }
+.wa:hover span, .wa:focus-visible span { max-width: 110px; opacity: 1; margin-left: 8px; }
+.wa:active { transform: scale(.95); }
+@keyframes waIn { from { opacity: 0; transform: translateY(10px) scale(.9); } }
+/* en la portada, por encima de los controles de la baraja */
+body:not(.is-detail):not(.is-index) .wa { bottom: calc(var(--ui-h) + 12px); }
+.is-intro .wa { opacity: 0; pointer-events: none; }
+html[data-theme="night"] .wa { background: rgba(14, 20, 44, .72); border: 1px solid rgba(231,235,245,.14); }
+html[data-theme="night"] .wa:hover { background: #128C4A; border-color: transparent; }
+@media (max-width: 640px) { .wa { right: 12px; height: 40px; padding: 0 10px; } }
+@media (prefers-reduced-motion: reduce) { .wa { animation: none; } }
+body.is-detail:has(.detail:not(.is-scrolled)) .wa { opacity: 0; transform: translateY(12px) scale(.9); pointer-events: none; }
+.wa { transition: background-color .3s, box-shadow .3s, transform .45s var(--ease-out), bottom .4s var(--ease-out), opacity .35s; }
