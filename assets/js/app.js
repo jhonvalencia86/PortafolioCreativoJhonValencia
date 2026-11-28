@@ -722,7 +722,7 @@
   function heroImage(c) {
     const k = c.card;
     const m = mediaAttrs(c, "hero");
-    return `<section class="p-hero" data-fit="${m.fit}" style="${m.style}${k.heroInk ? `;--hink:${k.heroInk}` : ""}">
+    return `<section class="p-hero" data-id="${esc(c.id)}" data-fit="${m.fit}" style="${m.style}${k.heroInk ? `;--hink:${k.heroInk}` : ""}">
       <div class="p-hero__media" data-fit="${m.fit}"${m.blend} ${m.fit === "cover" ? `style="background-image:url('${esc(k.src)}')"` : ""}>
         <img src="${esc(m.src)}" alt="${esc(c.title)} — portada" fetchpriority="high" decoding="async">
       </div>
@@ -858,7 +858,7 @@
         `<figure class="slide${k === 0 ? " slide--lead" : ""}"><img src="${esc(it.src)}" alt="${esc(it.alt)}" loading="lazy" decoding="async" width="${it.w}" height="${it.h}" data-lb><span class="slide__n mono">${pad2(k + 1)}</span></figure>`).join("")}</div></div>`;
     } else if (b.type === "cards") {
       const cc = b.colors ? b.colors.map(([bg, fg], k) => `--k${k}:${bg};--f${k}:${fg}`).join(";") : "";
-      extra = `<ol class="cards rv${b.colors ? " cards--custom" : ""}" style="${cc}">${b.cards.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
+      extra = `<ol class="cards rv${b.colors ? " cards--custom" : ""}${b.cards.length === 4 ? " cards--n4" : ""}" style="${cc}">${b.cards.map(([t, d], k) => `<li><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>`;
     } else if (b.type === "covers") {
       const row = b.items.map((g) => `<figure class="cv" style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" data-lb></figure>`).join("");
       extra = `<div class="marquee rv" aria-label="Portadas"><div class="marquee__track">${row}<div class="marquee__dup" aria-hidden="true">${row.replace(/ data-lb/g, "")}</div></div></div>`;
@@ -900,6 +900,98 @@
               </div>
             </div>
           </div></div>`;
+    } else if (b.type === "jgap") {
+      const N = b.steps.length, X = (k) => 60 + (k * 880) / (N - 1);
+      extra = `<div class="bx-jg rv"><svg viewBox="0 0 1000 230" aria-hidden="true">
+          ${b.steps.map((s, k) => `<text class="bx-jg__st" x="${X(k)}" y="22" text-anchor="middle">${esc(s)}</text>`).join("")}
+          <rect class="bx-jg__gap" x="${X(b.gap) - 48}" y="38" width="96" height="160" rx="14"/>
+          <circle class="bx-jg__pulse" cx="${X(b.gap)}" cy="118" r="18"/>
+          ${b.rows.map(([name, sub, a, z], r) => { const y = 80 + r * 80;
+            return `<line class="bx-jg__base" x1="${X(0)}" y1="${y}" x2="${X(N - 1)}" y2="${y}"/>
+              <line class="bx-jg__ln bx-jg__ln--${r}" pathLength="1" x1="${X(a)}" y1="${y}" x2="${X(z)}" y2="${y}" style="--d:${0.3 + r * 0.5}s"/>
+              ${Array.from({ length: z - a + 1 }, (_, k) => `<circle class="bx-jg__dot bx-jg__dot--${r}" cx="${X(a + k)}" cy="${y}" r="9" style="--d:${0.4 + r * 0.5 + k * 0.15}s"/>`).join("")}`; }).join("")}
+          <text class="bx-jg__gt" x="${X(b.gap)}" y="222" text-anchor="middle">Brecha: nadie acompaña la mudanza</text>
+        </svg>
+        <div class="bx-jg__legend">${b.rows.map(([name, sub], r) => `<span class="bx-jg__lg bx-jg__lg--${r}"><i></i><b>${esc(name)}</b> ${esc(sub)}</span>`).join("")}</div>
+        <div class="bx-trio">${b.cause.map(([t, d], k) => `<div style="--d:${0.8 + k * 0.15}s"><span class="mono">${esc(t)}</span><p>${esc(d)}</p></div>`).join("")}</div>
+      </div>`;
+    } else if (b.type === "curve") {
+      const st = ["Buscar", "Formalizar", "Mudarse", "Proteger", "Habitar", "Renovar"];
+      const pts = [["Expectativa", 60, 70], ["Dudas", 240, 150], ["Sobrecarga", 420, 240], ["Entra Mi Plan", 420, 240], ["Alivio", 600, 120], ["Tranquilidad", 780, 70], ["Confianza", 940, 30]];
+      extra = `<div class="bx-cv rv">
+        <blockquote class="bx-cv__q">${esc(b.quote)}<span class="mono">Laura · 33 años · arrendataria en Bogotá</span></blockquote>
+        <svg viewBox="0 0 1000 320" aria-hidden="true">
+          <defs><linearGradient id="bxg" x1="0" x2="1"><stop offset="0" stop-color="#9FB4A6"/><stop offset=".42" stop-color="#C9472B"/><stop offset=".5" stop-color="#F6D33C"/><stop offset="1" stop-color="#0B7A3E"/></linearGradient></defs>
+          ${st.map((s, k) => `<text class="bx-cv__st" x="${60 + k * 176}" y="312" text-anchor="middle">${s}</text>`).join("")}
+          <path class="bx-cv__ln" pathLength="1" d="M60 70 C 160 80, 200 140, 260 160 S 380 250, 420 240 S 520 140, 600 120 S 720 70, 790 68 S 900 40, 940 30"/>
+          <g class="bx-cv__mk"><circle cx="420" cy="240" r="12"/><text x="436" y="276">Entra Mi Plan de Hogar</text></g>
+          ${pts.filter((p) => p[0] !== "Entra Mi Plan").map(([t, x, y], k) => `<text class="bx-cv__lb" x="${x}" y="${y - 16}" text-anchor="middle" style="--d:${0.4 + k * 0.22}s">${t}</text>`).join("")}
+        </svg>
+        <p class="bx-cv__ins"><b class="mono">INSIGHT</b>Orientar antes de vender.</p>
+      </div>`;
+    } else if (b.type === "hub") {
+      extra = `<div class="bx-hub rv">
+        <ul class="bx-hub__col">${b.signals.map((s, k) => `<li style="--d:${k * 0.12}s"><i></i>${esc(s)}</li>`).join("")}</ul>
+        <svg class="bx-hub__wires" viewBox="0 0 200 400" preserveAspectRatio="none" aria-hidden="true">${[50, 150, 250, 350].map((y, k) => `<path pathLength="1" d="M0 ${y} C 100 ${y}, 100 200, 200 200" style="--d:${0.3 + k * 0.1}s"/>`).join("")}</svg>
+        <div class="bx-hub__core"><span class="bx-hub__ring"></span><strong>Mi Plan<br>de Hogar</strong><small>Checklist personal y siguiente paso</small></div>
+        <svg class="bx-hub__wires bx-hub__wires--out" viewBox="0 0 200 400" preserveAspectRatio="none" aria-hidden="true">${[50, 150, 250, 350].map((y, k) => `<path pathLength="1" d="M0 200 C 100 200, 100 ${y}, 200 ${y}" style="--d:${0.9 + k * 0.1}s"/>`).join("")}</svg>
+        <ul class="bx-hub__col bx-hub__col--out">${b.leaders.map(([t, d], k) => `<li style="--d:${1.2 + k * 0.12}s"><b>${esc(t)}</b><span>${esc(d)}</span></li>`).join("")}</ul>
+      </div>`;
+    } else if (b.type === "moments") {
+      extra = `<ol class="bx-mo rv">${b.items.map(([t, lead, ch, sig], k) => `<li class="${k === b.star ? "is-star" : ""}" style="--d:${k * 0.1}s">
+          <span class="bx-mo__n mono">${pad2(k + 1)}${k === b.star ? " ★" : ""}</span><strong>${esc(t)}</strong>
+          <dl><dt>Lidera → acompaña</dt><dd>${esc(lead)}</dd><dt>Canal</dt><dd>${esc(ch)}</dd><dt>Señal que activa</dt><dd>${esc(sig)}</dd></dl></li>`).join("")}</ol>`;
+    } else if (b.type === "allies") {
+      extra = `<div class="bx-al rv">
+        <div class="bx-al__stats">${b.stats.map(([v, suf, t]) => `<div><strong><span data-count="${v}">${v}</span>${suf}</strong><p>${esc(t)}</p></div>`).join("")}</div>
+        <div class="bx-trio bx-trio--cards">${b.cards.map(([t, d], k) => `<div style="--d:${0.3 + k * 0.15}s">${k === 0 ? '<span class="bx-ai mono">IA</span>' : ""}<strong>${esc(t)}</strong><p>${esc(d)}</p></div>`).join("")}</div>
+        <ol class="bx-flow">${b.flow.map((f, k) => `<li style="--d:${0.8 + k * 0.15}s"><span class="mono">${k + 1}</span>${esc(f)}</li>`).join("")}</ol>
+        <p class="note">${esc(b.source)}</p>
+      </div>`;
+    } else if (b.type === "ice") {
+      const sc = (a) => (a[0] + a[1] + a[2]) / 3;
+      extra = `<div class="bx-ice rv">
+        <div class="pr-formula"><span><b>I</b>mpacto</span><em>+</em><span><b>C</b>onfianza</span><em>+</em><span><b>F</b>acilidad</span><em>÷ 3</em></div>
+        ${b.items.map(([t, d, v, goal, test], k) => `<div class="bx-ice__row" style="--d:${0.2 + k * 0.15}s;--w:${sc(v) * 10}%">
+          <strong class="bx-ice__sc">${sc(v).toFixed(1).replace(".", ",")}</strong>
+          <div class="bx-ice__main"><b>H${k + 1} · ${esc(t)}</b><p>${esc(d)}</p><span class="bx-ice__bar"><i></i></span></div>
+          <div class="bx-ice__v mono">${["I", "C", "F"].map((x, j) => `<span>${x}${v[j]}</span>`).join("")}</div>
+          <div class="bx-ice__goal"><b>${esc(goal)}</b><span class="mono">${esc(test)}</span></div></div>`).join("")}
+      </div>`;
+    } else if (b.type === "cadence") {
+      extra = `<div class="bx-cd rv">
+        <ol class="bx-cd__line">${b.days.map(([d, t], k) => `<li style="--d:${k * 0.25}s"><span class="mono">${esc(d)}</span><p>${esc(t)}</p></li>`).join("")}</ol>
+        <div class="bx-cd__imgs">${b.images.map((g) => `<figure style="aspect-ratio:${g.w}/${g.h}"><img src="${esc(g.src)}" alt="${esc(g.alt)}" loading="lazy" decoding="async" data-lb><figcaption class="mono">${esc(g.alt)}</figcaption></figure>`).join("")}</div>
+      </div>`;
+    } else if (b.type === "results") {
+      const mx = Math.max(...b.rows.map((r) => r[2]));
+      extra = `<div class="bx-rs rv">
+        <div class="bx-rs__kpis">${b.kpis.map(([v, pre, suf, t, d]) => `<div><strong>${pre}<span data-count="${v}">${v}</span>${suf}</strong><b>${esc(t)}</b><span class="mono">${esc(d)}</span></div>`).join("")}</div>
+        <div class="bx-rs__chart">
+          <div class="bx-rs__lg mono"><span class="c0">Control</span><span class="c1">Piloto (meta)</span></div>
+          ${b.rows.map(([t, c0, c1, u], k) => `<div class="bx-rs__row" style="--d:${k * 0.12}s"><span class="bx-rs__t">${esc(t)}</span>
+            <div class="bx-rs__bars"><i class="c0" style="--w:${(c0 / mx) * 100}%"><em>${c0}${u}</em></i><i class="c1" style="--w:${(c1 / mx) * 100}%"><em>${c1}${u}</em></i></div></div>`).join("")}
+          <p class="note">${esc(b.note)}</p>
+        </div>
+      </div>`;
+    } else if (b.type === "aiflow") {
+      extra = `<div class="bx-ai-f rv">
+        <ol class="bx-steps5">${b.steps.map(([t, d], k) => `<li style="--d:${k * 0.15}s"><span class="mono">${pad2(k + 1)}</span><strong>${esc(t)}</strong><p>${esc(d)}</p></li>`).join("")}</ol>
+        <div class="bx-ai-f__grid">
+          <table class="bx-tools"><thead><tr><th>Tarea</th><th>Herramienta de IA</th><th>Cómo la uso</th></tr></thead>
+            <tbody>${b.tools.map(([a, t, c]) => `<tr><td>${esc(a)}</td><td><b>${esc(t)}</b></td><td>${esc(c)}</td></tr>`).join("")}</tbody></table>
+          <div class="bx-w"><p class="mono">CÓMO PUNTÚO CADA SOLICITUD</p>${b.weights.map(([t, v], k) => `<div class="bx-w__r" style="--w:${v * 2.6}%;--d:${0.3 + k * 0.1}s"><span>${esc(t)}</span><i></i><b>${v}%</b></div>`).join("")}</div>
+        </div>
+      </div>`;
+    } else if (b.type === "gantt") {
+      extra = `<div class="bx-gt rv">
+        <div class="bx-gt__head"><span></span>${b.phases.map((p) => `<span class="mono">${esc(p)}</span>`).join("")}</div>
+        ${b.rows.map(([name, bars], r) => `<div class="bx-gt__row"><strong>${esc(name)}</strong><div class="bx-gt__track">${bars.map(([a, z, t], k) =>
+          `<i style="--a:${a};--z:${z};--d:${r * 0.12 + k * 0.2}s">${esc(t)}</i>`).join("")}</div></div>`).join("")}
+        <div class="bx-gt__miles"><span></span><div>${b.miles.map(([d, t], k) => `<em style="--x:${(d / 90) * 100}%;--d:${1 + k * 0.15}s"><b class="mono">D${d}</b>${esc(t)}</em>`).join("")}</div></div>
+      </div>`;
+    } else if (b.type === "note") {
+      return `<section class="sec sec--note"><p class="note bx-note rv">${esc(b.text)}</p></section>`;
     } else if (b.type === "figures") {
       extra = `<div style="height:clamp(24px,3vw,40px)"></div>${figs(b.items)}`;
     }
@@ -909,7 +1001,7 @@
   function renderStory(c, i) {
     const facts = `<dl class="facts facts--4">${(c.facts || []).map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join("")}</dl>`;
     let n = 1;
-    const blocks = c.story.filter((b) => !(b.type === "social" && !(b.items && b.items.length) && !b.profile)).map((b) => storyBlock(b, ++n)).join("");
+    const blocks = c.story.filter((b) => !(b.type === "social" && !(b.items && b.items.length) && !b.profile)).map((b) => storyBlock(b, b.type === "note" ? n : ++n)).join("");
     const links = c.links && c.links.length
       ? sec(++n, "ENLACES", `<div class="links">${c.links.map((l) => bigLink(l.label, l.url, l.sub || "")).join("")}</div>`)
       : "";
@@ -1213,7 +1305,7 @@
     const r = c.layout === "story" ? renderStory : { po: renderPO, about: renderAbout, contact: renderContact, archive: renderArchive, pending: renderPending }[c.kind] || renderProject;
     dContent.innerHTML = r(c, i);
     lazyDetail();
-    if (c.kind === "po") { setTimeout(runCounters, 50); initPri(); }
+    setTimeout(runCounters, 50); if (c.kind === "po") initPri();
     $("#d-count").textContent = `${pad2(i + 1)} / ${pad2(N)}`;
     document.title = `${c.title} — JV · The Creative Deck`;
   }

@@ -94,9 +94,106 @@ window.JV_DECK = [
     certs: ["Scrum Master · 2025", "IA para Gerentes · Microsoft y LinkedIn · 2026", "Google Project Management · 2024", "Fintech y Banca Digital · CESA · 2023", "Transformación Digital de Gobiernos · BID · 2024", "Product Owner · Platzi · 2022", "Design Thinking · Javeriana · 2017", "IA para el sector público · MinTIC · 2025"]
   },
 
-  /* ---------------------------------------------------------------- 01 */
+  /* ---------------------------------------------------------------- Bolívar */
   {
     number: "02",
+    id: "bolivar-contigo",
+    kind: "project",
+    layout: "story",
+    published: true,
+    title: "BOLÍVAR CONTIGO HOGAR",
+    category: "MARKETING · PERFORMANCE · IA",
+    year: "2026",
+    color: "#0B7A3E",
+    ink: "#FFFFFF",
+    accent: "#F6D33C",
+    paper: "#FBFAF5",
+    theme: "light",
+    tags: ["Marketing de ciclo de vida", "Performance", "IA", "Seguros"],
+    short: "Caso de negocio: Seguros Bolívar y Servicios Bolívar acompañando la mudanza en un solo journey, activado por señales y medido contra grupo de control.",
+    card: { template: "frame", src: IMG + "bolivar/card-bolivar.webp", hero: IMG + "bolivar/hero-bolivar.webp", fit: "cover", heroFit: "cover", bg: "#FDFEFC", heroBg: "#0B7A3E", pos: "50% 30%", heroPos: "100% 40%", heroInk: "#0B5D30", ar: "16 / 9", flyFromCard: true },
+    lead: "Un hogar, una sola experiencia.",
+    facts: [
+      ["AÑO", "2026"],
+      ["TIPO", "Caso de negocio · Estratega de Marketing"],
+      ["INDUSTRIA", "Seguros · Vivienda"],
+      ["MI ROL", "Estrategia · Performance · IA · Piezas"]
+    ],
+    story: [
+      { type: "note", text: "Caso conceptual desarrollado para un proceso de selección. No es una campaña oficial de Seguros Bolívar. Las cifras del piloto son simuladas." },
+
+      { type: "video", label: "EL COMERCIAL", title: "Ya tienes las llaves. Ahora, organicemos lo demás.",
+        body: "La pieza de 10 segundos que resume la idea: la mudanza como momento de verdad y Bolívar como el acompañante que pone orden.",
+        src: "assets/video/bolivar-comercial.mp4", poster: IMG + "bolivar/poster-comercial.webp", w: 1920, h: 1080 },
+
+      { type: "jgap", label: "EL PROBLEMA", title: "Hoy son dos viajes en paralelo.",
+        body: "Servicios Bolívar acompaña buscar y formalizar. Seguros Bolívar llega a proteger. En el medio queda la mudanza, y ahí nadie acompaña.",
+        steps: ["Buscar", "Formalizar", "Mudarse", "Proteger", "Habitar", "Renovar"],
+        rows: [["Servicios Bolívar", "Ciencuadras · El Libertador", 0, 1], ["Seguros Bolívar", "Hogar y asistencias", 3, 5]], gap: 2,
+        cause: [["Síntoma", "Cada marca habla por su lado y la mudanza queda sin acompañar."], ["Causa raíz", "Datos y metas por marca, campañas por calendario, aliados sin incentivo cruzado."], ["Impacto", "Menos venta cruzada, menos permanencia y doble costo de adquisición."]] },
+
+      { type: "curve", label: "LA PROTAGONISTA", title: "La mudanza es el momento de verdad.",
+        body: "Laura, 33 años, arrendataria en Bogotá (persona ficticia). En la sobrecarga no quiere un seguro: quiere orden. Si la ayudamos a organizar, la protección llega como el paso lógico.",
+        quote: "“Ya encontré apartamento. Ahora tengo que organizar todo lo demás.”" },
+
+      { type: "hub", label: "LA SOLUCIÓN", title: "Mi Plan de Hogar: un solo acompañante.", band: "bol",
+        body: "Un checklist personal que se activa con señales de vida y entrega el siguiente paso a la marca que sabe de eso. Sin app nueva.",
+        signals: ["Contrato de arriendo firmado", "Fecha de mudanza", "Vencimiento de póliza o contrato", "Intención: compro o vendo"],
+        leaders: [["Ciencuadras", "buscar, comprar, vender"], ["El Libertador", "formalizar el arriendo"], ["Seguros Bolívar", "proteger y asistir"], ["Aliado", "acompañar en persona"]] },
+
+      { type: "moments", label: "EL VIAJE", title: "Seis momentos, una sola conversación.",
+        body: "En cada momento lidera una marca, acompaña la otra y una señal activa el siguiente paso.",
+        items: [["Buscar", "Ciencuadras → Seguros", "Portal, SEO, asesor", "Visita agendada + autorización"], ["Formalizar", "El Libertador → Ciencuadras", "Inmobiliaria, email", "Contrato firmado"], ["Mudarse", "Servicios → Seguros", "Email, WhatsApp autorizado", "Fecha de mudanza"], ["Proteger", "Seguros → Servicios", "Landing, agente o corredor", "Ítem “proteger” pendiente"], ["Habitar", "Seguros → Servicios", "Bolívar Conmigo, asistencia", "Uso de asistencia o día 90"], ["Renovar", "Ambas, según la necesidad", "CRM, asesor", "Vencimiento o intención"]], star: 2 },
+
+      { type: "allies", label: "ALIADOS + IA", title: "El canal ya existe: Red Hogar Bolívar.",
+        stats: [[56, "%", "de las primas pasa por agentes, agencias y corredores"], [40, "%", "de los hogares en Colombia vive en arriendo"]],
+        cards: [["Radar de señales con IA", "Un copiloto en WhatsApp avisa al aliado cuando su cliente firma, se muda o vende, y le sugiere el mensaje."], ["Oferta en el estudio", "Al aprobarse el estudio de arriendo, el inquilino activa Mi Plan de Hogar en un clic."], ["Comisión por relación", "Quien refiere conserva su cliente y gana en la venta y en cada renovación."]],
+        flow: ["Detecta", "El cliente autoriza", "Lead ID", "Contacto en 24 h", "Gana por cierre"],
+        source: "Fuentes: Fundación Mapfre (datos 2021) · Ciencuadras y El Libertador (2025) · SFC. Piloto: 30 inmobiliarias + 20 agentes." },
+
+      { type: "ice", label: "PERFORMANCE", title: "Probar antes de escalar.",
+        body: "Cuatro hipótesis priorizadas con ICE: impacto, confianza y facilidad de 1 a 10. Todas con grupo de control; se escala solo con margen incremental y sin más quejas ni cancelaciones.",
+        items: [["Mensaje en contexto", "Un mensaje tras firmar el contrato convierte más que uno genérico.", [9, 9, 9], "+30% leads calificados", "A/B · 4.000 · 30 días"], ["Orientar antes de vender", "Dar el checklist primero genera más cotizaciones que vender directo.", [9, 8, 8], "+25% cotizaciones", "A/B · 3.000 · 30 días"], ["Asesor aliado", "Un asesor aliado cierra más ventas que la ruta solo digital.", [9, 7, 7], "+20% conversión", "Piloto 20 asesores · 45 días"], ["Canal WhatsApp", "WhatsApp autorizado activa más planes que el email.", [7, 7, 7], "+20% activación", "A/B · 3.000 · 21 días"]] },
+
+      { type: "web", direct: true, label: "LA LANDING", title: "Mi Plan de Hogar, navegable.",
+        body: "El destino de toda la secuencia. Prototipo funcional: el formulario no envía datos.",
+        url: "assets/web/bolivar/mi-plan-de-hogar.html", domain: "Prototipo · Mi Plan de Hogar" },
+
+      { type: "cadence", label: "LAS PIEZAS", title: "Ofrecer orden, no un seguro.",
+        body: "Brief 001: activar el plan tras el arriendo. Meta: 25% de los elegibles crea su plan en 7 días. Una promesa y un CTA por pieza; quien avanza sale de la secuencia y nadie recibe más de un contacto cada 48 h.",
+        days: [["Día 0", "Contrato firmado"], ["Día 1", "Email de bienvenida"], ["Día 3", "WhatsApp si “proteger” sigue pendiente"], ["Día 7", "Banner solo a quien no actuó"], ["Día 10", "Llamada del aliado"]],
+        images: [{ src: IMG + "bolivar/pieza-email.webp", alt: "Pieza email · Nuevo hogar, más tranquilidad", w: 1536, h: 1024 }, { src: IMG + "bolivar/pieza-whatsapp.webp", alt: "Pieza WhatsApp · Seguro de Hogar", w: 1122, h: 1402 }] },
+
+      { type: "results", label: "MEDICIÓN", title: "El reporte del día 90.", band: "bol",
+        body: "North Star: porcentaje de elegibles con producto activo en ambas marcas. Decisión el día 90: escalar, iterar o detener.",
+        kpis: [[12, "", "%", "Relación dual", "vs. 8% del control"], [200, "", "", "Relaciones incrementales", "5.000 × 4 pp"], [20, "$", " M", "Margen neto", "200 × $250.000 − $30 M"], [67, "", "%", "ROI incremental", "$20 M / $30 M invertidos"]],
+        rows: [["Leads calificados / elegibles", 5, 8, "%"], ["Cotizaciones / leads", 40, 50, "%"], ["Ventas / cotizaciones", 20, 25, "%"], ["Ventas originadas por aliados", 20, 35, "%"], ["NPS del momento mudanza", 45, 55, ""]],
+        note: "Simulado: 5.000 en piloto y 5.000 en control. Cifras supuestas." },
+
+      { type: "aiflow", label: "IA EN LA OPERACIÓN", title: "Método primero, IA después.",
+        body: "Así operaría el día a día del equipo: todo entra por un solo lugar, la IA ordena y redacta, yo priorizo y decido. Revisión humana siempre y cero datos personales en IA pública.",
+        steps: [["Entra", "Todo por un solo formulario"], ["Ordena", "La IA clasifica y arma el brief"], ["Prioriza", "Puntaje y matriz, no urgencia"], ["Ejecuta", "Tablero con capacidad y SLA"], ["Aprende", "Resultado medido y reportado"]],
+        tools: [["Recibir solicitudes", "Copilot + Power Automate", "Clasifica y completa el brief base"], ["Briefs y copys", "Claude o ChatGPT empresarial", "Primer borrador y variantes A/B"], ["Bocetos", "Firefly o Canva IA", "Prototipos para probar antes de producir"], ["Reportes", "Power BI con Copilot", "Resumen semanal automático de KPIs"]],
+        weights: [["Impacto", 35], ["Alineación", 25], ["Urgencia", 20], ["Evidencia", 10], ["Esfuerzo", 10]] },
+
+      { type: "gantt", label: "PLAN DE TRABAJO", title: "90 días, cinco frentes.",
+        phases: ["Días 1–30 · Preparar", "Días 31–60 · Probar", "Días 61–90 · Decidir"],
+        rows: [["Datos y legal", [[0, 1, "Línea base, autorizaciones (Ley 1581) y reglas de señal"], [1, 3, "Control semanal de calidad de datos y consentimientos"]]], ["Producción", [[0, 1, "Brief 001: landing, email, WhatsApp y kit del aliado"], [1, 2, "Variantes A/B para H1, H2 y H4"], [2, 3, "Optimizar las piezas ganadoras"]]], ["CRM y canales", [[0, 1, "Disparador del contrato, Lead ID y secuencia"], [1, 3, "Operar la secuencia por señales y ajustar reglas"]]], ["Aliados", [[0, 1, "Elegir 30 inmobiliarias y 20 agentes"], [1, 2, "Arranca la prueba H3 con asesores"], [2, 3, "Primeros niveles Aliado Hogar"]]], ["Medición", [[0, 1, "Tablero y grupo de control"], [1, 2, "Lectura intermedia del día 45"], [2, 3, "Reporte del día 90 y decisión"]]]],
+        miles: [[15, "Línea base"], [30, "Lanzamiento"], [45, "Lectura intermedia"], [90, "Escalar, iterar o detener"]] },
+
+      { type: "cards", label: "POR QUÉ DECIDÍ ASÍ", title: "Bolívar ya tiene las soluciones. Falta conectar la relación.",
+        colors: [["#0B7A3E", "#FFFFFF"], ["#F6D33C", "#0B3D22"], ["#FFFFFF", "#0B3D22"], ["#0B3D22", "#FFFFFF"]],
+        cards: [["Mudanza primero", "Es el momento de mayor intención y hoy nadie lo acompaña."], ["Señales, no calendario", "Hablamos solo cuando hay una necesidad real."], ["Orientar antes de vender", "El plan da confianza y la protección llega sola."], ["Aliados como dueños", "Más de la mitad de las primas ya pasa por ellos."]] },
+
+      { type: "deck", label: "LA PRESENTACIÓN", title: "El caso completo.", body: "Las 15 láminas que presenté. Clic para ampliar.",
+        spec: "15 LÁMINAS · 16:9",
+        items: Array.from({ length: 15 }, (_, k) => ({ src: IMG + `bolivar/slides/slide-${String(k + 1).padStart(2, "0")}.webp`, alt: `Bolívar Contigo Hogar · lámina ${k + 1}`, w: 1600, h: 900 })) }
+    ]
+  },
+
+  /* ---------------------------------------------------------------- 01 */
+  {
+    number: "03",
     id: "a36cuotas",
     kind: "project",
     layout: "story",
@@ -276,7 +373,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 02 */
   {
-    number: "03",
+    number: "04",
     id: "chrome-lovers",
     kind: "project",
     layout: "story",
@@ -367,7 +464,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 03 */
   {
-    number: "04",
+    number: "05",
     id: "credito-inteligente",
     kind: "project",
     layout: "story",
@@ -491,7 +588,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 04 */
   {
-    number: "05",
+    number: "06",
     id: "chappetag",
     kind: "project",
     layout: "story",
@@ -638,7 +735,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 06 */
   {
-    number: "06",
+    number: "07",
     id: "tu-crm-seguro",
     kind: "project",
     layout: "story",
@@ -760,7 +857,7 @@ window.JV_DECK = [
 
   /* ---------------------------------------------------------------- 08 */
   {
-    number: "07",
+    number: "08",
     id: "creative-archive",
     kind: "archive",
     published: true,
@@ -802,12 +899,11 @@ window.JV_DECK = [
      Human Experience (Colsubsidio), Bolívar Contigo Hogar e IMETEC
      no se publican hasta tener el material autorizado.               */
   { number: "09", id: "colsubsidio", title: "HUMAN EXPERIENCE", category: "ACADEMIC INNOVATION", published: false },
-  { number: "10", id: "bolivar-contigo", title: "BOLÍVAR CONTIGO HOGAR", category: "CONCEPTUAL MARKETING CASE", published: false },
   { number: "11", id: "imetec", title: "IMETEC", category: "INNOVATION STRATEGY", published: false },
 
   /* ---------------------------------------------------------------- 12 */
   {
-    number: "08",
+    number: "09",
     id: "contact",
     kind: "contact",
     published: true,
