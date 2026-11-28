@@ -1701,6 +1701,5 @@ body.is-intro, body.is-detail, body.is-index { overflow: hidden; }
 }
 @media (max-width: 560px) { .cards--n4 { grid-template-columns: 1fr; } .bx-mo { grid-template-columns: 1fr; } }
 @media (max-width: 900px) {
-  .p-hero[data-id="bolivar-contigo"] .p-hero__media img { aspect-ratio: 4 / 5; object-position: 84% 20%; }
   .bx-gt__miles em { max-width: 84px; font-size: 11px; }
 }

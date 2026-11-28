@@ -111,7 +111,7 @@ window.JV_DECK = [
     theme: "light",
     tags: ["Marketing de ciclo de vida", "Performance", "IA", "Seguros"],
     short: "Caso de negocio: Seguros Bolívar y Servicios Bolívar acompañando la mudanza en un solo journey, activado por señales y medido contra grupo de control.",
-    card: { template: "frame", src: IMG + "bolivar/card-bolivar.webp", hero: IMG + "bolivar/hero-bolivar.webp", fit: "cover", heroFit: "cover", bg: "#FDFEFC", heroBg: "#0B7A3E", pos: "50% 30%", heroPos: "100% 40%", heroInk: "#0B5D30", ar: "16 / 9", flyFromCard: true },
+    card: { template: "frame", src: IMG + "bolivar/card-bolivar.webp", hero: IMG + "bolivar/pieza-email.webp", fit: "cover", heroFit: "contain", bg: "#FFFFFF", heroBg: "#F4F1E6", pos: "50% 0%", heroPos: "50% 50%", heroPad: "6% 4% 22% 38%", heroInk: "#0B5D30", ar: "16 / 9", flyFromCard: true },
     lead: "Un hogar, una sola experiencia.",
     facts: [
       ["AÑO", "2026"],
